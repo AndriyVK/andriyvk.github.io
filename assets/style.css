@@ -1,0 +1,25 @@
+:root { --bg: #fbfaf7; --fg: #1d1f23; --muted: #5d636e; --line: #e4e1da; --accent: #1f5fbf; --code: #f1efe9; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #15171a; --fg: #e8e6e1; --muted: #a2a8b2; --line: #2c3036; --accent: #7fb0ff; --code: #1f2227; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.top, main, footer { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+.top { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+nav a { margin-left: 14px; }
+a { color: var(--accent); }
+h1 { font-size: 2rem; line-height: 1.2; margin: 28px 0 8px; }
+h2 { margin-top: 36px; font-size: 1.35rem; }
+.lead { color: var(--muted); font-size: 1.1rem; }
+.date { color: var(--muted); margin: 28px 0 0; font-size: .9rem; }
+pre { background: var(--code); padding: 14px; overflow-x: auto; border-radius: 6px; font-size: .88rem; line-height: 1.5; }
+code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: .9em; }
+pre code { padding: 0; background: none; }
+table { border-collapse: collapse; display: block; overflow-x: auto; margin: 16px 0; }
+th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+ul.posts { list-style: none; padding: 0; }
+ul.posts li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+ul.posts p { margin: 4px 0 0; color: var(--muted); }
+blockquote { margin: 16px 0; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
+footer { margin-top: 56px; padding-top: 16px; padding-bottom: 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }

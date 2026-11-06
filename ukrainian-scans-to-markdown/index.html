@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ukrainian scanned PDFs to Markdown for RAG and LLMs</title>
+<meta name="description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.">
+<link rel="canonical" href="https://andriyvk.github.io/ukrainian-scans-to-markdown/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-scans-to-markdown/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/skany-ukrainskoyu-v-markdown/">
+<meta property="og:title" content="Ukrainian scanned PDFs to Markdown for RAG and LLMs">
+<meta property="og:description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.">
+<meta property="og:url" content="https://andriyvk.github.io/ukrainian-scans-to-markdown/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Ukrainian scanned PDFs to Markdown for RAG and LLMs", "description": "How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.", "datePublished": "2026-11-06", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/skany-ukrainskoyu-v-markdown/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">06.11.2026</p><h1>Ukrainian scanned PDFs to Markdown for RAG and LLMs</h1><p class="lead">How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.</p><p>Most document-to-text tools are tuned for English. A scanned Ukrainian invoice or court decision often comes back
+as Latin look-alike gibberish, or with its tables lost. This guide shows a pipeline that keeps Cyrillic text,
+headings and tables, and shows exactly what it does and does not do — every output below is from a real run on
+6 November 2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool used here, <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>
+on Apify. Its source code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="what-you-get">What you get</h2>
+<p>One record per document: the Markdown, every table as rows of cells, optional chunks with their nearest heading
+(ready for a vector database), and page counts. PDF pages with a text layer are read directly; scanned pages and
+images go through Tesseract OCR, which has a proper Ukrainian model.</p>
+<p>Formats: PDF, scanned PDF, PNG/JPG/TIFF, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT/ODS/ODP, RTF, HTML.</p>
+<h2 id="run-it-from-python">Run it from Python</h2>
+<pre><code class="language-bash">pip install apify-client
+</code></pre>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/document-to-markdown&quot;).call(run_input={
+    &quot;sources&quot;: [
+        {&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/scan-uk.pdf&quot;},
+        {&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/sheet-uk.xlsx&quot;},
+    ],
+    &quot;ocrMode&quot;: &quot;auto&quot;,          # OCR only pages without a text layer
+    &quot;ocrLanguages&quot;: [&quot;ukr&quot;],    # list only the languages that are really in the scan
+    &quot;includeTables&quot;: True,
+    &quot;chunkSize&quot;: 800,           # characters per chunk, 0 = no chunks
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;fileName&quot;], item[&quot;ocrPages&quot;], &quot;OCR pages&quot;)
+    print(item[&quot;markdown&quot;])
+</code></pre>
+<p>The two sample files are public, so you can run this as is. Your own files work by URL, or from your Apify
+key-value store.</p>
+<h2 id="the-real-output">The real output</h2>
+<p><strong>A one-page scan</strong> (<code>scan-uk.pdf</code>, no text layer — 1 OCR page, 1.1 s):</p>
+<pre><code class="language-text">Звіт про постачання
+
+Склад у Львові отримав 1240 палет будівельних матеріалів протягом
+
+третього кварталу. Терміни доставки скоротилися на дванадцять відсотків після запровадження
+
+нового графіка.
+
+| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00
+</code></pre>
+<p>The text is right, letter for letter. The table, however, comes back as one row of cells: in a scan the tool sees
+text, not the grid. That is the main limit today (see below).</p>
+<p><strong>The same content as an Excel file</strong> (<code>sheet-uk.xlsx</code>, 0.2 s) — here the structure is exact:</p>
+<pre><code class="language-text">## Data
+
+| Товар | Кількість | Ціна |
+| --- | --- | --- |
+| Цемент | 420 | 96,50 |
+| Арматура | 180 | 412,00 |
+| Total | 600 | 1,234.50 |
+</code></pre>
+<p>Cell values are kept as written: <code>96,50</code> stays <code>96,50</code>, it is not turned into a float.</p>
+<h2 id="one-setting-that-matters-ocr-languages">One setting that matters: OCR languages</h2>
+<p>I ran the scan twice. With <code>"ocrLanguages": ["ukr", "eng"]</code> the word «Арматура» came back as <code>Apmatypa</code> — the OCR
+picked Latin letters that look the same. With <code>["ukr"]</code> alone it was right. So list only the languages that are
+actually on the page. For a Ukrainian document with a few English words, <code>ukr</code> alone usually reads the Latin words
+fine too.</p>
+<h2 id="price">Price</h2>
+<p>You pay per page: <strong>$1 per 1,000 text pages and $4 per 1,000 OCR pages</strong> (Apify pay-per-event pricing; OCR is
+charged only for pages that needed it). A document that cannot be downloaded or read is not charged. The two files
+above cost a fraction of a cent.</p>
+<h2 id="limits-honestly">Limits — honestly</h2>
+<ul>
+<li><strong>Tables in scans</strong> come back as text cells in one row, not as a grid. If you have the original Word or Excel file,
+  convert that instead — its tables are exact.</li>
+<li><strong>OCR quality follows the scan.</strong> Clean 300 dpi scans read well; phone photos at an angle are worse. For photos, the
+  <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a> Actor auto-rotates pages and returns a confidence
+  for every word.</li>
+<li><strong>Handwriting</strong> is not supported.</li>
+</ul>
+<h2 id="use-it-from-an-ai-agent">Use it from an AI agent</h2>
+<p>The same tool is available through the Apify MCP server, so Claude, Cursor or any MCP client can call it:
+<code>https://mcp.apify.com?tools=ai_admin/document-to-markdown</code>. A local MCP server with all our tools is in
+<a href="https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server">the GitHub repository</a>.</p></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
