@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YouTube subtitles in Ukrainian - transcript and translated SRT by API</title>
-<meta name="description" content="Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.">
+<meta name="description" content="Get a YouTube or TikTok video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - real runs with their output, how it works with and without captions, the price and the limits.">
 <link rel="canonical" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/">
 <meta property="og:title" content="YouTube subtitles in Ukrainian - transcript and translated SRT by API">
-<meta property="og:description" content="Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.">
+<meta property="og:description" content="Get a YouTube or TikTok video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - real runs with their output, how it works with and without captions, the price and the limits.">
 <meta property="og:url" content="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "YouTube subtitles in Ukrainian - transcript and translated SRT by API", "description": "Get a YouTube video's transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "YouTube subtitles in Ukrainian - transcript and translated SRT by API", "description": "Get a YouTube or TikTok video's transcript and Ukrainian subtitles (SRT/VTT) with one API call - real runs with their output, how it works with and without captions, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/">AndriyVK Tools</a>
 <nav><a href="/uk/subtytry-youtube-ukrainskoyu/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">07.11.2026</p><h1>YouTube subtitles in Ukrainian - transcript and translated SRT by API</h1><p class="lead">Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.</p><p>Plenty of tools fetch a YouTube transcript. Fewer give you <strong>subtitles in Ukrainian</strong>, timed to the video, ready to
+<article><p class="date">07.11.2026</p><h1>YouTube subtitles in Ukrainian - transcript and translated SRT by API</h1><p class="lead">Get a YouTube or TikTok video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call - real runs with their output, how it works with and without captions, the price and the limits.</p><p>Plenty of tools fetch a YouTube transcript. Fewer give you <strong>subtitles in Ukrainian</strong>, timed to the video, ready to
 load into a player or an editor. This guide shows one call that returns the original transcript, its Ukrainian
 translation and both as SRT/VTT files. The output below is from a real run on 7 November 2026.</p>
 <blockquote>
@@ -67,6 +67,59 @@ The translation is natural Ukrainian («довгі хоботи», not a word-fo
 <li><strong>No captions:</strong> the audio is recognised with Whisper large-v3, which handles Ukrainian well. Then you pay per
   minute, and <code>maxDurationMinutes</code> (60 by default) keeps you from transcribing a four-hour stream by accident.</li>
 </ul>
+<h2 id="tiktok-without-captions-four-real-runs">TikTok without captions: four real runs</h2>
+<p>TikTok videos usually have no caption track, so here the audio itself is recognised. Four public videos, one run on
+7 November 2026, with Ukrainian translation switched on (<code>"translateTo": "uk"</code>):</p>
+<pre><code class="language-python">run_input = {
+    &quot;videoUrls&quot;: [
+        &quot;https://www.tiktok.com/@nasa/video/7698805564884733198&quot;,
+        &quot;https://www.tiktok.com/@bbcnews/video/7699782697031404822&quot;,
+        &quot;https://www.tiktok.com/@hromadske.ua/video/7704723523511635221&quot;,
+        &quot;https://www.tiktok.com/@hromadske.ua/video/7704712902082874645&quot;,
+    ],
+    &quot;translateTo&quot;: &quot;uk&quot;,
+    &quot;subtitles&quot;: True,
+    &quot;includeSegments&quot;: True,
+}
+</code></pre>
+<p>All four came back with <code>transcriptSource: speech-recognition</code>, none failed. The excerpts below are copied from the
+output as they are, mistakes included.</p>
+<p><strong>1. NASA, English, 45 seconds, 11 segments.</strong> Clear studio speech, recognised without a single error I could spot:</p>
+<pre><code class="language-text">00:14  Viper very much acts as a scout for Moonbase.
+00:19  We've already built three mock-ups, actually two of them within three weeks.
+00:37  Our goal is to enable humans to be operating on the surface of the moon on a permanent basis.
+</code></pre>
+<p>Ukrainian translation of the last line: «Наша мета - забезпечити можливість для людей працювати на поверхні Місяця на
+постійній основі.»</p>
+<p><strong>2. BBC News, English, 35 seconds, 5 segments.</strong> A weather presenter outdoors, in a storm:</p>
+<pre><code class="language-text">00:00  The full force of Storm Austin has arrived here in Newquay and Cornwall.
+       We are now seeing gusts of wind of 17, even 18 miles an hour.
+00:16  These strong winds have the potential to bring down branches and trees. There could well be power cuts.
+00:21  Now the strong winds will move their way a bit further east with drought in the morning ...
+</code></pre>
+<p>This is the hard case, and it shows. The storm is called Austen (the video's own hashtag), not Austin. Gusts of
+17-18 mph would not bring down trees, so the presenter most likely said 70 or 80; I have not checked it by ear.
+«With drought in the morning» is almost certainly «through the morning», and the translation faithfully turned it into
+«посуха». Wind noise is what breaks numbers and short words, so check figures in such videos.</p>
+<p><strong>3. hromadske, Ukrainian, 74 seconds, 14 segments.</strong> A performer in an interview, conversational speech:</p>
+<pre><code class="language-text">00:00  Я себе ловлю на тому, що мене чіпляє все, що з Росією пов'язано.
+00:10  У 22-му році я поїхав в Естонію.
+00:15  І я в аеропорту підхожу до гейту і чую позаду мене чокання, акання.
+00:51  І буде відчуття несправедливості, і буде нас це тригерить постійно ...
+</code></pre>
+<p>Even slang like «тригерить» and «чокання, акання» came through. The language was detected as Ukrainian, so the
+translation was skipped with the warning <code>the video is already in the target language</code> and no translated minutes were
+charged.</p>
+<p><strong>4. hromadske, Ukrainian, 91 seconds, 7 segments.</strong> A calmer interview about the Ukrainian language:</p>
+<pre><code class="language-text">00:00  Захист мови є частиною національної безпеки.
+00:08  З того часу, коли росіяни зросифіковували українців, вони діяли страхом, примусом ...
+00:19  А з іншого боку, у нас демократична країна, демократичні методи українізації суспільства.
+</code></pre>
+<p>One word is wrong: «зросифіковували» should be «русифікували». The rest reads like a clean transcript. The long
+segments (up to 20 seconds) follow the speaker's sentences; for subtitles on a phone screen you may want to split them.</p>
+<p>What the run cost a user on a paid plan: four videos at $0.01 plus two started minutes of translation at $0.007, so
+<strong>$0.054</strong> in total ($0.017 for each English video with translation, $0.01 for each Ukrainian one). Videos up to three
+minutes cost the same flat $0.01 with speech recognition as with captions.</p>
 <h2 id="price">Price</h2>
 <p>On a paid Apify plan: <strong>$10 per 1,000 videos</strong> with captions, plus <strong>$7 per 1,000 minutes</strong> translated. The video
 above: one video plus one started minute of translation, $0.017. On the free plan: $0.025. A YouTube video without

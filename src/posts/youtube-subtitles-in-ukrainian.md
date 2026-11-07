@@ -1,5 +1,5 @@
 title: YouTube subtitles in Ukrainian - transcript and translated SRT by API
-description: Get a YouTube video's transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.
+description: Get a YouTube or TikTok video's transcript and Ukrainian subtitles (SRT/VTT) with one API call - real runs with their output, how it works with and without captions, the price and the limits.
 date: 2026-11-07
 lang: en
 slug: youtube-subtitles-in-ukrainian
@@ -65,6 +65,81 @@ The translation is natural Ukrainian («довгі хоботи», not a word-fo
   price. That was the case above: `uploaded-captions`.
 - **No captions:** the audio is recognised with Whisper large-v3, which handles Ukrainian well. Then you pay per
   minute, and `maxDurationMinutes` (60 by default) keeps you from transcribing a four-hour stream by accident.
+
+## TikTok without captions: four real runs
+
+TikTok videos usually have no caption track, so here the audio itself is recognised. Four public videos, one run on
+7 November 2026, with Ukrainian translation switched on (`"translateTo": "uk"`):
+
+```python
+run_input = {
+    "videoUrls": [
+        "https://www.tiktok.com/@nasa/video/7698805564884733198",
+        "https://www.tiktok.com/@bbcnews/video/7699782697031404822",
+        "https://www.tiktok.com/@hromadske.ua/video/7704723523511635221",
+        "https://www.tiktok.com/@hromadske.ua/video/7704712902082874645",
+    ],
+    "translateTo": "uk",
+    "subtitles": True,
+    "includeSegments": True,
+}
+```
+
+All four came back with `transcriptSource: speech-recognition`, none failed. The excerpts below are copied from the
+output as they are, mistakes included.
+
+**1. NASA, English, 45 seconds, 11 segments.** Clear studio speech, recognised without a single error I could spot:
+
+```text
+00:14  Viper very much acts as a scout for Moonbase.
+00:19  We've already built three mock-ups, actually two of them within three weeks.
+00:37  Our goal is to enable humans to be operating on the surface of the moon on a permanent basis.
+```
+
+Ukrainian translation of the last line: «Наша мета - забезпечити можливість для людей працювати на поверхні Місяця на
+постійній основі.»
+
+**2. BBC News, English, 35 seconds, 5 segments.** A weather presenter outdoors, in a storm:
+
+```text
+00:00  The full force of Storm Austin has arrived here in Newquay and Cornwall.
+       We are now seeing gusts of wind of 17, even 18 miles an hour.
+00:16  These strong winds have the potential to bring down branches and trees. There could well be power cuts.
+00:21  Now the strong winds will move their way a bit further east with drought in the morning ...
+```
+
+This is the hard case, and it shows. The storm is called Austen (the video's own hashtag), not Austin. Gusts of
+17-18 mph would not bring down trees, so the presenter most likely said 70 or 80; I have not checked it by ear.
+«With drought in the morning» is almost certainly «through the morning», and the translation faithfully turned it into
+«посуха». Wind noise is what breaks numbers and short words, so check figures in such videos.
+
+**3. hromadske, Ukrainian, 74 seconds, 14 segments.** A performer in an interview, conversational speech:
+
+```text
+00:00  Я себе ловлю на тому, що мене чіпляє все, що з Росією пов'язано.
+00:10  У 22-му році я поїхав в Естонію.
+00:15  І я в аеропорту підхожу до гейту і чую позаду мене чокання, акання.
+00:51  І буде відчуття несправедливості, і буде нас це тригерить постійно ...
+```
+
+Even slang like «тригерить» and «чокання, акання» came through. The language was detected as Ukrainian, so the
+translation was skipped with the warning `the video is already in the target language` and no translated minutes were
+charged.
+
+**4. hromadske, Ukrainian, 91 seconds, 7 segments.** A calmer interview about the Ukrainian language:
+
+```text
+00:00  Захист мови є частиною національної безпеки.
+00:08  З того часу, коли росіяни зросифіковували українців, вони діяли страхом, примусом ...
+00:19  А з іншого боку, у нас демократична країна, демократичні методи українізації суспільства.
+```
+
+One word is wrong: «зросифіковували» should be «русифікували». The rest reads like a clean transcript. The long
+segments (up to 20 seconds) follow the speaker's sentences; for subtitles on a phone screen you may want to split them.
+
+What the run cost a user on a paid plan: four videos at $0.01 plus two started minutes of translation at $0.007, so
+**$0.054** in total ($0.017 for each English video with translation, $0.01 for each Ukrainian one). Videos up to three
+minutes cost the same flat $0.01 with speech recognition as with captions.
 
 ## Price
 

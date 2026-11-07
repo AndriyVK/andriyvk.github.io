@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Субтитри YouTube українською - текст і перекладений SRT через API</title>
-<meta name="description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
+<meta name="description" content="Як одним викликом API отримати текст відео YouTube або TikTok і українські субтитри (SRT/VTT) - справжні запуски з результатом, як це працює із субтитрами й без них, ціна та обмеження.">
 <link rel="canonical" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/">
 <meta property="og:title" content="Субтитри YouTube українською - текст і перекладений SRT через API">
-<meta property="og:description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
+<meta property="og:description" content="Як одним викликом API отримати текст відео YouTube або TikTok і українські субтитри (SRT/VTT) - справжні запуски з результатом, як це працює із субтитрами й без них, ціна та обмеження.">
 <meta property="og:url" content="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Субтитри YouTube українською - текст і перекладений SRT через API", "description": "Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Субтитри YouTube українською - текст і перекладений SRT через API", "description": "Як одним викликом API отримати текст відео YouTube або TikTok і українські субтитри (SRT/VTT) - справжні запуски з результатом, як це працює із субтитрами й без них, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
 <nav><a href="/youtube-subtitles-in-ukrainian/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">07.11.2026</p><h1>Субтитри YouTube українською - текст і перекладений SRT через API</h1><p class="lead">Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.</p><p>Витягти текст із відео YouTube вміє багато інструментів. Значно менше дають <strong>субтитри українською</strong> - з таймінгом,
+<article><p class="date">07.11.2026</p><h1>Субтитри YouTube українською - текст і перекладений SRT через API</h1><p class="lead">Як одним викликом API отримати текст відео YouTube або TikTok і українські субтитри (SRT/VTT) - справжні запуски з результатом, як це працює із субтитрами й без них, ціна та обмеження.</p><p>Витягти текст із відео YouTube вміє багато інструментів. Значно менше дають <strong>субтитри українською</strong> - з таймінгом,
 готові до плеєра чи редактора. Тут - один виклик, що повертає оригінальний текст, його український переклад і обидва
 у файлах SRT/VTT. Результат нижче - зі справжнього запуску 7 листопада 2026 року.</p>
 <blockquote>
@@ -67,6 +67,59 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 <li><strong>Субтитрів немає:</strong> звук розпізнає Whisper large-v3, який добре знає українську. Тоді оплата за хвилини, а
   <code>maxDurationMinutes</code> (типово 60) не дасть випадково розпізнавати чотиригодинний стрим.</li>
 </ul>
+<h2 id="tiktok">TikTok без субтитрів: чотири справжні запуски</h2>
+<p>У роликах TikTok зазвичай немає доріжки субтитрів, тому тут розпізнається сам звук. Чотири публічні відео, один запуск
+7 листопада 2026 року, з увімкненим перекладом українською (<code>"translateTo": "uk"</code>):</p>
+<pre><code class="language-python">run_input = {
+    &quot;videoUrls&quot;: [
+        &quot;https://www.tiktok.com/@nasa/video/7698805564884733198&quot;,
+        &quot;https://www.tiktok.com/@bbcnews/video/7699782697031404822&quot;,
+        &quot;https://www.tiktok.com/@hromadske.ua/video/7704723523511635221&quot;,
+        &quot;https://www.tiktok.com/@hromadske.ua/video/7704712902082874645&quot;,
+    ],
+    &quot;translateTo&quot;: &quot;uk&quot;,
+    &quot;subtitles&quot;: True,
+    &quot;includeSegments&quot;: True,
+}
+</code></pre>
+<p>Усі чотири повернулися з <code>transcriptSource: speech-recognition</code>, жодне не впало. Уривки нижче скопійовані з результату
+як є, разом із помилками.</p>
+<p><strong>1. NASA, англійська, 45 секунд, 11 фрагментів.</strong> Чисте студійне мовлення, розпізнане без жодної помилки, яку я
+помітив:</p>
+<pre><code class="language-text">00:14  Viper very much acts as a scout for Moonbase.
+00:19  We've already built three mock-ups, actually two of them within three weeks.
+00:37  Our goal is to enable humans to be operating on the surface of the moon on a permanent basis.
+</code></pre>
+<p>Переклад останнього рядка: «Наша мета - забезпечити можливість для людей працювати на поверхні Місяця на постійній
+основі.»</p>
+<p><strong>2. BBC News, англійська, 35 секунд, 5 фрагментів.</strong> Синоптик просто неба, під час шторму:</p>
+<pre><code class="language-text">00:00  The full force of Storm Austin has arrived here in Newquay and Cornwall.
+       We are now seeing gusts of wind of 17, even 18 miles an hour.
+00:16  These strong winds have the potential to bring down branches and trees. There could well be power cuts.
+00:21  Now the strong winds will move their way a bit further east with drought in the morning ...
+</code></pre>
+<p>Це складний випадок, і це видно. Шторм називається Austen (так у хештегу самого ролика), а не Austin. Пориви 17-18 миль
+на годину не валять дерева, тож у кадрі, найімовірніше, прозвучало 70 або 80; на слух я це не перевіряв. «With drought in
+the morning» - майже напевно «through the morning», і переклад сумлінно зробив із цього «посуху». Шум вітру ламає
+насамперед числа й короткі слова, тому в таких роликах цифри варто перевіряти.</p>
+<p><strong>3. hromadske, українська, 74 секунди, 14 фрагментів.</strong> Артист в інтерв'ю, розмовне мовлення:</p>
+<pre><code class="language-text">00:00  Я себе ловлю на тому, що мене чіпляє все, що з Росією пов'язано.
+00:10  У 22-му році я поїхав в Естонію.
+00:15  І я в аеропорту підхожу до гейту і чую позаду мене чокання, акання.
+00:51  І буде відчуття несправедливості, і буде нас це тригерить постійно ...
+</code></pre>
+<p>Навіть розмовні «тригерить» і «чокання, акання» збереглися. Мову визначено як українську, тож переклад пропущено з
+попередженням <code>the video is already in the target language</code>, і хвилини перекладу не списано.</p>
+<p><strong>4. hromadske, українська, 91 секунда, 7 фрагментів.</strong> Спокійніше інтерв'ю про українську мову:</p>
+<pre><code class="language-text">00:00  Захист мови є частиною національної безпеки.
+00:08  З того часу, коли росіяни зросифіковували українців, вони діяли страхом, примусом ...
+00:19  А з іншого боку, у нас демократична країна, демократичні методи українізації суспільства.
+</code></pre>
+<p>Одне слово неправильне: «зросифіковували» замість «русифікували». Решта читається як чиста розшифровка. Довгі фрагменти
+(до 20 секунд) ідуть за реченнями мовця; для субтитрів на екрані телефона їх, можливо, доведеться розбити.</p>
+<p>Скільки цей запуск коштував би користувачеві на платному плані: чотири відео по $0.01 плюс дві розпочаті хвилини
+перекладу по $0.007, разом <strong>$0.054</strong> ($0.017 за кожне англійське відео з перекладом, $0.01 за кожне українське).
+Відео до трьох хвилин коштує ті самі $0.01 і з розпізнаванням мовлення, і із субтитрами.</p>
 <h2 id="_4">Ціна</h2>
 <p>На платному плані Apify: <strong>$10 за 1000 відео</strong> із субтитрами плюс <strong>$7 за 1000 хвилин</strong> перекладу. Відео вище -
 одне відео й одна розпочата хвилина перекладу, $0,017. На безкоштовному плані - $0,025. Відео YouTube без субтитрів -
