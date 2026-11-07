@@ -119,6 +119,13 @@ the places where they disagree, with times, figures flagged (`"numbers": true`).
 «gusts of wind of 17 even 18» against «just a room of 70 even 80», then «with drought in» against «throughout». The
 cross-check doubles the recognition price: $0.02 instead of $0.01 for a video up to three minutes.
 
+The same option is in [Audio & Video Transcriber](https://apify.com/ai_admin/audio-transcriber), for your own files:
+meetings, interviews, calls. There it caught something worse than a misheard number. On a 45-second test recording,
+where one paragraph is read three times, the main model wrote a single word, «The», for the stretch from 0:18 to 0:25
+and lost two sentences of the second reading. The cross-check listed that stretch with the full text the second model
+heard there. Without it the gap is easy to miss: the transcript still reads smoothly. Every minute is charged twice
+with the cross-check, $0.01 a minute instead of $0.005.
+
 **3. hromadske, Ukrainian, 74 seconds, 14 segments.** A performer in an interview, conversational speech:
 
 ```text
