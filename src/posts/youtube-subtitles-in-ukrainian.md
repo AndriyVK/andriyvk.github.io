@@ -113,8 +113,11 @@ This is the hard case, and it shows. The storm is called Austen (the video's own
 exposed places. I cross-checked by running the same video again with `"quality": "fast"` (Whisper large-v3-turbo):
 it heard «70, even 80 miles an hour» and «throughout the morning», so «drought», which the translation faithfully
 turned into «посуха», is a mishearing too. The second model made its own mistake in the same sentence («just a room
-of» instead of «gusts of wind of»). Wind noise is what breaks numbers and short words, so check figures in such videos;
-a second run with the other `quality` costs $0.01 and shows where the two disagree.
+of» instead of «gusts of wind of»). Wind noise is what breaks numbers and short words, so check figures in such videos.
+Since this test the tool does it for you: with `"crossCheck": true` it recognises the audio with both models and lists
+the places where they disagree, with times, figures flagged (`"numbers": true`). On this video the list starts with
+«gusts of wind of 17 even 18» against «just a room of 70 even 80», then «with drought in» against «throughout». The
+cross-check doubles the recognition price: $0.02 instead of $0.01 for a video up to three minutes.
 
 **3. hromadske, Ukrainian, 74 seconds, 14 segments.** A performer in an interview, conversational speech:
 
