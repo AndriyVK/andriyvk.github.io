@@ -10,6 +10,10 @@ as Latin look-alike gibberish, or with its tables lost. This guide shows a pipel
 headings and tables, and shows exactly what it does and does not do — every output below is from a real run on
 6 November 2026.
 
+> **Update, 7 November 2026.** The first run showed two problems: a table in a scan came back as one flat row, and
+> `["ukr", "eng"]` turned «Арматура» into `Apmatypa`. Both are fixed now; the outputs below are from the fixed
+> version (build 0.1.14), and the old ones are kept in the text so you can see the difference.
+
 > Disclosure: I built the tool used here, [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown)
 > on Apify. Its source code is open: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
 
@@ -51,7 +55,7 @@ key-value store.
 
 ## The real output
 
-**A one-page scan** (`scan-uk.pdf`, no text layer — 1 OCR page, 1.1 s):
+**A one-page scan** (`scan-uk.pdf`, no text layer — 1 OCR page):
 
 ```text
 Звіт про постачання
@@ -62,11 +66,15 @@ key-value store.
 
 нового графіка.
 
-| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00
+| Товар | Кількість | Ціна |
+| --- | --- | --- |
+| Цемент | 420 | 96,50 |
+| Арматура | 180 | 412,00 |
 ```
 
-The text is right, letter for letter. The table, however, comes back as one row of cells: in a scan the tool sees
-text, not the grid. That is the main limit today (see below).
+The text is right, letter for letter, and the ruled table is a real table again — in the Markdown and as JSON rows
+`[["Товар", "Кількість", "Ціна"], ["Цемент", "420", "96,50"], ["Арматура", "180", "412,00"]]`. On 6 November the
+same scan gave one flat row: `| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00`.
 
 **The same content as an Excel file** (`sheet-uk.xlsx`, 0.2 s) — here the structure is exact:
 
@@ -84,10 +92,11 @@ Cell values are kept as written: `96,50` stays `96,50`, it is not turned into a 
 
 ## One setting that matters: OCR languages
 
-I ran the scan twice. With `"ocrLanguages": ["ukr", "eng"]` the word «Арматура» came back as `Apmatypa` — the OCR
-picked Latin letters that look the same. With `["ukr"]` alone it was right. So list only the languages that are
-actually on the page. For a Ukrainian document with a few English words, `ukr` alone usually reads the Latin words
-fine too.
+On 6 November, with `"ocrLanguages": ["ukr", "eng"]`, the word «Арматура» came back as `Apmatypa` — the OCR picked
+Latin letters that look the same. Now such a word is put back in Cyrillic when it is in Tesseract's Ukrainian
+dictionary and the Latin spelling is not an English word, so `Excel`, `API` or `copy` stay as they are. The run on
+7 November with `["ukr", "eng"]` gave «Арматура» correctly. Still, list only the languages that are really on the
+page: every extra language is one more way for the OCR to guess wrong.
 
 ## Price
 
@@ -97,7 +106,8 @@ above cost a fraction of a cent.
 
 ## Limits — honestly
 
-- **Tables in scans** come back as text cells in one row, not as a grid. If you have the original Word or Excel file,
+- **Tables in scans** come back as tables when they have ruled grid lines and the scan is clean. A borderless table,
+  or a grid lost in a noisy 200 dpi scan, still comes out as text. If you have the original Word or Excel file,
   convert that instead — its tables are exact.
 - **OCR quality follows the scan.** Clean 300 dpi scans read well; phone photos at an angle are worse. For photos, the
   [Image to Text OCR](https://apify.com/ai_admin/image-to-text-ocr) Actor auto-rotates pages and returns a confidence

@@ -23,6 +23,9 @@ as Latin look-alike gibberish, or with its tables lost. This guide shows a pipel
 headings and tables, and shows exactly what it does and does not do — every output below is from a real run on
 6 November 2026.</p>
 <blockquote>
+<p><strong>Update, 7 November 2026.</strong> The first run showed two problems: a table in a scan came back as one flat row, and
+<code>["ukr", "eng"]</code> turned «Арматура» into <code>Apmatypa</code>. Both are fixed now; the outputs below are from the fixed
+version (build 0.1.14), and the old ones are kept in the text so you can see the difference.</p>
 <p>Disclosure: I built the tool used here, <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>
 on Apify. Its source code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
 </blockquote>
@@ -54,7 +57,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 <p>The two sample files are public, so you can run this as is. Your own files work by URL, or from your Apify
 key-value store.</p>
 <h2 id="the-real-output">The real output</h2>
-<p><strong>A one-page scan</strong> (<code>scan-uk.pdf</code>, no text layer — 1 OCR page, 1.1 s):</p>
+<p><strong>A one-page scan</strong> (<code>scan-uk.pdf</code>, no text layer — 1 OCR page):</p>
 <pre><code class="language-text">Звіт про постачання
 
 Склад у Львові отримав 1240 палет будівельних матеріалів протягом
@@ -63,10 +66,14 @@ key-value store.</p>
 
 нового графіка.
 
-| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00
+| Товар | Кількість | Ціна |
+| --- | --- | --- |
+| Цемент | 420 | 96,50 |
+| Арматура | 180 | 412,00 |
 </code></pre>
-<p>The text is right, letter for letter. The table, however, comes back as one row of cells: in a scan the tool sees
-text, not the grid. That is the main limit today (see below).</p>
+<p>The text is right, letter for letter, and the ruled table is a real table again — in the Markdown and as JSON rows
+<code>[["Товар", "Кількість", "Ціна"], ["Цемент", "420", "96,50"], ["Арматура", "180", "412,00"]]</code>. On 6 November the
+same scan gave one flat row: <code>| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00</code>.</p>
 <p><strong>The same content as an Excel file</strong> (<code>sheet-uk.xlsx</code>, 0.2 s) — here the structure is exact:</p>
 <pre><code class="language-text">## Data
 
@@ -78,17 +85,19 @@ text, not the grid. That is the main limit today (see below).</p>
 </code></pre>
 <p>Cell values are kept as written: <code>96,50</code> stays <code>96,50</code>, it is not turned into a float.</p>
 <h2 id="one-setting-that-matters-ocr-languages">One setting that matters: OCR languages</h2>
-<p>I ran the scan twice. With <code>"ocrLanguages": ["ukr", "eng"]</code> the word «Арматура» came back as <code>Apmatypa</code> — the OCR
-picked Latin letters that look the same. With <code>["ukr"]</code> alone it was right. So list only the languages that are
-actually on the page. For a Ukrainian document with a few English words, <code>ukr</code> alone usually reads the Latin words
-fine too.</p>
+<p>On 6 November, with <code>"ocrLanguages": ["ukr", "eng"]</code>, the word «Арматура» came back as <code>Apmatypa</code> — the OCR picked
+Latin letters that look the same. Now such a word is put back in Cyrillic when it is in Tesseract's Ukrainian
+dictionary and the Latin spelling is not an English word, so <code>Excel</code>, <code>API</code> or <code>copy</code> stay as they are. The run on
+7 November with <code>["ukr", "eng"]</code> gave «Арматура» correctly. Still, list only the languages that are really on the
+page: every extra language is one more way for the OCR to guess wrong.</p>
 <h2 id="price">Price</h2>
 <p>You pay per page: <strong>$1 per 1,000 text pages and $4 per 1,000 OCR pages</strong> (Apify pay-per-event pricing; OCR is
 charged only for pages that needed it). A document that cannot be downloaded or read is not charged. The two files
 above cost a fraction of a cent.</p>
 <h2 id="limits-honestly">Limits — honestly</h2>
 <ul>
-<li><strong>Tables in scans</strong> come back as text cells in one row, not as a grid. If you have the original Word or Excel file,
+<li><strong>Tables in scans</strong> come back as tables when they have ruled grid lines and the scan is clean. A borderless table,
+  or a grid lost in a noisy 200 dpi scan, still comes out as text. If you have the original Word or Excel file,
   convert that instead — its tables are exact.</li>
 <li><strong>OCR quality follows the scan.</strong> Clean 300 dpi scans read well; phone photos at an angle are worse. For photos, the
   <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a> Actor auto-rotates pages and returns a confidence

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Українська озвучка тексту через API — природні голоси, MP3 і субтитри</title>
+<meta name="description" content="Як одним викликом API перетворити український текст, статтю чи файл DOCX/PDF на природне мовлення — три українські нейроголоси, MP3 і SRT, справжній запуск, який можна послухати, ціна та обмеження.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/ukrainska-ozvuchka-tekstu-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/ukrainska-ozvuchka-tekstu-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-text-to-speech-api/">
+<meta property="og:title" content="Українська озвучка тексту через API — природні голоси, MP3 і субтитри">
+<meta property="og:description" content="Як одним викликом API перетворити український текст, статтю чи файл DOCX/PDF на природне мовлення — три українські нейроголоси, MP3 і SRT, справжній запуск, який можна послухати, ціна та обмеження.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/ukrainska-ozvuchka-tekstu-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Українська озвучка тексту через API — природні голоси, MP3 і субтитри", "description": "Як одним викликом API перетворити український текст, статтю чи файл DOCX/PDF на природне мовлення — три українські нейроголоси, MP3 і SRT, справжній запуск, який можна послухати, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/ukrainian-text-to-speech-api/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">07.11.2026</p><h1>Українська озвучка тексту через API — природні голоси, MP3 і субтитри</h1><p class="lead">Як одним викликом API перетворити український текст, статтю чи файл DOCX/PDF на природне мовлення — три українські нейроголоси, MP3 і SRT, справжній запуск, який можна послухати, ціна та обмеження.</p><p>Добрих українських голосів у сервісах синтезу мовлення мало: багато сервісів їх не мають зовсім, а відкриті голоси
+часто ставлять наголос не туди. Тут — один виклик API, що перетворює український текст на MP3 із субтитрами, і зразок,
+який можна прослухати просто на цій сторінці. Запуск — 7 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: інструмент, про який ідеться, — <a href="https://apify.com/ai_admin/text-to-speech">Text to Speech</a> на Apify —
+зробив я. Голоси працюють усередині нього (нейромоделі <a href="https://github.com/OHF-Voice/piper1-gpl">Piper</a>), тож жодного
+іншого сервісу чи вашого ключа не потрібно. Код відкритий:
+<a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Спершу послухайте</h2>
+<p><audio controls preload="none" src="/assets/audio/tts-uk-tetiana.mp3"></audio></p>
+<p>Голос <code>uk_UA-tetiana-high</code>, швидкість 1.12, MP3. Це файл саме такий, яким його повернув API, без обробки.</p>
+<h2 id="_2">Виклик</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/text-to-speech&quot;).call(run_input={
+    &quot;text&quot;: &quot;Добрий день! Це український голос, створений нейромережею.\n\n&quot;
+            &quot;Він читає статті, документи та субтитри природно і без акценту.&quot;,
+    &quot;voice&quot;: &quot;uk_UA-tetiana-high&quot;,   # або uk_UA-mykyta-high, uk_UA-oleksa-high
+    &quot;speed&quot;: 1.12,
+    &quot;format&quot;: &quot;mp3&quot;,                 # mp3, wav або ogg
+    &quot;subtitles&quot;: True,               # SRT і VTT, безкоштовно
+})
+item = next(client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items())
+print(item[&quot;durationSeconds&quot;], item[&quot;audioUrl&quot;], item[&quot;srtUrl&quot;])
+</code></pre>
+<p>Замість <code>text</code> можна передати <code>sources</code> — посилання на файли TXT, Markdown, HTML, DOCX чи PDF (з текстовим шаром),
+по одному аудіофайлу на кожен.</p>
+<h2 id="_3">Справжній результат</h2>
+<pre><code class="language-text">voice: uk_UA-tetiana-high   characters: 120   sentences: 3   durationSeconds: 10.59
+</code></pre>
+<p>І субтитри, що прийшли разом із ним, — по одному на речення, точно під звук:</p>
+<pre><code class="language-text">1
+00:00:00,000 --&gt; 00:00:01,068
+Добрий день!
+
+2
+00:00:01,291 --&gt; 00:00:04,240
+Це український голос, створений нейромережею.
+
+3
+00:00:04,865 --&gt; 00:00:10,589
+Він читає статті, документи та субтитри природно і без акценту.
+</code></pre>
+<p>Увесь запуск зайняв 30 секунд, переважно запуск контейнера. Орієнтир: 750–900 знаків — це хвилина мовлення.</p>
+<h2 id="_4">Ціна</h2>
+<p>За кожну розпочату хвилину звуку: <strong>$40 за 1000 хвилин для голосів <code>high</code></strong> (4 центи за хвилину) і $10 за 1000 для
+голосів <code>medium</code>/<code>low</code>. Усі три українські голоси — <code>high</code>. Зразок вище — одна розпочата хвилина, 4 центи. Субтитри
+безкоштовні.</p>
+<h2 id="_5">Обмеження</h2>
+<ul>
+<li>Числа, скорочення й іншомовні слова читаються за правилами голосу і можуть звучати дивно: пишіть «двадцять п'ять»
+  або перевіряйте, як звучить «25».</li>
+<li>Скановані PDF без текстового шару не читаються — спершу OCR (див.
+  <a href="/uk/skany-ukrainskoyu-v-markdown/">Скани українською — у Markdown</a>).</li>
+<li>Це синтезований голос. Для чернетки аудіокниги чи доступності — добре; для фінального релізу професійний диктор
+  поки кращий.</li>
+</ul>
+<h2 id="-">Для ШІ-агентів</h2>
+<p><code>https://mcp.apify.com?tools=ai_admin/text-to-speech</code> додає голос як інструмент MCP — агент може написати текст і
+віддати готовий звук.</p></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing</title>
+<meta name="description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.">
+<link rel="canonical" href="https://andriyvk.github.io/office-to-pdf-a-archive/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/office-to-pdf-a-archive/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/office-v-pdf-a-sud-arkhiv/">
+<meta property="og:title" content="Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing">
+<meta property="og:description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.">
+<meta property="og:url" content="https://andriyvk.github.io/office-to-pdf-a-archive/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing", "description": "Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/office-v-pdf-a-sud-arkhiv/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">07.11.2026</p><h1>Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing</h1><p class="lead">Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.</p><p>Archives, document management systems and some e-filing portals accept only PDF/A: a PDF with every font embedded
+and nothing that depends on the viewer's computer. Saving as PDF/A by hand works for one file. For a folder of
+contracts, tables and slides you want it done by an API. Every output below is from a real run on 7 November 2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool used here, <a href="https://apify.com/ai_admin/office-to-pdf">Office to PDF Converter</a> on Apify.
+It runs LibreOffice in a container. The source code is open:
+<a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="one-call-several-files">One call, several files</h2>
+<pre><code class="language-bash">pip install apify-client
+</code></pre>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/office-to-pdf&quot;).call(run_input={
+    &quot;sources&quot;: [
+        {&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/doc-uk.docx&quot;},
+        {&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/sheet-uk.xlsx&quot;},
+    ],
+    &quot;pdfA&quot;: True,          # PDF/A-2b instead of a plain PDF
+    &quot;mergeIntoOne&quot;: True,  # also one merged.pdf in input order (free)
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item.get(&quot;fileName&quot;, &quot;merged&quot;), item[&quot;pages&quot;], &quot;pages&quot;, item[&quot;pdfUrl&quot;])
+</code></pre>
+<p>The two sample files are public, so the code runs as is. Formats: DOCX, DOC, ODT, RTF, TXT, HTML, XLSX, XLS, ODS,
+CSV, PPTX, PPT, ODP and images.</p>
+<h2 id="the-real-output">The real output</h2>
+<pre><code class="language-text">doc-uk.docx    1 page   44,040 bytes  pdfA: true
+sheet-uk.xlsx  2 pages  32,574 bytes  pdfA: true
+merged.pdf     3 pages  34,927 bytes  documents: 2
+</code></pre>
+<h2 id="what-i-checked-in-the-pdf">What I checked in the PDF</h2>
+<p>A file that says «PDF/A» is not always one, so I opened the Word result:</p>
+<ul>
+<li><strong>The PDF/A label is there:</strong> the XMP metadata says <code>pdfaid:part 2</code>, <code>pdfaid:conformance B</code> — PDF/A-2b.</li>
+<li><strong>All fonts are embedded</strong> (<code>pdffonts</code>: <code>emb yes</code> for every font). This is what PDF/A is about: the file looks the
+  same on any computer, in ten years too.</li>
+<li><strong>The Cyrillic text is real text,</strong> not a picture: <code>pdftotext</code> gives back «Звіт про постачання», «Склад у Львові
+  отримав 1240 палет…» — so the archive's search finds it.</li>
+<li><strong>Fonts were replaced.</strong> The document asks for Calibri and Cambria, which are Microsoft fonts. The converter uses
+  Carlito and Caladea instead — free fonts with the same letter widths, so lines and pages break in the same places.
+  The look is close but not identical.</li>
+</ul>
+<p>What I did not do: a full validation with <a href="https://verapdf.org/">veraPDF</a>, the reference PDF/A checker. If a portal
+rejects files that fail veraPDF, run it on a sample before you convert the whole folder.</p>
+<h2 id="price">Price</h2>
+<p><strong>$10 per 1,000 documents</strong>, whatever the number of pages; merging is free; a file that fails to convert is not
+charged. The run above cost two cents.</p>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>Password-protected files are not converted.</li>
+<li>Fonts that are not installed are replaced by metric-compatible ones; an unusual font may change the look slightly.</li>
+<li>Macros are not run.</li>
+<li>PDF/A is about how a file is stored. It does not sign it: if a court or an agency needs a qualified electronic
+  signature, sign the PDF/A afterwards with your own signing tool.</li>
+</ul>
+<h2 id="from-an-ai-agent">From an AI agent</h2>
+<p>The converter is also an MCP tool: <code>https://mcp.apify.com?tools=ai_admin/office-to-pdf</code>, so Claude, Cursor or any MCP
+client can turn the files it has prepared into PDF/A.</p></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

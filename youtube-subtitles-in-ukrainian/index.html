@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouTube subtitles in Ukrainian — transcript and translated SRT by API</title>
+<meta name="description" content="Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call — a real run with its output, how it works with and without captions, the price and the limits.">
+<link rel="canonical" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/">
+<meta property="og:title" content="YouTube subtitles in Ukrainian — transcript and translated SRT by API">
+<meta property="og:description" content="Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call — a real run with its output, how it works with and without captions, the price and the limits.">
+<meta property="og:url" content="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "YouTube subtitles in Ukrainian — transcript and translated SRT by API", "description": "Get a YouTube video's transcript and Ukrainian subtitles (SRT/VTT) with one API call — a real run with its output, how it works with and without captions, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/subtytry-youtube-ukrainskoyu/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">07.11.2026</p><h1>YouTube subtitles in Ukrainian — transcript and translated SRT by API</h1><p class="lead">Get a YouTube video&#x27;s transcript and Ukrainian subtitles (SRT/VTT) with one API call — a real run with its output, how it works with and without captions, the price and the limits.</p><p>Plenty of tools fetch a YouTube transcript. Fewer give you <strong>subtitles in Ukrainian</strong>, timed to the video, ready to
+load into a player or an editor. This guide shows one call that returns the original transcript, its Ukrainian
+translation and both as SRT/VTT files. The output below is from a real run on 7 November 2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool used here, <a href="https://apify.com/ai_admin/social-video-transcript">Video Transcript &amp; Translation</a>
+on Apify. The source code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="the-call">The call</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/social-video-transcript&quot;).call(run_input={
+    &quot;videoUrls&quot;: [&quot;https://www.youtube.com/watch?v=jNQXAC9IVRw&quot;],
+    &quot;translateTo&quot;: &quot;uk&quot;,      # Ukrainian; 20 more languages are available
+    &quot;subtitles&quot;: True,        # SRT and VTT, original and translation (free)
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;title&quot;], item[&quot;transcriptSource&quot;])
+    print(item[&quot;translation&quot;][&quot;text&quot;])
+    print(item[&quot;translation&quot;][&quot;srtUrl&quot;])
+</code></pre>
+<p>The same list takes TikTok, Instagram Reels, Facebook, X and Vimeo links.</p>
+<h2 id="the-real-output">The real output</h2>
+<p>The video is the first one ever uploaded to YouTube, «Me at the zoo» (19 seconds).</p>
+<pre><code class="language-text">title: Me at the zoo   language: en   transcriptSource: uploaded-captions   seconds: 18.2
+</code></pre>
+<p>The Ukrainian SRT file (first three cues):</p>
+<pre><code class="language-text">1
+00:00:01,200 --&gt; 00:00:03,360
+Гаразд, тож ми тут, перед слонами
+
+2
+00:00:05,320 --&gt; 00:00:07,970
+круте в цих тварин те, що у них справді...
+
+3
+00:00:07,970 --&gt; 00:00:12,620
+справді дуже довгі хоботи
+</code></pre>
+<p>Each translated cue keeps the timing of the original one, so the file lines up with the video without any editing.
+The translation is natural Ukrainian («довгі хоботи», not a word-for-word copy), and even the elephant sound
+<code>(baaaaaaaaaaahhh!!)</code> became <code>(бааааааааа!!)</code>.</p>
+<h2 id="captions-or-speech-recognition">Captions or speech recognition</h2>
+<ul>
+<li><strong>The video has captions</strong> (uploaded or YouTube's automatic ones): they are used. Fast, any length, one flat
+  price. That was the case above: <code>uploaded-captions</code>.</li>
+<li><strong>No captions:</strong> the audio is recognised with Whisper large-v3, which handles Ukrainian well. Then you pay per
+  minute, and <code>maxDurationMinutes</code> (60 by default) keeps you from transcribing a four-hour stream by accident.</li>
+</ul>
+<h2 id="price">Price</h2>
+<p>On a paid Apify plan: <strong>$10 per 1,000 videos</strong> with captions, plus <strong>$7 per 1,000 minutes</strong> translated. The video
+above: one video plus one started minute of translation, $0.017. On the free plan: $0.025. A YouTube video without
+captions is $10 per 1,000 minutes instead. Failed videos are free.</p>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>Private videos, videos that need a login and live streams are not supported.</li>
+<li>YouTube sometimes refuses downloads from servers; such a video gets an <code>error</code> field and is not charged.</li>
+<li>Speakers are not labelled.</li>
+<li>The translation is done by a language model: good for watching and searching, but read it before you publish it
+  as official subtitles.</li>
+<li>Transcribe and translate only videos you are allowed to use.</li>
+</ul>
+<h2 id="from-an-ai-agent">From an AI agent</h2>
+<p><code>https://mcp.apify.com?tools=ai_admin/social-video-transcript</code> gives Claude, Cursor or any MCP client one tool that
+reads a video link and answers in text.</p></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
