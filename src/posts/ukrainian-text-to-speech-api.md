@@ -1,5 +1,5 @@
-title: Ukrainian text to speech by API — natural voices, MP3 and subtitles
-description: Turn Ukrainian text, articles or DOCX/PDF files into natural speech with one API call — three Ukrainian neural voices, MP3 plus SRT, a real run you can listen to, the price and the limits.
+title: Ukrainian text to speech by API - natural voices, MP3 and subtitles
+description: Turn Ukrainian text, articles or DOCX/PDF files into natural speech with one API call - three Ukrainian neural voices, MP3 plus SRT, a real run you can listen to, the price and the limits.
 date: 2026-11-07
 lang: en
 slug: ukrainian-text-to-speech-api
@@ -47,7 +47,7 @@ audio file each.
 voice: uk_UA-tetiana-high   characters: 120   sentences: 3   durationSeconds: 10.59
 ```
 
-And the subtitles that came with it — one cue per sentence, timed to the audio:
+And the subtitles that came with it - one cue per sentence, timed to the audio:
 
 ```text
 1
@@ -63,20 +63,20 @@ And the subtitles that came with it — one cue per sentence, timed to the audio
 Він читає статті, документи та субтитри природно і без акценту.
 ```
 
-The whole run took 30 seconds, most of it the container start. As a rule of thumb, 750–900 characters make one minute
+The whole run took 30 seconds, most of it the container start. As a rule of thumb, 750-900 characters make one minute
 of speech.
 
 ## Price
 
 Per started minute of audio: **$40 per 1,000 minutes with the `high` voices** (4 cents a minute) and $10 per 1,000
-with `medium`/`low` voices. All three Ukrainian voices are `high`. The sample above is one started minute — 4 cents.
+with `medium`/`low` voices. All three Ukrainian voices are `high`. The sample above is one started minute - 4 cents.
 Subtitles are free.
 
 ## Limits
 
 - Numbers, abbreviations and foreign words are read by the voice's rules and may sound odd: write «двадцять п'ять»
   or check how «25» sounds.
-- Scanned PDFs without a text layer are not read — run them through OCR first (see
+- Scanned PDFs without a text layer are not read - run them through OCR first (see
   [Ukrainian scans to Markdown](/ukrainian-scans-to-markdown/)).
 - It is a synthetic voice. For an audiobook it is fine for drafts and accessibility; a professional narrator is still
   better for a final release.

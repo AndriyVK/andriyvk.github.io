@@ -1,5 +1,5 @@
-title: YouTube subtitles in Ukrainian — transcript and translated SRT by API
-description: Get a YouTube video's transcript and Ukrainian subtitles (SRT/VTT) with one API call — a real run with its output, how it works with and without captions, the price and the limits.
+title: YouTube subtitles in Ukrainian - transcript and translated SRT by API
+description: Get a YouTube video's transcript and Ukrainian subtitles (SRT/VTT) with one API call - a real run with its output, how it works with and without captions, the price and the limits.
 date: 2026-11-07
 lang: en
 slug: youtube-subtitles-in-ukrainian

@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ukrainian scanned PDFs to Markdown for RAG and LLMs</title>
-<meta name="description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.">
+<meta name="description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline - with a real run, its output, the price and the limits.">
 <link rel="canonical" href="https://andriyvk.github.io/ukrainian-scans-to-markdown/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-scans-to-markdown/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/skany-ukrainskoyu-v-markdown/">
 <meta property="og:title" content="Ukrainian scanned PDFs to Markdown for RAG and LLMs">
-<meta property="og:description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.">
+<meta property="og:description" content="How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline - with a real run, its output, the price and the limits.">
 <meta property="og:url" content="https://andriyvk.github.io/ukrainian-scans-to-markdown/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Ukrainian scanned PDFs to Markdown for RAG and LLMs", "description": "How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.", "datePublished": "2026-11-06", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Ukrainian scanned PDFs to Markdown for RAG and LLMs", "description": "How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline - with a real run, its output, the price and the limits.", "datePublished": "2026-11-06", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/">AndriyVK Tools</a>
 <nav><a href="/uk/skany-ukrainskoyu-v-markdown/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">06.11.2026</p><h1>Ukrainian scanned PDFs to Markdown for RAG and LLMs</h1><p class="lead">How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.</p><p>Most document-to-text tools are tuned for English. A scanned Ukrainian invoice or court decision often comes back
+<article><p class="date">06.11.2026</p><h1>Ukrainian scanned PDFs to Markdown for RAG and LLMs</h1><p class="lead">How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline - with a real run, its output, the price and the limits.</p><p>Most document-to-text tools are tuned for English. A scanned Ukrainian invoice or court decision often comes back
 as Latin look-alike gibberish, or with its tables lost. This guide shows a pipeline that keeps Cyrillic text,
-headings and tables, and shows exactly what it does and does not do — every output below is from a real run on
+headings and tables, and shows exactly what it does and does not do - every output below is from a real run on
 6 November 2026.</p>
 <blockquote>
 <p><strong>Update, 7 November 2026.</strong> The first run showed two problems: a table in a scan came back as one flat row, and
@@ -57,7 +57,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 <p>The two sample files are public, so you can run this as is. Your own files work by URL, or from your Apify
 key-value store.</p>
 <h2 id="the-real-output">The real output</h2>
-<p><strong>A one-page scan</strong> (<code>scan-uk.pdf</code>, no text layer — 1 OCR page):</p>
+<p><strong>A one-page scan</strong> (<code>scan-uk.pdf</code>, no text layer - 1 OCR page):</p>
 <pre><code class="language-text">Звіт про постачання
 
 Склад у Львові отримав 1240 палет будівельних матеріалів протягом
@@ -71,10 +71,10 @@ key-value store.</p>
 | Цемент | 420 | 96,50 |
 | Арматура | 180 | 412,00 |
 </code></pre>
-<p>The text is right, letter for letter, and the ruled table is a real table again — in the Markdown and as JSON rows
+<p>The text is right, letter for letter, and the ruled table is a real table again - in the Markdown and as JSON rows
 <code>[["Товар", "Кількість", "Ціна"], ["Цемент", "420", "96,50"], ["Арматура", "180", "412,00"]]</code>. On 6 November the
 same scan gave one flat row: <code>| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00</code>.</p>
-<p><strong>The same content as an Excel file</strong> (<code>sheet-uk.xlsx</code>, 0.2 s) — here the structure is exact:</p>
+<p><strong>The same content as an Excel file</strong> (<code>sheet-uk.xlsx</code>, 0.2 s) - here the structure is exact:</p>
 <pre><code class="language-text">## Data
 
 | Товар | Кількість | Ціна |
@@ -85,7 +85,7 @@ same scan gave one flat row: <code>| Товар | Кількість | Ціна 
 </code></pre>
 <p>Cell values are kept as written: <code>96,50</code> stays <code>96,50</code>, it is not turned into a float.</p>
 <h2 id="one-setting-that-matters-ocr-languages">One setting that matters: OCR languages</h2>
-<p>On 6 November, with <code>"ocrLanguages": ["ukr", "eng"]</code>, the word «Арматура» came back as <code>Apmatypa</code> — the OCR picked
+<p>On 6 November, with <code>"ocrLanguages": ["ukr", "eng"]</code>, the word «Арматура» came back as <code>Apmatypa</code> - the OCR picked
 Latin letters that look the same. Now such a word is put back in Cyrillic when it is in Tesseract's Ukrainian
 dictionary and the Latin spelling is not an English word, so <code>Excel</code>, <code>API</code> or <code>copy</code> stay as they are. The run on
 7 November with <code>["ukr", "eng"]</code> gave «Арматура» correctly. Still, list only the languages that are really on the
@@ -94,11 +94,11 @@ page: every extra language is one more way for the OCR to guess wrong.</p>
 <p>You pay per page: <strong>$1 per 1,000 text pages and $4 per 1,000 OCR pages</strong> (Apify pay-per-event pricing; OCR is
 charged only for pages that needed it). A document that cannot be downloaded or read is not charged. The two files
 above cost a fraction of a cent.</p>
-<h2 id="limits-honestly">Limits — honestly</h2>
+<h2 id="limits-honestly">Limits - honestly</h2>
 <ul>
 <li><strong>Tables in scans</strong> come back as tables when they have ruled grid lines and the scan is clean. A borderless table,
   or a grid lost in a noisy 200 dpi scan, still comes out as text. If you have the original Word or Excel file,
-  convert that instead — its tables are exact.</li>
+  convert that instead - its tables are exact.</li>
 <li><strong>OCR quality follows the scan.</strong> Clean 300 dpi scans read well; phone photos at an angle are worse. For photos, the
   <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a> Actor auto-rotates pages and returns a confidence
   for every word.</li>

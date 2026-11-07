@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing</title>
-<meta name="description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.">
+<title>Word, Excel and PowerPoint to PDF/A by API - for archives and e-filing</title>
+<meta name="description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call - a real run, what I checked in the output, the price and the limits.">
 <link rel="canonical" href="https://andriyvk.github.io/office-to-pdf-a-archive/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/office-to-pdf-a-archive/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/office-v-pdf-a-sud-arkhiv/">
-<meta property="og:title" content="Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing">
-<meta property="og:description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.">
+<meta property="og:title" content="Word, Excel and PowerPoint to PDF/A by API - for archives and e-filing">
+<meta property="og:description" content="Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call - a real run, what I checked in the output, the price and the limits.">
 <meta property="og:url" content="https://andriyvk.github.io/office-to-pdf-a-archive/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing", "description": "Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Word, Excel and PowerPoint to PDF/A by API - for archives and e-filing", "description": "Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call - a real run, what I checked in the output, the price and the limits.", "datePublished": "2026-11-07", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/">AndriyVK Tools</a>
 <nav><a href="/uk/office-v-pdf-a-sud-arkhiv/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">07.11.2026</p><h1>Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing</h1><p class="lead">Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.</p><p>Archives, document management systems and some e-filing portals accept only PDF/A: a PDF with every font embedded
+<article><p class="date">07.11.2026</p><h1>Word, Excel and PowerPoint to PDF/A by API - for archives and e-filing</h1><p class="lead">Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call - a real run, what I checked in the output, the price and the limits.</p><p>Archives, document management systems and some e-filing portals accept only PDF/A: a PDF with every font embedded
 and nothing that depends on the viewer's computer. Saving as PDF/A by hand works for one file. For a folder of
 contracts, tables and slides you want it done by an API. Every output below is from a real run on 7 November 2026.</p>
 <blockquote>
@@ -53,13 +53,13 @@ merged.pdf     3 pages  34,927 bytes  documents: 2
 <h2 id="what-i-checked-in-the-pdf">What I checked in the PDF</h2>
 <p>A file that says «PDF/A» is not always one, so I opened the Word result:</p>
 <ul>
-<li><strong>The PDF/A label is there:</strong> the XMP metadata says <code>pdfaid:part 2</code>, <code>pdfaid:conformance B</code> — PDF/A-2b.</li>
+<li><strong>The PDF/A label is there:</strong> the XMP metadata says <code>pdfaid:part 2</code>, <code>pdfaid:conformance B</code> - PDF/A-2b.</li>
 <li><strong>All fonts are embedded</strong> (<code>pdffonts</code>: <code>emb yes</code> for every font). This is what PDF/A is about: the file looks the
   same on any computer, in ten years too.</li>
 <li><strong>The Cyrillic text is real text,</strong> not a picture: <code>pdftotext</code> gives back «Звіт про постачання», «Склад у Львові
-  отримав 1240 палет…» — so the archive's search finds it.</li>
+  отримав 1240 палет…» - so the archive's search finds it.</li>
 <li><strong>Fonts were replaced.</strong> The document asks for Calibri and Cambria, which are Microsoft fonts. The converter uses
-  Carlito and Caladea instead — free fonts with the same letter widths, so lines and pages break in the same places.
+  Carlito and Caladea instead - free fonts with the same letter widths, so lines and pages break in the same places.
   The look is close but not identical.</li>
 </ul>
 <p>What I did not do: a full validation with <a href="https://verapdf.org/">veraPDF</a>, the reference PDF/A checker. If a portal

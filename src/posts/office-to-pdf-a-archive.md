@@ -1,5 +1,5 @@
-title: Word, Excel and PowerPoint to PDF/A by API — for archives and e-filing
-description: Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call — a real run, what I checked in the output, the price and the limits.
+title: Word, Excel and PowerPoint to PDF/A by API - for archives and e-filing
+description: Convert DOCX, XLSX and PPTX (Cyrillic included) to PDF/A-2b in bulk with one API call - a real run, what I checked in the output, the price and the limits.
 date: 2026-11-07
 lang: en
 slug: office-to-pdf-a-archive
@@ -50,13 +50,13 @@ merged.pdf     3 pages  34,927 bytes  documents: 2
 
 A file that says «PDF/A» is not always one, so I opened the Word result:
 
-- **The PDF/A label is there:** the XMP metadata says `pdfaid:part 2`, `pdfaid:conformance B` — PDF/A-2b.
+- **The PDF/A label is there:** the XMP metadata says `pdfaid:part 2`, `pdfaid:conformance B` - PDF/A-2b.
 - **All fonts are embedded** (`pdffonts`: `emb yes` for every font). This is what PDF/A is about: the file looks the
   same on any computer, in ten years too.
 - **The Cyrillic text is real text,** not a picture: `pdftotext` gives back «Звіт про постачання», «Склад у Львові
-  отримав 1240 палет…» — so the archive's search finds it.
+  отримав 1240 палет…» - so the archive's search finds it.
 - **Fonts were replaced.** The document asks for Calibri and Cambria, which are Microsoft fonts. The converter uses
-  Carlito and Caladea instead — free fonts with the same letter widths, so lines and pages break in the same places.
+  Carlito and Caladea instead - free fonts with the same letter widths, so lines and pages break in the same places.
   The look is close but not identical.
 
 What I did not do: a full validation with [veraPDF](https://verapdf.org/), the reference PDF/A checker. If a portal

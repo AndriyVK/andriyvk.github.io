@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Субтитри YouTube українською — текст і перекладений SRT через API</title>
-<meta name="description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) — справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
+<title>Субтитри YouTube українською - текст і перекладений SRT через API</title>
+<meta name="description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
 <link rel="canonical" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/youtube-subtitles-in-ukrainian/">
-<meta property="og:title" content="Субтитри YouTube українською — текст і перекладений SRT через API">
-<meta property="og:description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) — справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
+<meta property="og:title" content="Субтитри YouTube українською - текст і перекладений SRT через API">
+<meta property="og:description" content="Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.">
 <meta property="og:url" content="https://andriyvk.github.io/uk/subtytry-youtube-ukrainskoyu/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Субтитри YouTube українською — текст і перекладений SRT через API", "description": "Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) — справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Субтитри YouTube українською - текст і перекладений SRT через API", "description": "Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
 <nav><a href="/youtube-subtitles-in-ukrainian/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">07.11.2026</p><h1>Субтитри YouTube українською — текст і перекладений SRT через API</h1><p class="lead">Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) — справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.</p><p>Витягти текст із відео YouTube вміє багато інструментів. Значно менше дають <strong>субтитри українською</strong> — з таймінгом,
-готові до плеєра чи редактора. Тут — один виклик, що повертає оригінальний текст, його український переклад і обидва
-у файлах SRT/VTT. Результат нижче — зі справжнього запуску 7 листопада 2026 року.</p>
+<article><p class="date">07.11.2026</p><h1>Субтитри YouTube українською - текст і перекладений SRT через API</h1><p class="lead">Як одним викликом API отримати текст відео YouTube і українські субтитри (SRT/VTT) - справжній запуск із результатом, як це працює із субтитрами й без них, ціна та обмеження.</p><p>Витягти текст із відео YouTube вміє багато інструментів. Значно менше дають <strong>субтитри українською</strong> - з таймінгом,
+готові до плеєра чи редактора. Тут - один виклик, що повертає оригінальний текст, його український переклад і обидва
+у файлах SRT/VTT. Результат нижче - зі справжнього запуску 7 листопада 2026 року.</p>
 <blockquote>
-<p>Розкриття: інструмент, про який ідеться, — <a href="https://apify.com/ai_admin/social-video-transcript">Video Transcript &amp; Translation</a>
-на Apify — зробив я. Код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+<p>Розкриття: інструмент, про який ідеться, - <a href="https://apify.com/ai_admin/social-video-transcript">Video Transcript &amp; Translation</a>
+на Apify - зробив я. Код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
 </blockquote>
 <h2 id="_1">Виклик</h2>
 <pre><code class="language-python">from apify_client import ApifyClient
@@ -41,7 +41,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 </code></pre>
 <p>Той самий список приймає посилання на TikTok, Instagram Reels, Facebook, X і Vimeo.</p>
 <h2 id="_2">Справжній результат</h2>
-<p>Відео — найперше, завантажене на YouTube, «Me at the zoo» (19 секунд).</p>
+<p>Відео - найперше, завантажене на YouTube, «Me at the zoo» (19 секунд).</p>
 <pre><code class="language-text">title: Me at the zoo   language: en   transcriptSource: uploaded-captions   seconds: 18.2
 </code></pre>
 <p>Український файл SRT (перші три субтитри):</p>
@@ -57,7 +57,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 00:00:07,970 --&gt; 00:00:12,620
 справді дуже довгі хоботи
 </code></pre>
-<p>Кожен перекладений субтитр зберігає таймінг оригіналу, тож файл збігається з відео без жодного редагування. Переклад —
+<p>Кожен перекладений субтитр зберігає таймінг оригіналу, тож файл збігається з відео без жодного редагування. Переклад -
 природною українською («довгі хоботи», а не дослівно), і навіть звук слона <code>(baaaaaaaaaaahhh!!)</code> став
 <code>(бааааааааа!!)</code>.</p>
 <h2 id="_3">Субтитри чи розпізнавання мовлення</h2>
@@ -68,8 +68,8 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
   <code>maxDurationMinutes</code> (типово 60) не дасть випадково розпізнавати чотиригодинний стрим.</li>
 </ul>
 <h2 id="_4">Ціна</h2>
-<p>На платному плані Apify: <strong>$10 за 1000 відео</strong> із субтитрами плюс <strong>$7 за 1000 хвилин</strong> перекладу. Відео вище —
-одне відео й одна розпочата хвилина перекладу, $0,017. На безкоштовному плані — $0,025. Відео YouTube без субтитрів —
+<p>На платному плані Apify: <strong>$10 за 1000 відео</strong> із субтитрами плюс <strong>$7 за 1000 хвилин</strong> перекладу. Відео вище -
+одне відео й одна розпочата хвилина перекладу, $0,017. На безкоштовному плані - $0,025. Відео YouTube без субтитрів -
 натомість $10 за 1000 хвилин. Відео, які не вдалося обробити, безкоштовні.</p>
 <h2 id="_5">Обмеження</h2>
 <ul>

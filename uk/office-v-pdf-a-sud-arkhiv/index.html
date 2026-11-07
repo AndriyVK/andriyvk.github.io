@@ -3,30 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Word, Excel і PowerPoint у PDF/A через API — для архіву та суду</title>
-<meta name="description" content="Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API — справжній запуск, що я перевірив у файлі, ціна та обмеження.">
+<title>Word, Excel і PowerPoint у PDF/A через API - для архіву та суду</title>
+<meta name="description" content="Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API - справжній запуск, що я перевірив у файлі, ціна та обмеження.">
 <link rel="canonical" href="https://andriyvk.github.io/uk/office-v-pdf-a-sud-arkhiv/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/office-v-pdf-a-sud-arkhiv/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/office-to-pdf-a-archive/">
-<meta property="og:title" content="Word, Excel і PowerPoint у PDF/A через API — для архіву та суду">
-<meta property="og:description" content="Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API — справжній запуск, що я перевірив у файлі, ціна та обмеження.">
+<meta property="og:title" content="Word, Excel і PowerPoint у PDF/A через API - для архіву та суду">
+<meta property="og:description" content="Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API - справжній запуск, що я перевірив у файлі, ціна та обмеження.">
 <meta property="og:url" content="https://andriyvk.github.io/uk/office-v-pdf-a-sud-arkhiv/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Word, Excel і PowerPoint у PDF/A через API — для архіву та суду", "description": "Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API — справжній запуск, що я перевірив у файлі, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Word, Excel і PowerPoint у PDF/A через API - для архіву та суду", "description": "Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API - справжній запуск, що я перевірив у файлі, ціна та обмеження.", "datePublished": "2026-11-07", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
 <nav><a href="/office-to-pdf-a-archive/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">07.11.2026</p><h1>Word, Excel і PowerPoint у PDF/A через API — для архіву та суду</h1><p class="lead">Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API — справжній запуск, що я перевірив у файлі, ціна та обмеження.</p><p>Архіви, системи документообігу та деякі портали приймають лише PDF/A — PDF, у якому вбудовано всі шрифти і немає
+<article><p class="date">07.11.2026</p><h1>Word, Excel і PowerPoint у PDF/A через API - для архіву та суду</h1><p class="lead">Як пакетно перетворити DOCX, XLSX і PPTX українською на PDF/A-2b одним викликом API - справжній запуск, що я перевірив у файлі, ціна та обмеження.</p><p>Архіви, системи документообігу та деякі портали приймають лише PDF/A - PDF, у якому вбудовано всі шрифти і немає
 нічого, що залежить від комп'ютера читача. Для одного файлу вистачить «Зберегти як PDF/A». Для теки договорів, таблиць
-і презентацій зручніше API. Усі результати нижче — зі справжнього запуску 7 листопада 2026 року.</p>
+і презентацій зручніше API. Усі результати нижче - зі справжнього запуску 7 листопада 2026 року.</p>
 <blockquote>
-<p>Розкриття: інструмент, про який ідеться, — <a href="https://apify.com/ai_admin/office-to-pdf">Office to PDF Converter</a> на
-Apify — зробив я. Усередині LibreOffice в контейнері. Код відкритий:
+<p>Розкриття: інструмент, про який ідеться, - <a href="https://apify.com/ai_admin/office-to-pdf">Office to PDF Converter</a> на
+Apify - зробив я. Усередині LibreOffice в контейнері. Код відкритий:
 <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
 </blockquote>
-<h2 id="_1">Один виклик — кілька файлів</h2>
+<h2 id="-">Один виклик - кілька файлів</h2>
 <pre><code class="language-bash">pip install apify-client
 </code></pre>
 <pre><code class="language-python">from apify_client import ApifyClient
@@ -45,7 +45,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 </code></pre>
 <p>Два файли-зразки публічні, тож код працює як є. Формати: DOCX, DOC, ODT, RTF, TXT, HTML, XLSX, XLS, ODS, CSV, PPTX,
 PPT, ODP і зображення.</p>
-<h2 id="_2">Справжній результат</h2>
+<h2 id="_1">Справжній результат</h2>
 <pre><code class="language-text">doc-uk.docx    1 page   44,040 bytes  pdfA: true
 sheet-uk.xlsx  2 pages  32,574 bytes  pdfA: true
 merged.pdf     3 pages  34,927 bytes  documents: 2
@@ -53,35 +53,35 @@ merged.pdf     3 pages  34,927 bytes  documents: 2
 <h2 id="pdf">Що я перевірив у PDF</h2>
 <p>Файл із написом «PDF/A» не завжди ним є, тож я відкрив результат із Word:</p>
 <ul>
-<li><strong>Позначка PDF/A є:</strong> у метаданих XMP — <code>pdfaid:part 2</code>, <code>pdfaid:conformance B</code>, тобто PDF/A-2b.</li>
+<li><strong>Позначка PDF/A є:</strong> у метаданих XMP - <code>pdfaid:part 2</code>, <code>pdfaid:conformance B</code>, тобто PDF/A-2b.</li>
 <li><strong>Усі шрифти вбудовані</strong> (<code>pdffonts</code>: <code>emb yes</code> для кожного). У цьому й суть PDF/A: файл виглядає однаково на будь-
   якому комп'ютері, і через десять років теж.</li>
-<li><strong>Кирилиця — справжній текст,</strong> а не картинка: <code>pdftotext</code> повертає «Звіт про постачання», «Склад у Львові отримав
+<li><strong>Кирилиця - справжній текст,</strong> а не картинка: <code>pdftotext</code> повертає «Звіт про постачання», «Склад у Львові отримав
   1240 палет…», тож пошук в архіві його знайде.</li>
-<li><strong>Шрифти замінено.</strong> Документ просить Calibri і Cambria — шрифти Microsoft. Конвертер бере Carlito і Caladea —
+<li><strong>Шрифти замінено.</strong> Документ просить Calibri і Cambria - шрифти Microsoft. Конвертер бере Carlito і Caladea -
   вільні шрифти з тією самою шириною літер, тож рядки й сторінки розриваються в тих самих місцях. Вигляд близький,
   але не ідентичний.</li>
 </ul>
-<p>Чого я не робив: повної перевірки <a href="https://verapdf.org/">veraPDF</a> — еталонним валідатором PDF/A. Якщо портал
+<p>Чого я не робив: повної перевірки <a href="https://verapdf.org/">veraPDF</a> - еталонним валідатором PDF/A. Якщо портал
 відхиляє файли, що не проходять veraPDF, перевірте зразок, перш ніж конвертувати всю теку.</p>
-<h2 id="_3">Про «Електронний суд»</h2>
+<h2 id="_2">Про «Електронний суд»</h2>
 <p>У матеріалах про вимоги до вкладень у «Електронному суді», які я знайшов, ідеться про формати й розмір файлів;
-вимоги саме PDF/A я там не побачив. І важливе застереження з практики адвокатів (січень 2026): заяву чи клопотання краще набирати у вбудованому редакторі системи, а не подавати окремим PDF-додатком —
+вимоги саме PDF/A я там не побачив. І важливе застереження з практики адвокатів (січень 2026): заяву чи клопотання краще набирати у вбудованому редакторі системи, а не подавати окремим PDF-додатком -
 суди визнають такий процесуальний документ непідписаним. PDF/A доречний для додатків і доказів, які мають довго
 зберігатися й однаково відкриватися. Актуальні вимоги перевіряйте в положенні про підсистему та в самій системі.</p>
-<h2 id="_4">Ціна</h2>
+<h2 id="_3">Ціна</h2>
 <p><strong>$10 за 1000 документів</strong>, незалежно від кількості сторінок; об'єднання безкоштовне; файл, який не вдалося
 конвертувати, не оплачується. Запуск вище коштував два центи.</p>
-<h2 id="_5">Обмеження</h2>
+<h2 id="_4">Обмеження</h2>
 <ul>
 <li>Файли з паролем не конвертуються.</li>
 <li>Невстановлені шрифти замінюються сумісними за шириною; незвичний шрифт може трохи змінити вигляд.</li>
 <li>Макроси не виконуються.</li>
-<li>PDF/A — це про зберігання, а не підпис. Якщо потрібен кваліфікований електронний підпис, підпишіть PDF/A потім
+<li>PDF/A - це про зберігання, а не підпис. Якщо потрібен кваліфікований електронний підпис, підпишіть PDF/A потім
   своїм засобом підпису.</li>
 </ul>
-<h2 id="-">Для ШІ-агентів</h2>
-<p>Конвертер доступний і як інструмент MCP: <code>https://mcp.apify.com?tools=ai_admin/office-to-pdf</code> — Claude, Cursor чи
+<h2 id="-_1">Для ШІ-агентів</h2>
+<p>Конвертер доступний і як інструмент MCP: <code>https://mcp.apify.com?tools=ai_admin/office-to-pdf</code> - Claude, Cursor чи
 інший клієнт MCP може перетворити підготовлені файли на PDF/A.</p></article>
 </main>
 <footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>

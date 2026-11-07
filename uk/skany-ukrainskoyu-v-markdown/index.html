@@ -3,33 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Скани українською — у Markdown для ШІ та RAG</title>
-<meta name="description" content="Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ — зі справжнім запуском, результатом, ціною та обмеженнями.">
+<title>Скани українською - у Markdown для ШІ та RAG</title>
+<meta name="description" content="Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ - зі справжнім запуском, результатом, ціною та обмеженнями.">
 <link rel="canonical" href="https://andriyvk.github.io/uk/skany-ukrainskoyu-v-markdown/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/skany-ukrainskoyu-v-markdown/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-scans-to-markdown/">
-<meta property="og:title" content="Скани українською — у Markdown для ШІ та RAG">
-<meta property="og:description" content="Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ — зі справжнім запуском, результатом, ціною та обмеженнями.">
+<meta property="og:title" content="Скани українською - у Markdown для ШІ та RAG">
+<meta property="og:description" content="Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ - зі справжнім запуском, результатом, ціною та обмеженнями.">
 <meta property="og:url" content="https://andriyvk.github.io/uk/skany-ukrainskoyu-v-markdown/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Скани українською — у Markdown для ШІ та RAG", "description": "Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ — зі справжнім запуском, результатом, ціною та обмеженнями.", "datePublished": "2026-11-06", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Скани українською - у Markdown для ШІ та RAG", "description": "Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ - зі справжнім запуском, результатом, ціною та обмеженнями.", "datePublished": "2026-11-06", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
 <nav><a href="/ukrainian-scans-to-markdown/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">06.11.2026</p><h1>Скани українською — у Markdown для ШІ та RAG</h1><p class="lead">Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ — зі справжнім запуском, результатом, ціною та обмеженнями.</p><p>Більшість інструментів «документ → текст» налаштовані на англійську. Скан українського рахунку чи судового рішення
-часто повертається латинськими «двійниками» літер або без таблиць. Тут — спосіб, що зберігає кирилицю, заголовки й
-таблиці, і чесно про те, що він робить і чого ні. Усі результати нижче — зі справжнього запуску 6 листопада 2026 року.</p>
+<article><p class="date">06.11.2026</p><h1>Скани українською - у Markdown для ШІ та RAG</h1><p class="lead">Як перетворити скановані українські PDF, Word і Excel на чистий Markdown і фрагменти для ШІ - зі справжнім запуском, результатом, ціною та обмеженнями.</p><p>Більшість інструментів «документ → текст» налаштовані на англійську. Скан українського рахунку чи судового рішення
+часто повертається латинськими «двійниками» літер або без таблиць. Тут - спосіб, що зберігає кирилицю, заголовки й
+таблиці, і чесно про те, що він робить і чого ні. Усі результати нижче - зі справжнього запуску 6 листопада 2026 року.</p>
 <blockquote>
 <p><strong>Оновлення, 7 листопада 2026.</strong> Перший запуск показав дві вади: таблиця у скані поверталася одним пласким рядком, а
-<code>["ukr", "eng"]</code> перетворювало «Арматура» на <code>Apmatypa</code>. Обидві виправлено; результати нижче — з виправленої версії
+<code>["ukr", "eng"]</code> перетворювало «Арматура» на <code>Apmatypa</code>. Обидві виправлено; результати нижче - з виправленої версії
 (збірка 0.1.14), а старі лишено в тексті, щоб було видно різницю.</p>
-<p>Розкриття: інструмент, про який ідеться, — <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>
-на Apify — зробив я. Його код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+<p>Розкриття: інструмент, про який ідеться, - <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>
+на Apify - зробив я. Його код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
 </blockquote>
 <h2 id="_1">Що ви отримуєте</h2>
-<p>Один запис на документ: Markdown, кожна таблиця рядками клітинок, за бажанням — фрагменти з найближчим заголовком
+<p>Один запис на документ: Markdown, кожна таблиця рядками клітинок, за бажанням - фрагменти з найближчим заголовком
 (для векторної бази) і кількість сторінок. Сторінки PDF з текстовим шаром читаються напряму; скановані сторінки й
 зображення проходять OCR Tesseract з українською моделлю.</p>
 <p>Формати: PDF, сканований PDF, PNG/JPG/TIFF, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT/ODS/ODP, RTF, HTML.</p>
@@ -47,15 +47,15 @@ run = client.actor(&quot;ai_admin/document-to-markdown&quot;).call(run_input={
     &quot;ocrMode&quot;: &quot;auto&quot;,          # OCR лише для сторінок без текстового шару
     &quot;ocrLanguages&quot;: [&quot;ukr&quot;],    # тільки мови, які справді є у скані
     &quot;includeTables&quot;: True,
-    &quot;chunkSize&quot;: 800,           # символів у фрагменті, 0 — без фрагментів
+    &quot;chunkSize&quot;: 800,           # символів у фрагменті, 0 - без фрагментів
 })
 for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
     print(item[&quot;fileName&quot;], item[&quot;ocrPages&quot;], &quot;сторінок OCR&quot;)
     print(item[&quot;markdown&quot;])
 </code></pre>
-<p>Обидва файли-приклади публічні, тож код можна запустити як є. Свої файли — за посиланням або зі сховища Apify.</p>
+<p>Обидва файли-приклади публічні, тож код можна запустити як є. Свої файли - за посиланням або зі сховища Apify.</p>
 <h2 id="_2">Справжній результат</h2>
-<p><strong>Скан на одну сторінку</strong> (<code>scan-uk.pdf</code>, без текстового шару — 1 сторінка OCR):</p>
+<p><strong>Скан на одну сторінку</strong> (<code>scan-uk.pdf</code>, без текстового шару - 1 сторінка OCR):</p>
 <pre><code class="language-text">Звіт про постачання
 
 Склад у Львові отримав 1240 палет будівельних матеріалів протягом
@@ -69,10 +69,10 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 | Цемент | 420 | 96,50 |
 | Арматура | 180 | 412,00 |
 </code></pre>
-<p>Текст правильний до літери, а таблиця з лініями знову справжня таблиця — і в Markdown, і як рядки JSON
+<p>Текст правильний до літери, а таблиця з лініями знову справжня таблиця - і в Markdown, і як рядки JSON
 <code>[["Товар", "Кількість", "Ціна"], ["Цемент", "420", "96,50"], ["Арматура", "180", "412,00"]]</code>. 6 листопада той самий
 скан давав один плаский рядок: <code>| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00</code>.</p>
-<p><strong>Той самий зміст у файлі Excel</strong> (<code>sheet-uk.xlsx</code>, 0,2 с) — тут структура точна:</p>
+<p><strong>Той самий зміст у файлі Excel</strong> (<code>sheet-uk.xlsx</code>, 0,2 с) - тут структура точна:</p>
 <pre><code class="language-text">## Data
 
 | Товар | Кількість | Ціна |
@@ -82,29 +82,29 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 | Total | 600 | 1,234.50 |
 </code></pre>
 <p>Значення клітинок зберігаються як записані: <code>96,50</code> лишається <code>96,50</code>.</p>
-<h2 id="ocr">Одне важливе налаштування — мови OCR</h2>
-<p>6 листопада з <code>"ocrLanguages": ["ukr", "eng"]</code> слово «Арматура» повернулося як <code>Apmatypa</code> — OCR обрав схожі
+<h2 id="-ocr">Одне важливе налаштування - мови OCR</h2>
+<p>6 листопада з <code>"ocrLanguages": ["ukr", "eng"]</code> слово «Арматура» повернулося як <code>Apmatypa</code> - OCR обрав схожі
 латинські літери. Тепер таке слово повертається кирилицею, якщо воно є в українському словнику Tesseract, а латинське
 написання не є англійським словом, тож <code>Excel</code>, <code>API</code> чи <code>copy</code> лишаються як є. Запуск 7 листопада з
 <code>["ukr", "eng"]</code> дав «Арматура» правильно. Та все одно вказуйте лише ті мови, що справді є на сторінці: кожна зайва
-мова — ще один спосіб для OCR помилитися.</p>
+мова - ще один спосіб для OCR помилитися.</p>
 <h2 id="_3">Ціна</h2>
-<p>Оплата за сторінки: <strong>$1 за 1000 текстових сторінок і $4 за 1000 сторінок OCR</strong> (оплата Apify за подіями; OCR —
+<p>Оплата за сторінки: <strong>$1 за 1000 текстових сторінок і $4 за 1000 сторінок OCR</strong> (оплата Apify за подіями; OCR -
 лише для сторінок, яким він потрібен). Документ, який не вдалося завантажити чи прочитати, не оплачується. Два
 файли вище коштують частку цента.</p>
-<h2 id="_4">Обмеження — чесно</h2>
+<h2 id="-">Обмеження - чесно</h2>
 <ul>
 <li><strong>Таблиці у сканах</strong> повертаються таблицями, якщо мають лінії сітки і скан чистий. Таблиця без ліній або сітка,
-  загублена в шумному скані 200 dpi, і далі виходить текстом. Якщо є оригінал Word чи Excel — конвертуйте його, там
+  загублена в шумному скані 200 dpi, і далі виходить текстом. Якщо є оригінал Word чи Excel - конвертуйте його, там
   таблиці точні.</li>
-<li><strong>Якість OCR залежить від скану.</strong> Чисті скани 300 dpi читаються добре; фото телефоном під кутом — гірше. Для фото
+<li><strong>Якість OCR залежить від скану.</strong> Чисті скани 300 dpi читаються добре; фото телефоном під кутом - гірше. Для фото
   є <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a>: сам повертає сторінки й дає впевненість для
   кожного слова.</li>
 <li><strong>Рукописний текст</strong> не підтримується.</li>
 </ul>
-<h2 id="-">Для ШІ-агентів</h2>
-<p>Інструмент доступний через MCP-сервер Apify — його може викликати Claude, Cursor чи інший клієнт MCP:
-<code>https://mcp.apify.com?tools=ai_admin/document-to-markdown</code>. Локальний MCP-сервер з усіма нашими інструментами —
+<h2 id="-_1">Для ШІ-агентів</h2>
+<p>Інструмент доступний через MCP-сервер Apify - його може викликати Claude, Cursor чи інший клієнт MCP:
+<code>https://mcp.apify.com?tools=ai_admin/document-to-markdown</code>. Локальний MCP-сервер з усіма нашими інструментами -
 у <a href="https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server">репозиторії на GitHub</a>.</p></article>
 </main>
 <footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>

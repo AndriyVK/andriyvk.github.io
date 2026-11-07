@@ -1,5 +1,5 @@
 title: Ukrainian scanned PDFs to Markdown for RAG and LLMs
-description: How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline — with a real run, its output, the price and the limits.
+description: How to turn scanned Ukrainian (Cyrillic) PDFs, Word and Excel files into clean Markdown and chunks for an AI pipeline - with a real run, its output, the price and the limits.
 date: 2026-11-06
 lang: en
 slug: ukrainian-scans-to-markdown
@@ -7,7 +7,7 @@ pair: skany-ukrainskoyu-v-markdown
 ---
 Most document-to-text tools are tuned for English. A scanned Ukrainian invoice or court decision often comes back
 as Latin look-alike gibberish, or with its tables lost. This guide shows a pipeline that keeps Cyrillic text,
-headings and tables, and shows exactly what it does and does not do — every output below is from a real run on
+headings and tables, and shows exactly what it does and does not do - every output below is from a real run on
 6 November 2026.
 
 > **Update, 7 November 2026.** The first run showed two problems: a table in a scan came back as one flat row, and
@@ -55,7 +55,7 @@ key-value store.
 
 ## The real output
 
-**A one-page scan** (`scan-uk.pdf`, no text layer — 1 OCR page):
+**A one-page scan** (`scan-uk.pdf`, no text layer - 1 OCR page):
 
 ```text
 Звіт про постачання
@@ -72,11 +72,11 @@ key-value store.
 | Арматура | 180 | 412,00 |
 ```
 
-The text is right, letter for letter, and the ruled table is a real table again — in the Markdown and as JSON rows
+The text is right, letter for letter, and the ruled table is a real table again - in the Markdown and as JSON rows
 `[["Товар", "Кількість", "Ціна"], ["Цемент", "420", "96,50"], ["Арматура", "180", "412,00"]]`. On 6 November the
 same scan gave one flat row: `| Товар | Кількість | Ціна | Цемент | 420 | 96,50 | Арматура | 180 | 412,00`.
 
-**The same content as an Excel file** (`sheet-uk.xlsx`, 0.2 s) — here the structure is exact:
+**The same content as an Excel file** (`sheet-uk.xlsx`, 0.2 s) - here the structure is exact:
 
 ```text
 ## Data
@@ -92,7 +92,7 @@ Cell values are kept as written: `96,50` stays `96,50`, it is not turned into a 
 
 ## One setting that matters: OCR languages
 
-On 6 November, with `"ocrLanguages": ["ukr", "eng"]`, the word «Арматура» came back as `Apmatypa` — the OCR picked
+On 6 November, with `"ocrLanguages": ["ukr", "eng"]`, the word «Арматура» came back as `Apmatypa` - the OCR picked
 Latin letters that look the same. Now such a word is put back in Cyrillic when it is in Tesseract's Ukrainian
 dictionary and the Latin spelling is not an English word, so `Excel`, `API` or `copy` stay as they are. The run on
 7 November with `["ukr", "eng"]` gave «Арматура» correctly. Still, list only the languages that are really on the
@@ -104,11 +104,11 @@ You pay per page: **$1 per 1,000 text pages and $4 per 1,000 OCR pages** (Apify 
 charged only for pages that needed it). A document that cannot be downloaded or read is not charged. The two files
 above cost a fraction of a cent.
 
-## Limits — honestly
+## Limits - honestly
 
 - **Tables in scans** come back as tables when they have ruled grid lines and the scan is clean. A borderless table,
   or a grid lost in a noisy 200 dpi scan, still comes out as text. If you have the original Word or Excel file,
-  convert that instead — its tables are exact.
+  convert that instead - its tables are exact.
 - **OCR quality follows the scan.** Clean 300 dpi scans read well; phone photos at an angle are worse. For photos, the
   [Image to Text OCR](https://apify.com/ai_admin/image-to-text-ocr) Actor auto-rotates pages and returns a confidence
   for every word.

@@ -17,12 +17,12 @@ NAME = 'AndriyVK Tools'
 GOAT = ('<script data-goatcounter="https://andriyvk.goatcounter.com/count" '
         'async src="//gc.zgo.at/count.js"></script>')
 TEXT = {
-    'en': {'home': 'Guides', 'tagline': 'Practical guides to open-source tools for documents, audio, video and the web — '
+    'en': {'home': 'Guides', 'tagline': 'Practical guides to open-source tools for documents, audio, video and the web - '
            'with real outputs, prices and limits.', 'read': 'Read', 'other': 'Українською', 'posts': 'Guides',
            'tools': 'Tools', 'about': 'Every guide is tested on real files. I build the Apify Actors shown here; '
            'their source code is open on GitHub.'},
     'uk': {'home': 'Інструкції', 'tagline': 'Практичні інструкції до відкритих інструментів для документів, звуку, '
-           'відео та вебу — з реальними результатами, цінами й обмеженнями.', 'read': 'Читати', 'other': 'English',
+           'відео та вебу - з реальними результатами, цінами й обмеженнями.', 'read': 'Читати', 'other': 'English',
            'posts': 'Інструкції', 'tools': 'Інструменти', 'about': 'Кожну інструкцію перевірено на справжніх файлах. '
            'Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.'},
 }
@@ -91,7 +91,14 @@ def write(rel, text):
         f.write(text)
 
 
+LONG_DASHES = ('\u2014', '\u2013')   # owner's rule: only the short "-" on the site
+
+
 def main():
+    for n in sorted(os.listdir(os.path.join(ROOT, 'src/posts'))):
+        text = open(os.path.join(ROOT, 'src/posts', n), encoding='utf-8').read()
+        if any(d in text for d in LONG_DASHES):
+            raise SystemExit(f'{n}: long dash found, use "-"')
     posts = sorted((read_post(os.path.join(ROOT, 'src/posts', n)) for n in os.listdir(os.path.join(ROOT, 'src/posts'))
                     if n.endswith('.md')), key=lambda p: p['date'], reverse=True)
     by_slug = {p['slug']: p for p in posts}
@@ -128,7 +135,7 @@ def main():
                    f'<ul class="posts">{items}</ul><h2>{t["tools"]}</h2><ul class="tools">{tools}</ul>')
         home = '/uk/' if lang == 'uk' else '/'
         write(('uk/' if lang == 'uk' else '') + 'index.html',
-              page(lang, f'{NAME} — {t["home"]}', t['tagline'], home, content, [('en', '/'), ('uk', '/uk/')]))
+              page(lang, f'{NAME} - {t["home"]}', t['tagline'], home, content, [('en', '/'), ('uk', '/uk/')]))
     urls = ['/', '/uk/'] + [url_of(p) for p in posts]
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + ''.join(f'<url><loc>{SITE}{u}</loc></url>\n' for u in urls) + '</urlset>\n')
