@@ -109,9 +109,12 @@ Ukrainian translation of the last line: «Наша мета - забезпечи
 ```
 
 This is the hard case, and it shows. The storm is called Austen (the video's own hashtag), not Austin. Gusts of
-17-18 mph would not bring down trees, so the presenter most likely said 70 or 80; I have not checked it by ear.
-«With drought in the morning» is almost certainly «through the morning», and the translation faithfully turned it into
-«посуха». Wind noise is what breaks numbers and short words, so check figures in such videos.
+17-18 mph would not bring down trees, and the Met Office forecast for Cornwall that day was 60-70 mph, up to 80 in
+exposed places. I cross-checked by running the same video again with `"quality": "fast"` (Whisper large-v3-turbo):
+it heard «70, even 80 miles an hour» and «throughout the morning», so «drought», which the translation faithfully
+turned into «посуха», is a mishearing too. The second model made its own mistake in the same sentence («just a room
+of» instead of «gusts of wind of»). Wind noise is what breaks numbers and short words, so check figures in such videos;
+a second run with the other `quality` costs $0.01 and shows where the two disagree.
 
 **3. hromadske, Ukrainian, 74 seconds, 14 segments.** A performer in an interview, conversational speech:
 
