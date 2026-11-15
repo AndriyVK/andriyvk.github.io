@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP-сервер для ШІ-агентів - OCR, PDF, аудіо і перевірка доменів для Claude чи Cursor</title>
+<meta name="description" content="Один MCP-сервер дає ШІ-агенту 9 інструментів - документи і скани в Markdown, Office у PDF/A, OCR, розпізнавання та озвучування мовлення, знімки сайтів, перевірка доменів, кадри з відео. Справжні виклики з клієнта MCP, результат, ціна та обмеження.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/mcp-instrumenty-dlia-shi-ahentiv/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/mcp-instrumenty-dlia-shi-ahentiv/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/mcp-document-tools-for-ai-agents/">
+<meta property="og:title" content="MCP-сервер для ШІ-агентів - OCR, PDF, аудіо і перевірка доменів для Claude чи Cursor">
+<meta property="og:description" content="Один MCP-сервер дає ШІ-агенту 9 інструментів - документи і скани в Markdown, Office у PDF/A, OCR, розпізнавання та озвучування мовлення, знімки сайтів, перевірка доменів, кадри з відео. Справжні виклики з клієнта MCP, результат, ціна та обмеження.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/mcp-instrumenty-dlia-shi-ahentiv/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "MCP-сервер для ШІ-агентів - OCR, PDF, аудіо і перевірка доменів для Claude чи Cursor", "description": "Один MCP-сервер дає ШІ-агенту 9 інструментів - документи і скани в Markdown, Office у PDF/A, OCR, розпізнавання та озвучування мовлення, знімки сайтів, перевірка доменів, кадри з відео. Справжні виклики з клієнта MCP, результат, ціна та обмеження.", "datePublished": "2026-11-15", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/mcp-document-tools-for-ai-agents/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">15.11.2026</p><h1>MCP-сервер для ШІ-агентів - OCR, PDF, аудіо і перевірка доменів для Claude чи Cursor</h1><p class="lead">Один MCP-сервер дає ШІ-агенту 9 інструментів - документи і скани в Markdown, Office у PDF/A, OCR, розпізнавання та озвучування мовлення, знімки сайтів, перевірка доменів, кадри з відео. Справжні виклики з клієнта MCP, результат, ціна та обмеження.</p><p>ШІ-агент добре працює з текстом, але справжня робота часто приходить файлами: скан рахунку, таблиця, голосове
+повідомлення, сайт, який треба перевірити. Протокол MCP (Model Context Protocol) дозволяє агенту викликати для цього
+інструменти. Тут - один MCP-сервер, що дає Claude, Cursor чи будь-якому іншому клієнту MCP дев'ять таких
+інструментів, і що повернули два з них, коли клієнт MCP викликав їх 15 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: сервер і Actors на Apify, що стоять за ним, зробив я. Код відкритий (MIT):
+<a href="https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Інструменти</h2>
+<table>
+<thead>
+<tr>
+<th>Інструмент</th>
+<th>Що робить</th>
+<th>Ціна (списує Apify)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>convert_document_to_markdown</code></td>
+<td>PDF (текстові та скани, OCR), зображення, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT, RTF, HTML у Markdown, таблиці JSON, фрагменти для RAG</td>
+<td>$1 за 1000 текстових сторінок, $4 за 1000 сторінок з OCR</td>
+</tr>
+<tr>
+<td><code>convert_office_to_pdf</code></td>
+<td>Word, Excel, PowerPoint, OpenDocument, RTF, HTML, зображення у PDF або PDF/A-2b, за бажанням в один файл</td>
+<td>$10 за 1000 документів</td>
+</tr>
+<tr>
+<td><code>convert_pdf_or_images</code></td>
+<td>сторінки PDF у PNG/JPG/WebP/TIFF, зображення в PDF, HEIC з iPhone у JPG, зміна розміру</td>
+<td>$2 за 1000 зображень</td>
+</tr>
+<tr>
+<td><code>transcribe_audio</code></td>
+<td>аудіо та відео в текст, фрагменти з часом, SRT/VTT (Whisper large-v3)</td>
+<td>$5 за 1000 хвилин</td>
+</tr>
+<tr>
+<td><code>ocr_images</code></td>
+<td>зображення та скани в текст, рядки з упевненістю та координатами</td>
+<td>$1,50 за 1000 зображень</td>
+</tr>
+<tr>
+<td><code>text_to_speech</code></td>
+<td>текст або PDF/DOCX/HTML у MP3/WAV/OGG та субтитри SRT, є українські голоси</td>
+<td>$10 за 1000 хвилин аудіо</td>
+</tr>
+<tr>
+<td><code>screenshot_website</code></td>
+<td>знімки сторінки на всю довжину або PDF сайту чи свого HTML</td>
+<td>$4 за 1000 сторінок</td>
+</tr>
+<tr>
+<td><code>check_domains</code></td>
+<td>WHOIS/RDAP (реєстратор, термін), записи DNS, термін сертифіката SSL</td>
+<td>$2 за 1000 доменів</td>
+</tr>
+<tr>
+<td><code>extract_video_frames</code></td>
+<td>кадри з відео з часовими мітками, зміни сцен, аркуш мініатюр</td>
+<td>$1 за 1000 кадрів</td>
+</tr>
+</tbody>
+</table>
+<p>Кожен інструмент приймає публічні посилання на файли та ліміт <code>max_charge_usd</code> на виклик (типово $1), тож агент у
+циклі не витратить більше, ніж ви дозволили.</p>
+<h2 id="_2">Як підключити</h2>
+<p>Сервер - невелика програма на Python, яка запускає Actors з вашим власним токеном Apify:</p>
+<pre><code class="language-bash">git clone https://github.com/AndriyVK/-apify-document-tools
+cd -- -apify-document-tools/mcp-server
+pip install -r requirements.txt
+</code></pre>
+<p>Потім додайте його у свій клієнт MCP. Для Claude Desktop чи Cursor налаштування таке:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;document-tools&quot;: {
+      &quot;command&quot;: &quot;python&quot;,
+      &quot;args&quot;: [&quot;/path/to/-apify-document-tools/mcp-server/server.py&quot;],
+      &quot;env&quot;: { &quot;APIFY_TOKEN&quot;: &quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot; }
+    }
+  }
+}
+</code></pre>
+<p>Токен - в Apify Console, Settings, API &amp; Integrations. Нові акаунти Apify щомісяця отримують безкоштовний кредит.</p>
+<h2 id="_3">Справжній сеанс</h2>
+<p>Щоб показати, що саме отримує агент, я викликав сервер зі звичайного клієнта MCP на Python (офіційний пакет <code>mcp</code>,
+транспорт stdio) - так само, як це робить Claude Desktop:</p>
+<pre><code class="language-python">import asyncio, sys
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+async def main():
+    server = StdioServerParameters(command=sys.executable, args=[&quot;server.py&quot;],
+                                   env={&quot;APIFY_TOKEN&quot;: &quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;})
+    async with stdio_client(server) as (read, write):
+        async with ClientSession(read, write) as s:
+            await s.initialize()
+            print([t.name for t in (await s.list_tools()).tools])
+            r = await s.call_tool(&quot;convert_document_to_markdown&quot;, {
+                &quot;urls&quot;: [&quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/scan-uk.pdf&quot;],
+                &quot;ocr_languages&quot;: [&quot;ukr&quot;], &quot;max_charge_usd&quot;: 0.2})
+            print(r.content[0].text)
+
+asyncio.run(main())
+</code></pre>
+<p>Сервер відповів як <code>apify-document-tools</code> 0.3.0 і показав усі дев'ять інструментів.</p>
+<h3 id="1-markdown">Виклик 1: скан українською в Markdown</h3>
+<p>На вході - скан однієї сторінки без текстового шару (звіт про постачання з невеликою таблицею). Виклик тривав 8,6 с
+з боку клієнта, з них саме перетворення - 0,68 с; решта - запуск на Apify. Агент отримав (скорочено):</p>
+<pre><code class="language-json">{
+  &quot;fileName&quot;: &quot;scan-uk.pdf&quot;,
+  &quot;sourcePages&quot;: 1,
+  &quot;textPages&quot;: 0,
+  &quot;ocrPages&quot;: 1,
+  &quot;warnings&quot;: [],
+  &quot;characters&quot;: 300,
+  &quot;tables&quot;: [[[&quot;Товар&quot;, &quot;Кількість&quot;, &quot;Ціна&quot;],
+              [&quot;Цемент&quot;, &quot;420&quot;, &quot;96,50&quot;],
+              [&quot;Арматура&quot;, &quot;180&quot;, &quot;412,00&quot;]]],
+  &quot;markdown&quot;: &quot;Звіт про постачання\n\nСклад у Львові отримав 1240 палет будівельних матеріалів протягом\n\nтретього кварталу. ...&quot;
+}
+</code></pre>
+<p>Для агента тут важливі дві речі. Перша: <code>ocrPages: 1</code> і <code>textPages: 0</code> кажуть, що текст отримано через OCR, тож агент
+знає, наскільки йому довіряти. Друга: таблиця приходить двічі - як таблиця Markdown у тексті та як рядки клітинок у
+<code>tables</code>, тож агент може рахувати з неї, не розбираючи Markdown.</p>
+<p>Видно й невелику ваду: OCR розбив одне речення на два абзаци (<code>протягом\n\nтретього</code>). Для мовної моделі зміст від
+цього не змінюється, але якщо текст іде в пошуковий індекс, спершу з'єднайте рядки всередині абзаців.</p>
+<h3 id="2">Виклик 2: перевірка двох доменів</h3>
+<p><code>check_domains</code> з <code>["andriyvk.github.io", "dev.to"]</code> тривав 4,6 с. Для кожного домену агент отримує реєстрацію
+(реєстратор, дати створення і закінчення, скільки днів лишилося), записи DNS і сертифікат SSL. Фрагмент:</p>
+<pre><code class="language-json">{
+  &quot;domain&quot;: &quot;andriyvk.github.io&quot;,
+  &quot;registrableDomain&quot;: &quot;github.io&quot;,
+  &quot;registration&quot;: {&quot;source&quot;: &quot;whois&quot;, &quot;registrar&quot;: &quot;MarkMonitor Inc.&quot;, &quot;expiresDate&quot;: &quot;2027-03-08&quot;, &quot;daysUntilExpiry&quot;: 113},
+  &quot;dns&quot;: {&quot;A&quot;: [&quot;185.199.108.153&quot;, &quot;185.199.109.153&quot;, &quot;185.199.110.153&quot;, &quot;185.199.111.153&quot;], &quot;MX&quot;: []},
+  &quot;ssl&quot;: {&quot;valid&quot;: true, &quot;protocol&quot;: &quot;TLSv1.3&quot;, &quot;issuer&quot;: &quot;Let's Encrypt&quot;, &quot;validTo&quot;: &quot;2026-12-29&quot;, &quot;daysLeft&quot;: 44}
+}
+</code></pre>
+<p>Зверніть увагу на <code>registrableDomain</code>: для піддомену дані реєстрації - це дані батьківського домену (<code>github.io</code>), і
+результат прямо це показує, а не вдає, що в піддомену є власний запис WHOIS. Для <code>dev.to</code> дані прийшли з RDAP
+(реєстратор Tonic, термін до 2027-04-05), а SPF і DMARC виділено із записів TXT.</p>
+<h2 id="_4">Ціна</h2>
+<p>Для покупця два виклики вище коштували:</p>
+<ul>
+<li>скан у Markdown: 1 сторінка з OCR $0,004 плюс запуск $0,0001 = <strong>$0,0041</strong>;</li>
+<li>два домени: 2 x $0,002 плюс запуск $0,00005 = <strong>$0,00405</strong>.</li>
+</ul>
+<p>Разом - близько восьми десятих цента. Платите Apify за цінами Actors; сам MCP-сервер безкоштовний і нічого не додає.</p>
+<h2 id="_5">Обмеження</h2>
+<ul>
+<li>Файли мають бути доступні за публічним посиланням. Локальний файл спершу треба кудись вивантажити (наприклад, у
+  сховище key-value store на Apify).</li>
+<li>Кожен виклик - синхронний запуск Actor, а Apify тримає такий запуск відкритим не довше 300 с. Довге відео чи велику
+  теку треба ділити на кілька викликів.</li>
+<li>Якість OCR залежить від скану. Результат каже, скільки сторінок пройшли через OCR, але не звіряє текст з
+  оригіналом.</li>
+<li>Apify має й розміщену точку MCP з тими самими Actors
+  (<code>https://mcp.apify.com?tools=ai_admin/document-to-markdown,...</code>, повний список - у
+  <a href="https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server">README</a>). Для цієї статті я її не
+  перевіряв; сеанс вище - з локальним сервером.</li>
+</ul>
+<h2 id="_6">Інші статті</h2>
+<ul>
+<li><a href="/uk/skany-ukrainskoyu-v-markdown/">Скани українською в Markdown для ШІ</a></li>
+<li><a href="/uk/office-v-pdf-a-sud-arkhiv/">Word, Excel і PowerPoint у PDF/A для архіву та суду</a></li>
+<li><a href="/uk/ukrainska-ozvuchka-tekstu-api/">Українська озвучка тексту через API</a></li>
+<li><a href="/uk/subtytry-youtube-ukrainskoyu/">Субтитри YouTube українською</a></li>
+</ul></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
