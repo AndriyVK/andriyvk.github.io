@@ -6,6 +6,7 @@ TAGS = {
     'ukrainian-text-to-speech-api': ['tts', 'python', 'api', 'ukrainian'],
     'youtube-subtitles-in-ukrainian': ['youtube', 'python', 'api', 'ai'],
     'mcp-document-tools-for-ai-agents': ['mcp', 'ai', 'python', 'tutorial'],
+    'ukrainian-documents-to-markdown-5-actors-compared': ['ocr', 'pdf', 'rag', 'python'],
 }
 def load(slug):
     head, body = open(f'/home/user/andriyvk.github.io/src/posts/{slug}.md', encoding='utf-8').read().split('\n---\n', 1)

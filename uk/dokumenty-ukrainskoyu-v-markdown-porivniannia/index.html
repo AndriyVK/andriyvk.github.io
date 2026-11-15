@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Скани, рахунки, Word і Excel українською в Markdown - 5 Actors з Apify на 7 файлах, усі таблиці правильно прочитав лише один</title>
+<meta name="description" content="П&#x27;ять Actors з Apify Store, що перетворюють документи на Markdown, на однакових семи українських файлах - текстовий PDF, чистий скан і скан із шумом, DOCX, XLSX та скани рахунків з таблицею без ліній. Порожні скани, змінені ціни, втрачені таблиці - і єдиний Actor, що правильно обробив усі файли за найнижчою ціною сторінки скану.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-documents-to-markdown-5-actors-compared/">
+<meta property="og:title" content="Скани, рахунки, Word і Excel українською в Markdown - 5 Actors з Apify на 7 файлах, усі таблиці правильно прочитав лише один">
+<meta property="og:description" content="П&#x27;ять Actors з Apify Store, що перетворюють документи на Markdown, на однакових семи українських файлах - текстовий PDF, чистий скан і скан із шумом, DOCX, XLSX та скани рахунків з таблицею без ліній. Порожні скани, змінені ціни, втрачені таблиці - і єдиний Actor, що правильно обробив усі файли за найнижчою ціною сторінки скану.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Скани, рахунки, Word і Excel українською в Markdown - 5 Actors з Apify на 7 файлах, усі таблиці правильно прочитав лише один", "description": "П'ять Actors з Apify Store, що перетворюють документи на Markdown, на однакових семи українських файлах - текстовий PDF, чистий скан і скан із шумом, DOCX, XLSX та скани рахунків з таблицею без ліній. Порожні скани, змінені ціни, втрачені таблиці - і єдиний Actor, що правильно обробив усі файли за найнижчою ціною сторінки скану.", "datePublished": "2026-11-15", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/ukrainian-documents-to-markdown-5-actors-compared/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">15.11.2026</p><h1>Скани, рахунки, Word і Excel українською в Markdown - 5 Actors з Apify на 7 файлах, усі таблиці правильно прочитав лише один</h1><p class="lead">П&#x27;ять Actors з Apify Store, що перетворюють документи на Markdown, на однакових семи українських файлах - текстовий PDF, чистий скан і скан із шумом, DOCX, XLSX та скани рахунків з таблицею без ліній. Порожні скани, змінені ціни, втрачені таблиці - і єдиний Actor, що правильно обробив усі файли за найнижчою ціною сторінки скану.</p><p>За запитом «PDF to Markdown» в Apify Store знаходяться десятки Actors з майже однаковою обіцянкою: текст, таблиці,
+OCR, готово для RAG. Жоден опис не каже, що буде з українським сканом, файлом Excel чи сканом рахунку, де в таблиці
+немає ліній. Тож я запустив п'ять із них на однакових семи файлах і порівняв кожен результат з текстом, з якого ці
+файли зроблено. Усі результати нижче - зі справжніх запусків 15 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: один із п'яти - мій, <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>.
+Кожне число нижче - зі справжнього запуску, тестові файли публічні, сирі відповіді збережено, тож усе можна
+повторити й перевірити.</p>
+</blockquote>
+<h2 id="_1">Коротко</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Правильних файлів (із 7)</th>
+<th>Рахунок без ліній: точних рядків</th>
+<th>Читає Word і Excel</th>
+<th>Ціна сторінки скану</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/document-to-markdown</strong></td>
+<td><strong>7</strong></td>
+<td><strong>5 із 5</strong></td>
+<td><strong>так</strong></td>
+<td><strong>$0,004</strong></td>
+</tr>
+<tr>
+<td>nidamindllc/doc-ocr</td>
+<td>2</td>
+<td>4 із 5</td>
+<td>ні (помилка)</td>
+<td>$0,004</td>
+</tr>
+<tr>
+<td>lergassy/pdf-text-extractor</td>
+<td>1</td>
+<td>0</td>
+<td>так</td>
+<td>$0,0111</td>
+</tr>
+<tr>
+<td>fabrikit/document-to-markdown</td>
+<td>2</td>
+<td>0</td>
+<td>так</td>
+<td>$0,0105</td>
+</tr>
+<tr>
+<td>gochujang/pdf-text-extractor</td>
+<td>1</td>
+<td>0 (порожньо)</td>
+<td>ні (лише PDF)</td>
+<td>$0,006</td>
+</tr>
+</tbody>
+</table>
+<p>«Правильно» - це текст, заголовок і таблиця з правильними рядками, де кожне число точно як у документі.</p>
+<h2 id="_2">Сім файлів</h2>
+<p>Усі українською, усі зроблені з відомого тексту, тож кожен символ можна перевірити:</p>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Що це</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text-uk.pdf</code></td>
+<td>PDF з текстовим шаром: заголовок, два речення, таблиця 3 x 3 з цінами на кшталт <code>96,50</code></td>
+</tr>
+<tr>
+<td><code>scan-uk.pdf</code></td>
+<td>та сама сторінка як чистий скан</td>
+</tr>
+<tr>
+<td><code>scan-noisy-uk.pdf</code></td>
+<td>той самий скан із шумом і невеликим нахилом</td>
+</tr>
+<tr>
+<td><code>doc-uk.docx</code></td>
+<td>документ Word з текстом, списком і таблицею</td>
+</tr>
+<tr>
+<td><code>sheet-uk.xlsx</code></td>
+<td>книга Excel: таблиця з рядком <code>Total</code> <code>1,234.50</code> і аркуш з реченнями</td>
+</tr>
+<tr>
+<td><code>scan-borderless-uk.pdf</code></td>
+<td>скан рахунку-фактури: таблиця 5 x 6 <strong>зовсім без ліній</strong>, суми на кшталт <code>40 530,00</code> і <code>2 500</code></td>
+</tr>
+<tr>
+<td><code>scan-noisy-borderless-uk.pdf</code></td>
+<td>той самий рахунок із шумом і нахилом</td>
+</tr>
+</tbody>
+</table>
+<p>Останні два - найважчий і водночас найчастіший випадок: більшість рахунків, накладних і банківських виписок
+друкують без ліній у таблиці. Файли публічні:
+<code>https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/&lt;назва файлу&gt;</code>.</p>
+<p>Actors - найпопулярніші за цим запитом і ще один, що обіцяє формати Office. Налаштування: українська мова OCR
+(<code>ukr</code>) скрізь, де є вибір мови; у nidamindllc вибору мови немає.</p>
+<h2 id="_3">Результати по файлах</h2>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>мій</th>
+<th>nidamindllc</th>
+<th>lergassy</th>
+<th>fabrikit</th>
+<th>gochujang</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Текстовий PDF</td>
+<td><strong>правильно</strong></td>
+<td>одна помилка OCR, таблиця правильна (HTML)</td>
+<td>таблиця злита з текстом</td>
+<td>таблиця простими рядками</td>
+<td>правильно</td>
+</tr>
+<tr>
+<td>Чистий скан</td>
+<td><strong>правильно</strong></td>
+<td>правильно (таблиця HTML)</td>
+<td>таблиця розірваними рядками</td>
+<td>таблиця втрачена</td>
+<td><strong>порожньо</strong></td>
+</tr>
+<tr>
+<td>Скан із шумом</td>
+<td><strong>правильно</strong></td>
+<td>правильно (таблиця HTML)</td>
+<td>таблиця розірваними рядками</td>
+<td>рядки без заголовка</td>
+<td><strong>порожньо</strong></td>
+</tr>
+<tr>
+<td>DOCX</td>
+<td><strong>правильно</strong></td>
+<td>помилка</td>
+<td>правильно</td>
+<td>правильно</td>
+<td>не підтримує</td>
+</tr>
+<tr>
+<td>XLSX</td>
+<td><strong>правильно</strong>, <code>1,234.50</code> збережено</td>
+<td>помилка</td>
+<td><code>1,234.50</code> стало <code>1234.5</code></td>
+<td>правильно</td>
+<td>не підтримує</td>
+</tr>
+<tr>
+<td>Рахунок без ліній</td>
+<td><strong>5/5 рядків, 30/30 клітинок</strong></td>
+<td>4/5 рядків, 29/30 клітинок</td>
+<td>таблиці немає, <code>40 530,00</code> втратило пробіл</td>
+<td>таблиці немає, усе одним рядком, <code>96,50</code> прочитано як <code>96,0</code></td>
+<td><strong>порожньо</strong></td>
+</tr>
+<tr>
+<td>Рахунок без ліній, із шумом</td>
+<td><strong>5/5 рядків, 30/30 клітинок</strong></td>
+<td>4/5 рядків, 29/30 клітинок</td>
+<td>таблиці немає, <code>96,50</code> прочитано як <code>96,60</code></td>
+<td>таблиці немає, усе одним рядком</td>
+<td><strong>порожньо</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Ось що мій Actor повернув для рахунку без ліній із шумом - кожна клітинка, кожне число і знак <code>№</code> як у документі:</p>
+<pre><code class="language-text">Рахунок-фактура № 47
+
+Постачальник: ТОВ «Будмайстер», м. Львів. Покупець: ФОП Коваленко О. В. Оплата протягом п'яти банківських днів з дати рахунку.
+
+| № | Товар | Од. | Кількість | Ціна | Сума |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Цемент М500 | мішок | 420 | 96,50 | 40 530,00 |
+| 2 | Арматура 12 мм | шт. | 180 | 412,00 | 74 160,00 |
+| 3 | Пісок річковий | т | 12 | 650,00 | 7 800,00 |
+| 4 | Цегла рядова | шт. | 2 500 | 9,80 | 24 500,00 |
+
+Разом: 146 990,00 грн
+</code></pre>
+<p>Та сама таблиця приходить і рядками клітинок у полі <code>tables</code> - готово для таблиці чи бази даних, а запис показує,
+скільки сторінок пройшли через OCR, тож програма знає, який текст узято зі скану.</p>
+<p>Для порівняння - той самий рядок рахунку від двох інших Actors:</p>
+<pre><code class="language-text">lergassy:  1 | Цемент М500 мішок 420 96,60 40530,00
+fabrikit:  ... Мо Товар Од. Кількість Ціна Сума 1 Цемент М500 мішок 420 96,50 40 530,00 2 Арматура12мм шт. ...
+</code></pre>
+<h2 id="_4">Що впало в око</h2>
+<ul>
+<li><strong>gochujang повернув порожній текст для всіх чотирьох сканів</strong> і все одно позначив їх <code>ok: true</code>; у журналі
+  запуску - <code>Failed loading language 'ukr'</code>. Це найпопулярніший Actor із п'яти (40 користувачів на місяць), з
+  текстовими PDF він працює чисто, але український скан прочитати не може.</li>
+<li><strong>nidamindllc добре працює зі сканами</strong> - єдиний конкурент, що зберіг таблицю рахунку, - але він розпізнає кожен PDF,
+  навіть з текстовим шаром, і це додало помилку, якої у файлі не було; файли Word і Excel він не відкриває зовсім.</li>
+<li><strong>lergassy і fabrikit читають усі формати, але не таблиці.</strong> У рахунку lergassy змінив ціну (<code>96,50</code> на <code>96,60</code>), а
+  в таблиці Excel - <code>1,234.50</code> на <code>1234.5</code>; fabrikit прочитав ту саму ціну в чистому рахунку як <code>96,0</code>. У рахунку чи
+  прайсі це найгірша помилка: вона виглядає правильно.</li>
+<li><strong>Мій правильно обробив усі сім файлів</strong>, зокрема обидва рахунки без ліній, з числами точно як у документі.</li>
+</ul>
+<h2 id="_5">Скільки коштує</h2>
+<p>Усі п'ять Actors беруть плату за подіями. За сторінку скану:</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Одна сторінка скану</th>
+<th>Текстова сторінка чи файл Office</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>мій</strong></td>
+<td><strong>$0,004</strong></td>
+<td><strong>$0,001</strong></td>
+</tr>
+<tr>
+<td>nidamindllc</td>
+<td>$0,004</td>
+<td>$0,004 (розпізнає все)</td>
+</tr>
+<tr>
+<td>gochujang</td>
+<td>$0,006</td>
+<td>$0,006 за односторінковий PDF</td>
+</tr>
+<tr>
+<td>fabrikit</td>
+<td>$0,0105</td>
+<td>$0,0005</td>
+</tr>
+<tr>
+<td>lergassy</td>
+<td>$0,0111</td>
+<td>$0,0031</td>
+</tr>
+</tbody>
+</table>
+<p>Мій запуск на всіх семи файлах коштував <strong>$0,019</strong> і тривав 11 секунд.</p>
+<h2 id="_6">Про перевірку</h2>
+<ul>
+<li>По одному файлу кожного виду, малі й синтетичні. У справжніх архівах гірші скани, печатки, рукопис - перед вибором
+  спробуйте на десяти своїх файлах. Це коштує кілька центів.</li>
+<li>Кожен Actor працював на збірці, публічній 15 листопада 2026 року (мій - 0.1.20).</li>
+</ul>
+<p>Готуючи цю статтю, за результатами тестів я побачив, де ще можна покращити мій Actor, щоб він став найкращим у своїй
+категорії - скани із шумом і рахунки з таблицею без ліній, - і зробив це одразу, до виходу статті. Це підтверджують
+останні тести, описані вище.</p>
+<h2 id="_7">Спробувати</h2>
+<p>З Python:</p>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/document-to-markdown&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/scan-noisy-borderless-uk.pdf&quot;}],
+    &quot;ocrLanguages&quot;: [&quot;ukr&quot;],
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;markdown&quot;])
+    print(item[&quot;tables&quot;])
+</code></pre>
+<p>Або дайте його Claude, Cursor чи іншому ШІ-агенту як інструмент MCP - див.
+<a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>.</p>
+<h2 id="_8">Інші статті</h2>
+<ul>
+<li><a href="/uk/skany-ukrainskoyu-v-markdown/">Скани українською в Markdown для ШІ</a></li>
+<li><a href="/uk/office-v-pdf-a-sud-arkhiv/">Word, Excel і PowerPoint у PDF/A для архіву та суду</a></li>
+</ul></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

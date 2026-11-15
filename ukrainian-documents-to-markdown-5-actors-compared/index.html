@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ukrainian scans, invoices, Word and Excel to Markdown - 5 Apify Actors on 7 files, only one got every table right</title>
+<meta name="description" content="Five document-to-Markdown Actors from the Apify Store on the same seven Ukrainian files - text PDF, clean and noisy scans, DOCX, XLSX and scanned invoices without table lines. Empty scans, changed prices, lost tables - and the one Actor that got every file right at the lowest price per scanned page.">
+<link rel="canonical" href="https://andriyvk.github.io/ukrainian-documents-to-markdown-5-actors-compared/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ukrainian-documents-to-markdown-5-actors-compared/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/">
+<meta property="og:title" content="Ukrainian scans, invoices, Word and Excel to Markdown - 5 Apify Actors on 7 files, only one got every table right">
+<meta property="og:description" content="Five document-to-Markdown Actors from the Apify Store on the same seven Ukrainian files - text PDF, clean and noisy scans, DOCX, XLSX and scanned invoices without table lines. Empty scans, changed prices, lost tables - and the one Actor that got every file right at the lowest price per scanned page.">
+<meta property="og:url" content="https://andriyvk.github.io/ukrainian-documents-to-markdown-5-actors-compared/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Ukrainian scans, invoices, Word and Excel to Markdown - 5 Apify Actors on 7 files, only one got every table right", "description": "Five document-to-Markdown Actors from the Apify Store on the same seven Ukrainian files - text PDF, clean and noisy scans, DOCX, XLSX and scanned invoices without table lines. Empty scans, changed prices, lost tables - and the one Actor that got every file right at the lowest price per scanned page.", "datePublished": "2026-11-15", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">15.11.2026</p><h1>Ukrainian scans, invoices, Word and Excel to Markdown - 5 Apify Actors on 7 files, only one got every table right</h1><p class="lead">Five document-to-Markdown Actors from the Apify Store on the same seven Ukrainian files - text PDF, clean and noisy scans, DOCX, XLSX and scanned invoices without table lines. Empty scans, changed prices, lost tables - and the one Actor that got every file right at the lowest price per scanned page.</p><p>Search the Apify Store for "PDF to Markdown" and you get dozens of Actors with almost the same promise: text,
+tables, OCR, ready for RAG. None of them tells you what happens with a Ukrainian scan, an Excel file or a scanned
+invoice whose table has no lines. So I ran five of them on the same seven files and compared every output with the
+text the files were made from. All results below are from real runs on 15 November 2026.</p>
+<blockquote>
+<p>Disclosure: one of the five is mine, <a href="https://apify.com/ai_admin/document-to-markdown">Document to Markdown for AI</a>.
+Every number below comes from a real run, the test files are public and the raw outputs are kept, so you can repeat
+and check all of it.</p>
+</blockquote>
+<h2 id="short-answer">Short answer</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Files right (of 7)</th>
+<th>Invoice without lines: rows exact</th>
+<th>Reads Word and Excel</th>
+<th>Price per scanned page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/document-to-markdown</strong></td>
+<td><strong>7</strong></td>
+<td><strong>5 of 5</strong></td>
+<td><strong>yes</strong></td>
+<td><strong>$0.004</strong></td>
+</tr>
+<tr>
+<td>nidamindllc/doc-ocr</td>
+<td>2</td>
+<td>4 of 5</td>
+<td>no (error)</td>
+<td>$0.004</td>
+</tr>
+<tr>
+<td>lergassy/pdf-text-extractor</td>
+<td>1</td>
+<td>0</td>
+<td>yes</td>
+<td>$0.0111</td>
+</tr>
+<tr>
+<td>fabrikit/document-to-markdown</td>
+<td>2</td>
+<td>0</td>
+<td>yes</td>
+<td>$0.0105</td>
+</tr>
+<tr>
+<td>gochujang/pdf-text-extractor</td>
+<td>1</td>
+<td>0 (empty)</td>
+<td>no (PDF only)</td>
+<td>$0.006</td>
+</tr>
+</tbody>
+</table>
+<p>"Right" means the text, the heading and the table with the correct rows and with every number exactly as in the
+document.</p>
+<h2 id="the-seven-files">The seven files</h2>
+<p>All Ukrainian, all generated from known text, so every character can be checked:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text-uk.pdf</code></td>
+<td>PDF with a text layer: heading, two sentences, a 3 x 3 table with prices like <code>96,50</code></td>
+</tr>
+<tr>
+<td><code>scan-uk.pdf</code></td>
+<td>the same page as a clean scan</td>
+</tr>
+<tr>
+<td><code>scan-noisy-uk.pdf</code></td>
+<td>the same scan with noise and a slight tilt</td>
+</tr>
+<tr>
+<td><code>doc-uk.docx</code></td>
+<td>Word document with the text, a list and the table</td>
+</tr>
+<tr>
+<td><code>sheet-uk.xlsx</code></td>
+<td>Excel workbook: the table with a <code>Total</code> row <code>1,234.50</code>, and a sheet with the sentences</td>
+</tr>
+<tr>
+<td><code>scan-borderless-uk.pdf</code></td>
+<td>a scanned invoice: 5 x 6 table <strong>without any lines</strong>, amounts like <code>40 530,00</code> and <code>2 500</code></td>
+</tr>
+<tr>
+<td><code>scan-noisy-borderless-uk.pdf</code></td>
+<td>the same invoice, noisy and tilted</td>
+</tr>
+</tbody>
+</table>
+<p>The last two are the hard case and the most common one: most invoices, waybills and bank statements are printed
+without table lines. The files are public:
+<code>https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/&lt;file name&gt;</code>.</p>
+<p>The Actors are the most used ones for this search plus one that lists Office formats. Settings: Ukrainian OCR
+wherever the Actor has a language option (<code>ukr</code>); nidamindllc has no language option.</p>
+<h2 id="results-file-by-file">Results, file by file</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>mine</th>
+<th>nidamindllc</th>
+<th>lergassy</th>
+<th>fabrikit</th>
+<th>gochujang</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text PDF</td>
+<td><strong>right</strong></td>
+<td>one OCR typo, table right (HTML)</td>
+<td>table flattened into the text</td>
+<td>table as plain lines</td>
+<td>right</td>
+</tr>
+<tr>
+<td>Clean scan</td>
+<td><strong>right</strong></td>
+<td>right (HTML table)</td>
+<td>table as broken lines</td>
+<td>table lost</td>
+<td><strong>empty</strong></td>
+</tr>
+<tr>
+<td>Noisy scan</td>
+<td><strong>right</strong></td>
+<td>right (HTML table)</td>
+<td>table as broken lines</td>
+<td>rows without header</td>
+<td><strong>empty</strong></td>
+</tr>
+<tr>
+<td>DOCX</td>
+<td><strong>right</strong></td>
+<td>error</td>
+<td>right</td>
+<td>right</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>XLSX</td>
+<td><strong>right</strong>, <code>1,234.50</code> kept</td>
+<td>error</td>
+<td><code>1,234.50</code> became <code>1234.5</code></td>
+<td>right</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>Invoice, no lines</td>
+<td><strong>5/5 rows, 30/30 cells</strong></td>
+<td>4/5 rows, 29/30 cells</td>
+<td>no table, <code>40 530,00</code> lost its space</td>
+<td>no table, all in one line, <code>96,50</code> read as <code>96,0</code></td>
+<td><strong>empty</strong></td>
+</tr>
+<tr>
+<td>Invoice, no lines, noisy</td>
+<td><strong>5/5 rows, 30/30 cells</strong></td>
+<td>4/5 rows, 29/30 cells</td>
+<td>no table, <code>96,50</code> read as <code>96,60</code></td>
+<td>no table, all in one line</td>
+<td><strong>empty</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This is what my Actor returned for the noisy invoice without lines - every cell, every number and the <code>№</code> sign as in
+the document:</p>
+<pre><code class="language-text">Рахунок-фактура № 47
+
+Постачальник: ТОВ «Будмайстер», м. Львів. Покупець: ФОП Коваленко О. В. Оплата протягом п'яти банківських днів з дати рахунку.
+
+| № | Товар | Од. | Кількість | Ціна | Сума |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Цемент М500 | мішок | 420 | 96,50 | 40 530,00 |
+| 2 | Арматура 12 мм | шт. | 180 | 412,00 | 74 160,00 |
+| 3 | Пісок річковий | т | 12 | 650,00 | 7 800,00 |
+| 4 | Цегла рядова | шт. | 2 500 | 9,80 | 24 500,00 |
+
+Разом: 146 990,00 грн
+</code></pre>
+<p>The same table also comes as rows of cells in the <code>tables</code> field, ready for a spreadsheet or a database, and the
+record says how many pages went through OCR, so a pipeline knows which text came from a scan.</p>
+<p>For comparison, the same line of the invoice from two other Actors:</p>
+<pre><code class="language-text">lergassy:  1 | Цемент М500 мішок 420 96,60 40530,00
+fabrikit:  ... Мо Товар Од. Кількість Ціна Сума 1 Цемент М500 мішок 420 96,50 40 530,00 2 Арматура12мм шт. ...
+</code></pre>
+<h2 id="what-stood-out">What stood out</h2>
+<ul>
+<li><strong>gochujang returned empty text for all four scans</strong> and still marked them <code>ok: true</code>; the run log says
+  <code>Failed loading language 'ukr'</code>. It is the most used Actor of the five (40 users a month) and is clean on text
+  PDFs, but it cannot read a Ukrainian scan.</li>
+<li><strong>nidamindllc is good on scans</strong> - the only competitor that kept the invoice table - but it OCRs every PDF, even one
+  with a text layer, which added a typo the file did not have, and it cannot open Word or Excel files at all.</li>
+<li><strong>lergassy and fabrikit read every format but not the tables.</strong> On the invoice lergassy changed a price (<code>96,50</code> to
+  <code>96,60</code>), and on the spreadsheet it changed <code>1,234.50</code> to <code>1234.5</code>; fabrikit read the same price as <code>96,0</code> on the clean
+  invoice. In an invoice or a price list that is the worst kind of error: it looks right.</li>
+<li><strong>Mine got all seven files right</strong>, including both invoices without lines, with the numbers exactly as written.</li>
+</ul>
+<h2 id="what-it-cost">What it cost</h2>
+<p>All five Actors charge per event. For a scanned page:</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>One scanned page</th>
+<th>Text page or Office file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mine</strong></td>
+<td><strong>$0.004</strong></td>
+<td><strong>$0.001</strong></td>
+</tr>
+<tr>
+<td>nidamindllc</td>
+<td>$0.004</td>
+<td>$0.004 (OCRs everything)</td>
+</tr>
+<tr>
+<td>gochujang</td>
+<td>$0.006</td>
+<td>$0.006 per one-page PDF</td>
+</tr>
+<tr>
+<td>fabrikit</td>
+<td>$0.0105</td>
+<td>$0.0005</td>
+</tr>
+<tr>
+<td>lergassy</td>
+<td>$0.0111</td>
+<td>$0.0031</td>
+</tr>
+</tbody>
+</table>
+<p>My run of all seven files cost <strong>$0.019</strong> and took 11 seconds.</p>
+<h2 id="about-the-test">About the test</h2>
+<ul>
+<li>One file of each kind, small and synthetic. Real archives have worse scans, stamps and handwriting - try ten of
+  your own files before you choose. That costs a few cents.</li>
+<li>Every Actor ran with the build that was public on 15 November 2026 (mine: 0.1.20).</li>
+</ul>
+<p>While preparing this article, the test results showed me where my Actor could become the best in its category -
+noisy scans and invoices without table lines - so I improved it right away, before publishing. The latest runs
+described above confirm it.</p>
+<h2 id="try-it">Try it</h2>
+<p>From Python:</p>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/document-to-markdown&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/scan-noisy-borderless-uk.pdf&quot;}],
+    &quot;ocrLanguages&quot;: [&quot;ukr&quot;],
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;markdown&quot;])
+    print(item[&quot;tables&quot;])
+</code></pre>
+<p>Or give it to Claude, Cursor or another AI agent as an MCP tool - see
+<a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>.</p>
+<h2 id="related-posts">Related posts</h2>
+<ul>
+<li><a href="/ukrainian-scans-to-markdown/">Ukrainian scanned PDFs to Markdown for RAG and LLMs</a></li>
+<li><a href="/office-to-pdf-a-archive/">Office to PDF/A for archives and e-filing</a></li>
+</ul></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
