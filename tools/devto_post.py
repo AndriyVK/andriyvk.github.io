@@ -2,9 +2,10 @@ import json, re, sys, urllib.request
 SITE = 'https://andriyvk.github.io'
 TAGS = {
     'ukrainian-scans-to-markdown': ['ocr', 'python', 'rag', 'ai'],
-    'office-to-pdf-a-archive': ['pdf', 'python', 'api', 'productivity'],
+    'office-to-pdf-a-archive': ['pdf', 'python', 'tutorial', 'automation'],
     'ukrainian-text-to-speech-api': ['tts', 'python', 'api', 'ukrainian'],
     'youtube-subtitles-in-ukrainian': ['youtube', 'python', 'api', 'ai'],
+    'mcp-document-tools-for-ai-agents': ['mcp', 'ai', 'python', 'tutorial'],
 }
 def load(slug):
     head, body = open(f'/home/user/andriyvk.github.io/src/posts/{slug}.md', encoding='utf-8').read().split('\n---\n', 1)
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     slug, published = sys.argv[1], sys.argv[2] == 'publish'
     meta, body = load(slug)
     art = {'title': meta['title'], 'body_markdown': body, 'published': published, 'tags': TAGS[slug],
-           'canonical_url': f'{SITE}/{slug}/', 'description': meta['description'][:250]}
+           'canonical_url': f'{SITE}/{slug}/', 'description': meta['description'] if len(meta['description']) <= 250 else meta['description'][:247].rsplit(' ', 1)[0] + '...'}
     if len(sys.argv) > 3:
         r = call('PUT', f'/articles/{sys.argv[3]}', {'article': art})
     else:
