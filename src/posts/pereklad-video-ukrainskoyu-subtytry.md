@@ -42,11 +42,11 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
 
 ```text
 1.0-5.4   Think about hundreds of square miles where we have different assets.
-          Уявіть собі сотні квадратних миль, де ми маємо різні ресурси.
+          Подумайте про сотні квадратних миль, де у нас є різні активи.
 5.4-7.4   Definitely mobility systems.
-          Звичайно, це системи мобільності.
+          Безумовно, системи мобільності.
 7.4-11.7  There's a lot of people who spend a lot of time making sure every detail is right,
-          Багато людей витрачають чимало часу, щоб переконатися, що кожна деталь ідеальна,
+          Багато людей витрачають багато часу, щоб переконатися, що кожна деталь правильна,
 ```
 
 Тож український SRT можна покласти поруч із відео - і він збігається без жодного редагування.
