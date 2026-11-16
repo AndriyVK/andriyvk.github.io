@@ -10,6 +10,9 @@ with the same step: get the articles out of Google News as data. For Ukrainian a
 twist: the same story is covered in both languages, so you want both editions at once. This post shows a tool that
 does that, with a real run from 16 November 2026.
 
+**In short: the most complete data for the lowest price.** Direct links, full article text and several countries in
+one run - all in one price of $2.50 per 1,000 articles, with no add-on fees.
+
 > Disclosure: I built the tool, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper) on Apify. The
 > code is open: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
 

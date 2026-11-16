@@ -10,6 +10,9 @@ pair: google-news-monitoring-ukrainian-russian
 подія висвітлюється обома мовами, тож потрібні обидва видання одразу. Тут - інструмент, який це робить, зі справжнім
 запуском 16 листопада 2026 року.
 
+**Коротко: найповніший набір даних за найнижчою ціною.** Прямі посилання, повний текст статей і кілька країн за один
+запуск - усе в одній ціні $2,50 за 1000 статей, без доплат.
+
 > Розкриття: інструмент зробив я, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper) на Apify. Код
 > відкритий: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
 
