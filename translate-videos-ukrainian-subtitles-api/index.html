@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translate TikTok, Reels, Facebook and YouTube videos into Ukrainian and 20 more languages - transcript and SRT subtitles by API</title>
+<meta name="description" content="One API call turns a video link from TikTok, Instagram Reels, Facebook, X or YouTube into a transcript and translated SRT/VTT subtitles in Ukrainian or 20 other languages - even when the video has no captions. Real runs, the output, and what the most used transcript Actors can and cannot do.">
+<link rel="canonical" href="https://andriyvk.github.io/translate-videos-ukrainian-subtitles-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/translate-videos-ukrainian-subtitles-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/pereklad-video-ukrainskoyu-subtytry/">
+<meta property="og:title" content="Translate TikTok, Reels, Facebook and YouTube videos into Ukrainian and 20 more languages - transcript and SRT subtitles by API">
+<meta property="og:description" content="One API call turns a video link from TikTok, Instagram Reels, Facebook, X or YouTube into a transcript and translated SRT/VTT subtitles in Ukrainian or 20 other languages - even when the video has no captions. Real runs, the output, and what the most used transcript Actors can and cannot do.">
+<meta property="og:url" content="https://andriyvk.github.io/translate-videos-ukrainian-subtitles-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Translate TikTok, Reels, Facebook and YouTube videos into Ukrainian and 20 more languages - transcript and SRT subtitles by API", "description": "One API call turns a video link from TikTok, Instagram Reels, Facebook, X or YouTube into a transcript and translated SRT/VTT subtitles in Ukrainian or 20 other languages - even when the video has no captions. Real runs, the output, and what the most used transcript Actors can and cannot do.", "datePublished": "2026-11-17", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/pereklad-video-ukrainskoyu-subtytry/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">17.11.2026</p><h1>Translate TikTok, Reels, Facebook and YouTube videos into Ukrainian and 20 more languages - transcript and SRT subtitles by API</h1><p class="lead">One API call turns a video link from TikTok, Instagram Reels, Facebook, X or YouTube into a transcript and translated SRT/VTT subtitles in Ukrainian or 20 other languages - even when the video has no captions. Real runs, the output, and what the most used transcript Actors can and cannot do.</p><p>Getting the text of a video is easy today. Getting it <strong>translated, with subtitles timed to the video</strong>, for a TikTok
+or a Reel without captions is where most tools stop. This post shows a tool that does the whole chain in one call:
+download, speech recognition, translation and subtitle files. Every output below is from real runs on 16 November
+2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool, <a href="https://apify.com/ai_admin/social-video-transcript">Video Transcript &amp; Translation</a>
+on Apify. The code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="one-call">One call</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/social-video-transcript&quot;).call(run_input={
+    &quot;videoUrls&quot;: [
+        &quot;https://www.tiktok.com/@nasa/video/7698805564884733198&quot;,
+        &quot;https://www.facebook.com/NASA/videos/360-degree-view-from-the-cupola/346691430131/&quot;,
+    ],
+    &quot;translateTo&quot;: &quot;uk&quot;,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;title&quot;], item[&quot;translation&quot;][&quot;srtUrl&quot;])
+</code></pre>
+<h2 id="what-came-back">What came back</h2>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Length</th>
+<th>Source of the text</th>
+<th>Translated into Ukrainian</th>
+<th>Subtitles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NASA on TikTok: moving around on the Moon</td>
+<td>45 s</td>
+<td>speech recognition (no captions)</td>
+<td>13 of 13 lines</td>
+<td>SRT and VTT, original and Ukrainian</td>
+</tr>
+<tr>
+<td>NASA on Facebook: view from the Cupola</td>
+<td>107 s</td>
+<td>speech recognition (no captions)</td>
+<td>19 of 19 lines</td>
+<td>SRT and VTT, original and Ukrainian</td>
+</tr>
+<tr>
+<td>YouTube: «Me at the zoo»</td>
+<td>19 s</td>
+<td>the video's own captions</td>
+<td>6 of 6 lines</td>
+<td>SRT and VTT, original and Ukrainian</td>
+</tr>
+</tbody>
+</table>
+<p>The first lines of the TikTok, as they come in the subtitles - every translated line keeps the timing of the original:</p>
+<pre><code class="language-text">1.0-5.4   Think about hundreds of square miles where we have different assets.
+          Уявіть собі сотні квадратних миль, де ми маємо різні ресурси.
+5.4-7.4   Definitely mobility systems.
+          Звичайно, це системи мобільності.
+7.4-11.7  There's a lot of people who spend a lot of time making sure every detail is right,
+          Багато людей витрачають чимало часу, щоб переконатися, що кожна деталь ідеальна,
+</code></pre>
+<p>So you can put the Ukrainian SRT next to the video and it lines up without any editing.</p>
+<h2 id="what-makes-it-different">What makes it different</h2>
+<p>I went through the most used transcript Actors in the Apify Store, their input settings and prices on the entry paid
+plan (16 November 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Users a month</th>
+<th>Platforms</th>
+<th>Translation</th>
+<th>Works without captions</th>
+<th>Price per video</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/social-video-transcript</strong></td>
+<td>new</td>
+<td><strong>YouTube, TikTok, Instagram, Facebook, X and many other sites</strong></td>
+<td><strong>Ukrainian + 20 languages, with SRT/VTT</strong></td>
+<td><strong>yes, Whisper large-v3</strong></td>
+<td><strong>from $0.006</strong></td>
+</tr>
+<tr>
+<td>johnvc/YoutubeTranscripts</td>
+<td>6974</td>
+<td>YouTube</td>
+<td>YouTube's own machine translation of captions</td>
+<td>captions only</td>
+<td>$0.0025</td>
+</tr>
+<tr>
+<td>steadyfetch/instagram-reel-transcript-scraper</td>
+<td>3859</td>
+<td>Instagram</td>
+<td>no translation option</td>
+<td>yes</td>
+<td>$0.014</td>
+</tr>
+<tr>
+<td>afanasenko/instagram-reel-script-extractor</td>
+<td>640</td>
+<td>Instagram</td>
+<td>no translation option</td>
+<td>-</td>
+<td>$0.075</td>
+</tr>
+<tr>
+<td>clockworks/tiktok-transcript-extractor</td>
+<td>557</td>
+<td>TikTok</td>
+<td>no translation option</td>
+<td>yes</td>
+<td>$0.003 + $0.041 per minute</td>
+</tr>
+<tr>
+<td>tubetext/instagram-reels-transcript</td>
+<td>486</td>
+<td>Instagram</td>
+<td>no translation option</td>
+<td>yes</td>
+<td>$0.0095</td>
+</tr>
+<tr>
+<td>sian.agency/best-tiktok-ai-transcript-extractor</td>
+<td>158</td>
+<td>several</td>
+<td>into English only</td>
+<td>-</td>
+<td>$0.012 + $0.005 per run</td>
+</tr>
+</tbody>
+</table>
+<p>What that means in practice:</p>
+<ol>
+<li><strong>Translation for every platform, into Ukrainian and 20 more languages.</strong> The tools that translate at all either
+   work only on YouTube and only when YouTube itself can translate the captions, or translate only into English.
+   Of the Instagram and TikTok tools in the table, only one translates, and only into English.</li>
+<li><strong>Translated subtitles, not just text.</strong> Ukrainian SRT and VTT files with the original timing, ready for a video
+   editor or a player.</li>
+<li><strong>All platforms in one tool.</strong> One list of links can mix YouTube, TikTok, Reels, Facebook and X. Most
+   alternatives handle one platform.</li>
+<li><strong>Works when there are no captions.</strong> The speech is recognised with Whisper large-v3; caption-only YouTube tools
+   return nothing for such videos.</li>
+<li><strong>Missed speech is checked for free.</strong> Every transcript is checked for stretches where speech was skipped, and
+   those places are recognised again.</li>
+<li><strong>Failed videos are free.</strong> A private or deleted video gets an error and is not charged.</li>
+<li><strong>No API key of your own.</strong> No OpenAI or other account - you pay per video through Apify.</li>
+</ol>
+<p>For noisy recordings there is also an optional cross-check: the audio is recognised by a second model and the places
+where the two disagree are listed, figures first (recognition is then charged twice).</p>
+<h2 id="price">Price</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Paid plans</th>
+<th>Free plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One video: captions of any length, or up to 3 minutes of recognised speech</td>
+<td><strong>$0.006</strong></td>
+<td>$0.008</td>
+</tr>
+<tr>
+<td>Translation, per started minute of video</td>
+<td>$0.007</td>
+<td>$0.01</td>
+</tr>
+</tbody>
+</table>
+<p>The 45-second TikTok above with its Ukrainian translation costs $0.013 on a paid plan. Subtitles are free.</p>
+<h2 id="ideas">Ideas</h2>
+<ul>
+<li><strong>Ukrainian subtitles for foreign videos</strong> in a channel or a course, without typing a line.</li>
+<li><strong>Monitoring what is said in TikTok and Reels</strong> about a brand or a topic, in your language.</li>
+<li><strong>Content for AI</strong>: transcripts and translations as text for search, summaries or RAG. The tool is also an MCP tool
+  for Claude, Cursor and other agents - see <a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>.</li>
+</ul>
+<p>Earlier post on the same tool, with captions and noisy audio:
+<a href="/youtube-subtitles-in-ukrainian/">YouTube subtitles in Ukrainian</a>.</p>
+<p>Which videos would you translate first - TikTok, Reels or YouTube? Tell me in the comments.</p></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
