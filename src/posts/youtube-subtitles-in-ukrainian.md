@@ -9,6 +9,10 @@ Plenty of tools fetch a YouTube transcript. Fewer give you **subtitles in Ukrain
 load into a player or an editor. This guide shows one call that returns the original transcript, its Ukrainian
 translation and both as SRT/VTT files. The output below is from a real run on 7 November 2026.
 
+> **Update, 18 November 2026.** The same tool now translates TikTok, Instagram Reels and Facebook videos too, into
+> Ukrainian and 20 more languages, with timed subtitles - the only one of the seven most used transcript Actors that
+> does it. See [Translate TikTok, Reels, Facebook and YouTube videos into Ukrainian](/translate-videos-ukrainian-subtitles-api/).
+
 > Disclosure: I built the tool used here, [Video Transcript & Translation](https://apify.com/ai_admin/social-video-transcript)
 > on Apify. The source code is open: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
 

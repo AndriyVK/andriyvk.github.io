@@ -66,6 +66,12 @@ plan (16 November 2026):
 | tubetext/instagram-reels-transcript | 486 | Instagram | no translation option | yes | $0.0095 |
 | sian.agency/best-tiktok-ai-transcript-extractor | 158 | several | into English only | - | $0.012 + $0.005 per run |
 
+**By the numbers.** Of the seven most used transcript Actors, this is the only one that translates TikTok, Reels and
+Facebook videos into Ukrainian - and into 21 target languages, where the others offer English only or YouTube only.
+For a 1-minute video with speech recognition it costs 2.3 times less than steadyfetch ($0.006 against $0.014), 1.6
+times less than tubetext, 7 times less than clockworks ($0.044 for a minute) and 12 times less than afanasenko. And it
+handles five platforms in one list of links, where most of them handle one.
+
 What that means in practice:
 
 1. **Translation for every platform, into Ukrainian and 20 more languages.** The tools that translate at all either
