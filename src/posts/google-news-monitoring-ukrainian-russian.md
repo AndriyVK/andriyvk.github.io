@@ -1,4 +1,4 @@
-title: Monitor Ukrainian and Russian news with Google News - direct links and full article text for $2.50 per 1,000
+title: Monitor Ukrainian and Russian news with Google News - direct links, full article text and several countries in one run
 description: Get Google News articles in Ukrainian, Russian and English as clean JSON in one run - direct publisher links, images and full article text for AI and RAG. A real run, the output, and how the price and features compare with the six most used Google News Actors.
 date: 2026-11-16
 lang: en
@@ -10,8 +10,8 @@ with the same step: get the articles out of Google News as data. For Ukrainian a
 twist: the same story is covered in both languages, so you want both editions at once. This post shows a tool that
 does that, with a real run from 16 November 2026.
 
-**In short: the most complete data for the lowest price.** Direct links, full article text and several countries in
-one run - all in one price of $2.50 per 1,000 articles, with no add-on fees.
+**In short: the most complete news data in one run.** Direct publisher links, full article text and several countries
+at once - all in one article price, with no extra fees per link, per page or per run.
 
 > Disclosure: I built the tool, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper) on Apify. The
 > code is open: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
@@ -73,18 +73,19 @@ One record from that run (text shortened):
 ## Price compared with the six most used Google News Actors
 
 Prices for one article with the direct link, the page details and the text, as the Actors' Store pages showed them on
-16 November 2026:
+16 November 2026, per 1,000 articles. Apify plans: Free, and Bronze as the entry paid plan.
 
-| Actor | Users a month | Price per 1,000 articles | Several queries and editions per run |
-|---|---|---|---|
-| **ai_admin/google-news-scraper** | new | **$2.50** (paid plans), $3 (free plan) | **yes** |
-| data_xplorer/google-news-scraper-fast | 533 | $4 | one keyword, one edition |
-| lhotanova/google-news-scraper | 413 | $2 + $1 link + $1 page = $4, plus $5 per 1,000 runs | one query, one edition |
-| automation-lab/google-news-scraper | 201 | $2.30, plus $5 per 1,000 runs; no article text option | several queries, one edition |
-| easyapi/google-news-scraper | 104 | $5, plus $90 per 1,000 runs | - |
-| memo23/google-news-scraper | 42 | $2.50 + $0.50 link + $0.50 text = $3.50, plus $5 per 1,000 runs | - |
+| Actor | Users a month | Free plan | Bronze | Per-run fee | Several queries and editions per run |
+|---|---|---|---|---|---|
+| **ai_admin/google-news-scraper** | new | $3.50 | $3 ($2.50 from Gold) | minimal | **yes** |
+| data_xplorer/google-news-scraper-fast | 533 | $4 | $4 | - | one keyword, one edition |
+| lhotanova/google-news-scraper | 413 | $2 + $1 link + $1 page = $4 | $4 | $5 per 1,000 runs | one query, one edition |
+| automation-lab/google-news-scraper | 201 | $2.30, no article text option | $2 | $5 per 1,000 runs | several queries, one edition |
+| easyapi/google-news-scraper | 104 | $5 | $5 | $90 per 1,000 runs | - |
+| memo23/google-news-scraper | 42 | $2.50 + $0.50 link + $0.50 text = $3.50 | $3.31 | $5 per 1,000 runs | - |
 
-All features are included in the article price: the direct link, the details and the text cost nothing extra.
+With this tool the direct link, the details and the full text are part of the article price, and one run reads
+several editions and more than 100 articles per query.
 
 ## Ideas for using it
 
