@@ -32,14 +32,14 @@ returned when an MCP client called them on 15 November 2026.</p>
 <tr>
 <th>Tool</th>
 <th>What it does</th>
-<th>Price (billed by Apify)</th>
+<th>Price on paid plans (billed by Apify)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>convert_document_to_markdown</code></td>
 <td>PDF (text and scanned, OCR), images, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT, RTF, HTML to Markdown, JSON tables, RAG chunks</td>
-<td>$1 / 1,000 text pages, $4 / 1,000 OCR pages</td>
+<td>$2 / 1,000 text pages, $4 / 1,000 OCR pages</td>
 </tr>
 <tr>
 <td><code>convert_office_to_pdf</code></td>
@@ -54,7 +54,7 @@ returned when an MCP client called them on 15 November 2026.</p>
 <tr>
 <td><code>transcribe_audio</code></td>
 <td>Audio and video to text, timestamped segments, SRT/VTT (Whisper large-v3)</td>
-<td>$5 / 1,000 minutes</td>
+<td>$6 / 1,000 minutes</td>
 </tr>
 <tr>
 <td><code>ocr_images</code></td>
@@ -74,12 +74,12 @@ returned when an MCP client called them on 15 November 2026.</p>
 <tr>
 <td><code>check_domains</code></td>
 <td>WHOIS/RDAP (registrar, expiry), DNS records, SSL certificate expiry</td>
-<td>$2 / 1,000 domains</td>
+<td>$3 / 1,000 domains</td>
 </tr>
 <tr>
 <td><code>extract_video_frames</code></td>
 <td>Video to frames with timecodes, scene changes, contact sheet</td>
-<td>$1 / 1,000 frames</td>
+<td>$2 / 1,000 frames</td>
 </tr>
 </tbody>
 </table>
@@ -162,12 +162,12 @@ registration (registrar, created and expiry dates, days left), DNS records and t
 result says so instead of pretending the subdomain has its own WHOIS record. For <code>dev.to</code> the data came from RDAP
 (registrar Tonic, expires 2027-04-05), with SPF and DMARC records parsed out of TXT.</p>
 <h2 id="price">Price</h2>
-<p>For a buyer the two calls above cost:</p>
+<p>For a buyer on a paid plan the two calls above cost:</p>
 <ul>
 <li>scan to Markdown: 1 OCR page $0.004 plus run starts $0.0001 = <strong>$0.0041</strong>;</li>
-<li>two domains: 2 x $0.002 plus a run start $0.00005 = <strong>$0.00405</strong>.</li>
+<li>two domains: 2 x $0.003 plus a run start $0.00005 = <strong>$0.00605</strong>.</li>
 </ul>
-<p>About eight tenths of a cent together. You pay Apify at the Actors' prices; the MCP server itself is free and adds no
+<p>About one cent together. You pay Apify at the Actors' prices; the MCP server itself is free and adds no
 fee.</p>
 <h2 id="limits">Limits</h2>
 <ul>

@@ -100,7 +100,8 @@ page: every extra language is one more way for the OCR to guess wrong.
 
 ## Price
 
-You pay per page: **$1 per 1,000 text pages and $4 per 1,000 OCR pages** (Apify pay-per-event pricing; OCR is
+You pay per page: **$2 per 1,000 text pages on paid plans ($2.50 on the free plan) and $4 per 1,000 OCR pages**
+(Apify pay-per-event pricing; OCR is
 charged only for pages that needed it). A document that cannot be downloaded or read is not charged. The two files
 above cost a fraction of a cent.
 

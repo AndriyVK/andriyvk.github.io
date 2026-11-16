@@ -124,7 +124,7 @@ meetings, interviews, calls. There it caught something worse than a misheard num
 where one paragraph is read three times, the main model wrote a single word, «The», for the stretch from 0:18 to 0:25
 and lost two sentences of the second reading. The cross-check listed that stretch with the full text the second model
 heard there. Without it the gap is easy to miss: the transcript still reads smoothly. Every minute is charged twice
-with the cross-check, $0.01 a minute instead of $0.005.
+with the cross-check, $0.012 a minute instead of $0.006 on a paid plan.
 
 **3. hromadske, Ukrainian, 74 seconds, 14 segments.** A performer in an interview, conversational speech:
 

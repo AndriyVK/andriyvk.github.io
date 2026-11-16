@@ -15,17 +15,17 @@ returned when an MCP client called them on 15 November 2026.
 
 ## The tools
 
-| Tool | What it does | Price (billed by Apify) |
+| Tool | What it does | Price on paid plans (billed by Apify) |
 |---|---|---|
-| `convert_document_to_markdown` | PDF (text and scanned, OCR), images, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT, RTF, HTML to Markdown, JSON tables, RAG chunks | $1 / 1,000 text pages, $4 / 1,000 OCR pages |
+| `convert_document_to_markdown` | PDF (text and scanned, OCR), images, DOCX/DOC, XLSX/XLS, PPTX/PPT, ODT, RTF, HTML to Markdown, JSON tables, RAG chunks | $2 / 1,000 text pages, $4 / 1,000 OCR pages |
 | `convert_office_to_pdf` | Word, Excel, PowerPoint, OpenDocument, RTF, HTML, images to PDF or PDF/A-2b, optional merge | $10 / 1,000 documents |
 | `convert_pdf_or_images` | PDF pages to PNG/JPG/WebP/TIFF, images to PDF, iPhone HEIC to JPG, resize | $2 / 1,000 images |
-| `transcribe_audio` | Audio and video to text, timestamped segments, SRT/VTT (Whisper large-v3) | $5 / 1,000 minutes |
+| `transcribe_audio` | Audio and video to text, timestamped segments, SRT/VTT (Whisper large-v3) | $6 / 1,000 minutes |
 | `ocr_images` | Images and scanned PDFs to text, lines with confidence and boxes | $4 / 1,000 images |
 | `text_to_speech` | Text or PDF/DOCX/HTML to MP3/WAV/OGG plus SRT subtitles | $10 / 1,000 audio minutes |
 | `screenshot_website` | Full-page screenshots or PDF of web pages or your own HTML | $4 / 1,000 pages |
-| `check_domains` | WHOIS/RDAP (registrar, expiry), DNS records, SSL certificate expiry | $2 / 1,000 domains |
-| `extract_video_frames` | Video to frames with timecodes, scene changes, contact sheet | $1 / 1,000 frames |
+| `check_domains` | WHOIS/RDAP (registrar, expiry), DNS records, SSL certificate expiry | $3 / 1,000 domains |
+| `extract_video_frames` | Video to frames with timecodes, scene changes, contact sheet | $2 / 1,000 frames |
 
 Every tool takes public file URLs and a `max_charge_usd` limit per call (default $1), so an agent in a loop cannot
 spend more than you allow.
@@ -132,12 +132,12 @@ result says so instead of pretending the subdomain has its own WHOIS record. For
 
 ## Price
 
-For a buyer the two calls above cost:
+For a buyer on a paid plan the two calls above cost:
 
 - scan to Markdown: 1 OCR page $0.004 plus run starts $0.0001 = **$0.0041**;
-- two domains: 2 x $0.002 plus a run start $0.00005 = **$0.00405**.
+- two domains: 2 x $0.003 plus a run start $0.00005 = **$0.00605**.
 
-About eight tenths of a cent together. You pay Apify at the Actors' prices; the MCP server itself is free and adds no
+About one cent together. You pay Apify at the Actors' prices; the MCP server itself is free and adds no
 fee.
 
 ## Limits

@@ -106,13 +106,13 @@ All five Actors charge per event. For a scanned page:
 
 | Actor | One scanned page | Text page or Office file |
 |---|---|---|
-| **mine** | **$0.004** | **$0.001** |
+| **mine** | **$0.004** | **$0.002** |
 | nidamindllc | $0.004 | $0.004 (OCRs everything) |
 | gochujang | $0.006 | $0.006 per one-page PDF |
 | fabrikit | $0.0105 | $0.0005 |
 | lergassy | $0.0111 | $0.0031 |
 
-My run of all seven files cost **$0.019** and took 11 seconds.
+My run of all seven files costs **$0.022** on a paid plan at today's prices and took 11 seconds.
 
 ## About the test
 
