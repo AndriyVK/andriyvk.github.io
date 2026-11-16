@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Український і російський текст з картинок - 5 OCR Actors з Apify, таблицю рахунку прочитав лише один</title>
+<meta name="description" content="П&#x27;ять Actors з Apify Store, що розпізнають текст на зображеннях, на однакових картинках - український текст, російський текст і скан рахунку із шумом. Латинська каша, відсутні мови, таблиця рахунку стовпцями - і єдиний Actor, що повернув точний текст і правильну таблицю за звичайною ринковою ціною.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/ocr-kyrylytsia-kartynky-porivniannia/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/ocr-kyrylytsia-kartynky-porivniannia/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ocr-cyrillic-images-5-actors-compared/">
+<meta property="og:title" content="Український і російський текст з картинок - 5 OCR Actors з Apify, таблицю рахунку прочитав лише один">
+<meta property="og:description" content="П&#x27;ять Actors з Apify Store, що розпізнають текст на зображеннях, на однакових картинках - український текст, російський текст і скан рахунку із шумом. Латинська каша, відсутні мови, таблиця рахунку стовпцями - і єдиний Actor, що повернув точний текст і правильну таблицю за звичайною ринковою ціною.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/ocr-kyrylytsia-kartynky-porivniannia/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Український і російський текст з картинок - 5 OCR Actors з Apify, таблицю рахунку прочитав лише один", "description": "П'ять Actors з Apify Store, що розпізнають текст на зображеннях, на однакових картинках - український текст, російський текст і скан рахунку із шумом. Латинська каша, відсутні мови, таблиця рахунку стовпцями - і єдиний Actor, що повернув точний текст і правильну таблицю за звичайною ринковою ціною.", "datePublished": "2026-11-16", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/ocr-cyrillic-images-5-actors-compared/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">16.11.2026</p><h1>Український і російський текст з картинок - 5 OCR Actors з Apify, таблицю рахунку прочитав лише один</h1><p class="lead">П&#x27;ять Actors з Apify Store, що розпізнають текст на зображеннях, на однакових картинках - український текст, російський текст і скан рахунку із шумом. Латинська каша, відсутні мови, таблиця рахунку стовпцями - і єдиний Actor, що повернув точний текст і правильну таблицю за звичайною ринковою ціною.</p><p>«Image to text» - одне з найпопулярніших завдань в Apify Store, і більшість OCR Actors налаштовані на англійську.
+Якщо ваші зображення українською чи російською - знімки екрана, фото документів, скани рахунків, - результати дуже
+різняться. Я запустив п'ять OCR Actors на однакових трьох картинках і порівняв кожен результат з текстом, з якого
+їх зроблено. Усі результати - зі справжніх запусків 16 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: один із п'яти - мій, <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a>. Кожне число
+нижче - зі справжнього запуску, картинки публічні, сирі відповіді збережено.</p>
+</blockquote>
+<h2 id="_1">Коротко</h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Український текст</th>
+<th>Російський текст</th>
+<th>Рахунок: точних чисел</th>
+<th>Таблиця рахунку</th>
+<th>Ціна за картинку</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/image-to-text-ocr</strong></td>
+<td><strong>100%</strong></td>
+<td><strong>100%</strong></td>
+<td><strong>12 із 12</strong></td>
+<td><strong>рядками, точно</strong></td>
+<td><strong>$0,004</strong></td>
+</tr>
+<tr>
+<td>zen-studio/google-lens-ocr</td>
+<td>100%</td>
+<td>100%</td>
+<td>11 із 12</td>
+<td>стовпцями</td>
+<td>близько $0,007</td>
+</tr>
+<tr>
+<td>getascraper/google-lens-ocr</td>
+<td>100%</td>
+<td>100%</td>
+<td>10 із 12</td>
+<td>стовпцями</td>
+<td>близько $0,004</td>
+</tr>
+<tr>
+<td>steadydata/image-ocr-text</td>
+<td>латинська каша</td>
+<td>латинська каша</td>
+<td>7 із 12</td>
+<td>немає</td>
+<td>близько $0,004</td>
+</tr>
+<tr>
+<td>gochujang/image-ocr-extractor</td>
+<td>помилка: немає української</td>
+<td>помилка</td>
+<td>-</td>
+<td>-</td>
+<td>$0,003</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">Три картинки</h2>
+<table>
+<thead>
+<tr>
+<th>Картинка</th>
+<th>Що це</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image-uk.png</code></td>
+<td>український заголовок і два речення, чисто</td>
+</tr>
+<tr>
+<td><code>image-ru.png</code></td>
+<td>те саме російською</td>
+</tr>
+<tr>
+<td><code>invoice-noisy-uk.png</code></td>
+<td>скан українського рахунку із шумом і невеликим нахилом: таблиця 5 x 6 <strong>без ліній</strong>, суми на кшталт <code>40 530,00</code> і <code>2 500</code></td>
+</tr>
+</tbody>
+</table>
+<p>Вони публічні: <code>https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/&lt;назва файлу&gt;</code>.</p>
+<p>Налаштування: мій Actor з <code>languages: ["ukr", "rus"]</code> - одне налаштування для обох мов, як зробить покупець зі
+змішаними документами; Actors на Google Lens - з полем мови <code>uk</code> або <code>ru</code>; інші не мають вибору мови або беруть код
+Tesseract (<code>ukr+rus</code>).</p>
+<p>Actors - найпопулярніші за запитами «image to text» і «OCR» у Store того дня: у steadydata 178 користувачів на
+місяць, у двох Actors на Google Lens - 63 і 57, у gochujang - 32.</p>
+<h2 id="_3">Що повернув кожен</h2>
+<p><strong>Чистий український і російський текст.</strong> Мій Actor і обидва Actors на Google Lens повернули текст символ у символ,
+разом з «і», «ї», «ё» та «ы». Мій робить це з одним налаштуванням для обох мов: визначає мову кожної сторінки,
+читає її цією мовою першою і показує перемикання в полі <code>languagesUsed</code>.</p>
+<p>steadydata повернув кирилицю латинськими двійниками - заголовок «Звіт про постачання» прийшов як
+<code>3BiTnpOnOCTayaHHA</code>. gochujang не впорався з жодною картинкою: <code>Failed loading language 'ukr'</code> - української моделі
+немає, але запуск усе одно оплачується.</p>
+<p><strong>Рахунок із шумом.</strong> Тут і видно різницю. Мій Actor повернув таблицю рядками, з кожним числом як надруковано, у
+полі <code>markdown</code> і клітинками в <code>tables</code>:</p>
+<pre><code class="language-text">Рахунок-фактура № 47
+
+| № | Товар | Од. | Кількість | Ціна | Сума |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Цемент М500 | мішок | 420 | 96,50 | 40 530,00 |
+| 2 | Арматура 12 мм | шт. | 180 | 412,00 | 74 160,00 |
+| 3 | Пісок річковий | т | 12 | 650,00 | 7 800,00 |
+| 4 | Цегла рядова | шт. | 2 500 | 9,80 | 24 500,00 |
+
+Разом: 146 990,00 грн
+</code></pre>
+<p>Actors на Google Lens прочитали всі слова, але таблицю - стовпцями, тож рядки рахунку вже не разом. Так починається
+відповідь getascraper:</p>
+<pre><code class="language-text">№
+Товар
+Цемент М500.
+Арматура 12 мм
+Пісок річковий
+T
+Цегла рядова
+Од.
+мішок
+2
+шт.
+</code></pre>
+<p>До того ж <code>40 530,00</code> в обох стало <code>40.530,00</code>, одиниця «т» - латинською <code>T</code>, а getascraper розбив <code>24 500,00</code> на два
+рядки. Щоб зібрати з цього таблицю, потрібен ще один інструмент.</p>
+<p>steadydata правильно прочитав 7 із 12 чисел і жодного кириличного слова.</p>
+<h2 id="_4">Ціна</h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Одна картинка</th>
+<th>Примітки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>мій</strong></td>
+<td><strong>$0,004</strong></td>
+<td>плюс $0,0001 за запуск</td>
+</tr>
+<tr>
+<td>getascraper</td>
+<td>$0,004</td>
+<td></td>
+</tr>
+<tr>
+<td>steadydata</td>
+<td>$0,004</td>
+<td>$0,003 читання + $0,001 перевірка, плюс плата за старт</td>
+</tr>
+<tr>
+<td>zen-studio</td>
+<td>близько $0,007</td>
+<td>$0,005 за картинку плюс $0,002 за запуск, а один запуск - одна картинка</td>
+</tr>
+<tr>
+<td>gochujang</td>
+<td>$0,003</td>
+<td>плюс $0,001 за запуск</td>
+</tr>
+</tbody>
+</table>
+<p>Тобто ціна та сама, що в Actors на Google Lens і steadydata, - різниця в тому, що ви за неї отримуєте.</p>
+<h2 id="_5">Підсумок</h2>
+<ul>
+<li><strong>Точний текст українською і російською з одним налаштуванням</strong> - мій і два Actors на Google Lens.</li>
+<li><strong>Рахунок справжньою таблицею з точними числами</strong> - лише мій.</li>
+<li><strong>Ціна</strong> - ті самі $0,004, що в getascraper і steadydata, менше, ніж у zen-studio.</li>
+</ul>
+<p>Готуючи цю статтю, за результатами тестів я побачив, де ще можна покращити мій Actor, щоб він став найкращим у своїй
+категорії - змішані українські й російські документи та таблиці рахунків без ліній, - і зробив це одразу, до виходу
+статті. Це підтверджують останні запуски, описані вище.</p>
+<h2 id="_6">Спробувати</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/image-to-text-ocr&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/invoice-noisy-uk.png&quot;}],
+    &quot;languages&quot;: [&quot;ukr&quot;, &quot;rus&quot;],
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;markdown&quot;])
+    print(item[&quot;tables&quot;])
+</code></pre>
+<p>Він також є інструментом для Claude, Cursor та інших ШІ-агентів - див.
+<a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>. Для цілих PDF, файлів Word і Excel - див.
+<a href="/uk/dokumenty-ukrainskoyu-v-markdown-porivniannia/">5 Actors на 7 файлах</a>.</p>
+<p>Які документи вам треба читати з картинок - чеки, рахунки, знімки екрана? Напишіть у коментарях, і я перевірю саме
+їх.</p></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

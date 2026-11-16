@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ukrainian and Russian text from images - 5 Apify OCR Actors compared, only one read the invoice table</title>
+<meta name="description" content="Five image-to-text OCR Actors from the Apify Store on the same Ukrainian text, Russian text and a noisy scanned invoice. Latin gibberish, missing languages, invoice tables read column by column - and the one Actor that returned exact text and a correct table at the usual market price.">
+<link rel="canonical" href="https://andriyvk.github.io/ocr-cyrillic-images-5-actors-compared/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/ocr-cyrillic-images-5-actors-compared/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/ocr-kyrylytsia-kartynky-porivniannia/">
+<meta property="og:title" content="Ukrainian and Russian text from images - 5 Apify OCR Actors compared, only one read the invoice table">
+<meta property="og:description" content="Five image-to-text OCR Actors from the Apify Store on the same Ukrainian text, Russian text and a noisy scanned invoice. Latin gibberish, missing languages, invoice tables read column by column - and the one Actor that returned exact text and a correct table at the usual market price.">
+<meta property="og:url" content="https://andriyvk.github.io/ocr-cyrillic-images-5-actors-compared/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Ukrainian and Russian text from images - 5 Apify OCR Actors compared, only one read the invoice table", "description": "Five image-to-text OCR Actors from the Apify Store on the same Ukrainian text, Russian text and a noisy scanned invoice. Latin gibberish, missing languages, invoice tables read column by column - and the one Actor that returned exact text and a correct table at the usual market price.", "datePublished": "2026-11-16", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/ocr-kyrylytsia-kartynky-porivniannia/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">16.11.2026</p><h1>Ukrainian and Russian text from images - 5 Apify OCR Actors compared, only one read the invoice table</h1><p class="lead">Five image-to-text OCR Actors from the Apify Store on the same Ukrainian text, Russian text and a noisy scanned invoice. Latin gibberish, missing languages, invoice tables read column by column - and the one Actor that returned exact text and a correct table at the usual market price.</p><p>"Image to text" is one of the most searched tasks in the Apify Store, and most OCR Actors are tuned for English.
+If your images are Ukrainian or Russian - screenshots, photos of documents, scanned invoices - the results differ a
+lot. I ran five OCR Actors on the same three images and compared every output with the text the images were made
+from. All results are from real runs on 16 November 2026.</p>
+<blockquote>
+<p>Disclosure: one of the five is mine, <a href="https://apify.com/ai_admin/image-to-text-ocr">Image to Text OCR</a>. Every
+number below comes from a real run, the images are public and the raw outputs are kept.</p>
+</blockquote>
+<h2 id="short-answer">Short answer</h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Ukrainian text</th>
+<th>Russian text</th>
+<th>Invoice: numbers exact</th>
+<th>Invoice table</th>
+<th>Price per image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/image-to-text-ocr</strong></td>
+<td><strong>100%</strong></td>
+<td><strong>100%</strong></td>
+<td><strong>12 of 12</strong></td>
+<td><strong>rows, exact</strong></td>
+<td><strong>$0.004</strong></td>
+</tr>
+<tr>
+<td>zen-studio/google-lens-ocr</td>
+<td>100%</td>
+<td>100%</td>
+<td>11 of 12</td>
+<td>read column by column</td>
+<td>about $0.007</td>
+</tr>
+<tr>
+<td>getascraper/google-lens-ocr</td>
+<td>100%</td>
+<td>100%</td>
+<td>10 of 12</td>
+<td>read column by column</td>
+<td>about $0.004</td>
+</tr>
+<tr>
+<td>steadydata/image-ocr-text</td>
+<td>Latin gibberish</td>
+<td>Latin gibberish</td>
+<td>7 of 12</td>
+<td>no</td>
+<td>about $0.004</td>
+</tr>
+<tr>
+<td>gochujang/image-ocr-extractor</td>
+<td>error: no Ukrainian</td>
+<td>error</td>
+<td>-</td>
+<td>-</td>
+<td>$0.003</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-three-images">The three images</h2>
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image-uk.png</code></td>
+<td>Ukrainian heading and two sentences, clean</td>
+</tr>
+<tr>
+<td><code>image-ru.png</code></td>
+<td>the same in Russian</td>
+</tr>
+<tr>
+<td><code>invoice-noisy-uk.png</code></td>
+<td>a scanned Ukrainian invoice with noise and a slight tilt: a 5 x 6 table <strong>without lines</strong>, amounts like <code>40 530,00</code> and <code>2 500</code></td>
+</tr>
+</tbody>
+</table>
+<p>They are public: <code>https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/&lt;file name&gt;</code>.</p>
+<p>Settings: my Actor with <code>languages: ["ukr", "rus"]</code> - one setting for both languages, as a buyer with mixed
+documents would use it; the Google Lens Actors with their language field set to <code>uk</code> or <code>ru</code>; the others have no
+language option or take a Tesseract code (<code>ukr+rus</code>).</p>
+<p>The Actors are the most used ones for "image to text" and "OCR" in the Store on that day: steadydata has 178 users a
+month, the two Google Lens Actors 63 and 57, gochujang 32.</p>
+<h2 id="what-each-one-returned">What each one returned</h2>
+<p><strong>Clean Ukrainian and Russian text.</strong> My Actor and both Google Lens Actors returned the text character for character,
+including «і», «ї», «ё» and «ы». My Actor does it with a single setting for both languages: it finds out which
+language each page is in, reads it with that language first and reports the switch in the <code>languagesUsed</code> field.</p>
+<p>steadydata returned Cyrillic as Latin look-alikes - the Ukrainian heading «Звіт про постачання» came back as
+<code>3BiTnpOnOCTayaHHA</code>. gochujang failed on every image with <code>Failed loading language 'ukr'</code>: the Ukrainian model is not
+installed, but the start of the run is still charged.</p>
+<p><strong>The noisy invoice.</strong> This is where the difference shows. My Actor returned the table as rows, with every number as
+printed, in the <code>markdown</code> field and as cells in <code>tables</code>:</p>
+<pre><code class="language-text">Рахунок-фактура № 47
+
+| № | Товар | Од. | Кількість | Ціна | Сума |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Цемент М500 | мішок | 420 | 96,50 | 40 530,00 |
+| 2 | Арматура 12 мм | шт. | 180 | 412,00 | 74 160,00 |
+| 3 | Пісок річковий | т | 12 | 650,00 | 7 800,00 |
+| 4 | Цегла рядова | шт. | 2 500 | 9,80 | 24 500,00 |
+
+Разом: 146 990,00 грн
+</code></pre>
+<p>The Google Lens Actors read every word, but the table came back column by column, so the rows of the invoice are no
+longer together. This is the start of the getascraper output:</p>
+<pre><code class="language-text">№
+Товар
+Цемент М500.
+Арматура 12 мм
+Пісок річковий
+T
+Цегла рядова
+Од.
+мішок
+2
+шт.
+</code></pre>
+<p>On top of that, <code>40 530,00</code> became <code>40.530,00</code> in both, the unit «т» became a Latin <code>T</code>, and getascraper split
+<code>24 500,00</code> into two lines. To get a table back from that, you would need another tool.</p>
+<p>steadydata got 7 of the 12 numbers and none of the Cyrillic words right.</p>
+<h2 id="price">Price</h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>One image</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mine</strong></td>
+<td><strong>$0.004</strong></td>
+<td>plus $0.0001 per run</td>
+</tr>
+<tr>
+<td>getascraper</td>
+<td>$0.004</td>
+<td></td>
+</tr>
+<tr>
+<td>steadydata</td>
+<td>$0.004</td>
+<td>$0.003 read + $0.001 check, plus a start fee per run</td>
+</tr>
+<tr>
+<td>zen-studio</td>
+<td>about $0.007</td>
+<td>$0.005 per image plus $0.002 per run, and one run takes one image</td>
+</tr>
+<tr>
+<td>gochujang</td>
+<td>$0.003</td>
+<td>plus $0.001 per run</td>
+</tr>
+</tbody>
+</table>
+<p>So the price is the same as the Google Lens and steadydata Actors - the difference is what you get for it.</p>
+<h2 id="verdict">Verdict</h2>
+<ul>
+<li><strong>Exact text in Ukrainian and Russian, with one setting</strong> - mine and the two Google Lens Actors.</li>
+<li><strong>Invoice as a real table with exact numbers</strong> - only mine.</li>
+<li><strong>Price</strong> - the same $0.004 as getascraper and steadydata, less than zen-studio.</li>
+</ul>
+<p>While preparing this article, the test results showed me where my Actor could become the best in its category -
+mixed Ukrainian and Russian documents and invoice tables without lines - so I improved it right away, before
+publishing. The latest runs described above confirm it.</p>
+<h2 id="try-it">Try it</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/image-to-text-ocr&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/invoice-noisy-uk.png&quot;}],
+    &quot;languages&quot;: [&quot;ukr&quot;, &quot;rus&quot;],
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;markdown&quot;])
+    print(item[&quot;tables&quot;])
+</code></pre>
+<p>It is also a tool for Claude, Cursor and other AI agents - see
+<a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>. For whole PDFs, Word and Excel files,
+see <a href="/ukrainian-documents-to-markdown-5-actors-compared/">5 document-to-Markdown Actors on 7 files</a>.</p>
+<p>Which documents do you need to read from images - receipts, invoices, screenshots? Tell me in the comments, and I
+will test those next.</p></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
