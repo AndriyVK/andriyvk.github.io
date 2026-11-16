@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моніторинг українських і російських новин з Google News - прямі посилання і повний текст статей за $2,50 за 1000</title>
+<meta name="description" content="Як отримати статті Google News українською, російською та англійською як чистий JSON за один запуск - прямі посилання на видання, зображення і повний текст статей для ШІ та RAG. Справжній запуск, результат і порівняння ціни та можливостей із шістьма найпопулярнішими Actors для Google News.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/monitorynh-novyn-google-news/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/monitorynh-novyn-google-news/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/google-news-monitoring-ukrainian-russian/">
+<meta property="og:title" content="Моніторинг українських і російських новин з Google News - прямі посилання і повний текст статей за $2,50 за 1000">
+<meta property="og:description" content="Як отримати статті Google News українською, російською та англійською як чистий JSON за один запуск - прямі посилання на видання, зображення і повний текст статей для ШІ та RAG. Справжній запуск, результат і порівняння ціни та можливостей із шістьма найпопулярнішими Actors для Google News.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/monitorynh-novyn-google-news/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Моніторинг українських і російських новин з Google News - прямі посилання і повний текст статей за $2,50 за 1000", "description": "Як отримати статті Google News українською, російською та англійською як чистий JSON за один запуск - прямі посилання на видання, зображення і повний текст статей для ШІ та RAG. Справжній запуск, результат і порівняння ціни та можливостей із шістьма найпопулярнішими Actors для Google News.", "datePublished": "2026-11-16", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/google-news-monitoring-ukrainian-russian/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">16.11.2026</p><h1>Моніторинг українських і російських новин з Google News - прямі посилання і повний текст статей за $2,50 за 1000</h1><p class="lead">Як отримати статті Google News українською, російською та англійською як чистий JSON за один запуск - прямі посилання на видання, зображення і повний текст статей для ШІ та RAG. Справжній запуск, результат і порівняння ціни та можливостей із шістьма найпопулярнішими Actors для Google News.</p><p>Моніторинг ЗМІ, згадки бренду, ранковий дайджест для команди, стрічка новин для ШІ-асистента - усе починається з
+одного кроку: дістати статті з Google News як дані. Для українських і російських джерел є ще одна особливість: та сама
+подія висвітлюється обома мовами, тож потрібні обидва видання одразу. Тут - інструмент, який це робить, зі справжнім
+запуском 16 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: інструмент зробив я, <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a> на Apify. Код
+відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Один запуск, дві мови</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/google-news-scraper&quot;).call(run_input={
+    &quot;queries&quot;: [&quot;Укренерго&quot;],
+    &quot;editions&quot;: [&quot;UA:uk&quot;, &quot;UA:ru&quot;],
+    &quot;timeframe&quot;: &quot;1d&quot;,
+    &quot;maxArticlesPerQuery&quot;: 10,
+    &quot;articleDetails&quot;: True,
+    &quot;fullText&quot;: True,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;edition&quot;], item[&quot;source&quot;], item[&quot;url&quot;])
+</code></pre>
+<p>Запуск тривав 9 секунд і повернув 19 статей: 10 з українського видання і 9 з російського, без повторів. Кожна з
+них прийшла з:</p>
+<ul>
+<li><strong>прямим посиланням</strong> на статтю на сайті видання (19 із 19), а не переадресацією Google News;</li>
+<li><strong>зображенням</strong> і <strong>описом</strong> статті (19 із 19);</li>
+<li><strong>повним текстом</strong> статті без меню й реклами та кількістю слів - готово для підсумку чи векторної бази. Чотири
+  статті були з Ukr.net, який публікує короткі анотації на 24-28 слів, - вони такими й прийшли.</li>
+</ul>
+<p>Один запис із цього запуску (текст скорочено):</p>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;Укренерго&quot;,
+  &quot;edition&quot;: &quot;UA:uk&quot;,
+  &quot;title&quot;: &quot;Борги на балансувальному ринку стримують інвестиції в нову маневрову генерацію - \&quot;Укренерго\&quot;&quot;,
+  &quot;source&quot;: &quot;Гордон&quot;,
+  &quot;publishedAt&quot;: &quot;2026-11-16T17:55:00Z&quot;,
+  &quot;url&quot;: &quot;https://gordonua.com/ukr/section-money/news-borhy-na-balansuvalnomu-rynku-strymuyut-investytsiyi-v-novu-manevrovu-heneratsiyu-ukrenerho-16-11-2026.html&quot;,
+  &quot;imageUrl&quot;: &quot;https://i.gordonua.com/news/2026/11/16/img0196-scaled.jpg?size=1300x975&quot;,
+  &quot;wordCount&quot;: 218,
+  &quot;text&quot;: &quot;Заборгованість на балансувальному ринку електроенергії перешкоджає залученню інвестицій у нові маневрові потужності, потрібні для стабільної роботи енергосистем...&quot;
+}
+</code></pre>
+<h2 id="_2">Що ще він уміє</h2>
+<ul>
+<li><strong>Кілька запитів і видань за один запуск:</strong> <code>UA:uk</code>, <code>UA:ru</code>, <code>US:en</code>, <code>DE:de</code>, <code>PL:pl</code> і ще 40+. Порівняйте, як
+  одну подію висвітлюють на різних ринках, не запускаючи інструмент п'ять разів.</li>
+<li><strong>Понад 100 статей на запит.</strong> Google News показує не більше 100 результатів на пошук. Задайте проміжок дат, і
+  інструмент прочитає його день за днем - до 5000 статей на запит.</li>
+<li><strong>Оператори пошуку</strong>, як у Google News: <code>"точна фраза"</code>, <code>OR</code>, <code>-виключити</code>, <code>site:</code>, <code>intitle:</code>.</li>
+<li><strong>Головні новини за темами</strong> (TOP, WORLD, BUSINESS, TECHNOLOGY та інші), часто разом з іншими виданнями, що пишуть
+  про ту саму подію.</li>
+<li><strong>Не потрібні ні проксі, ні ключ API.</strong></li>
+</ul>
+<h2 id="actors-google-news">Ціна порівняно із шістьма найпопулярнішими Actors для Google News</h2>
+<p>Ціни за одну статтю з прямим посиланням, деталями сторінки і текстом - як їх показували сторінки Actors у Store
+16 листопада 2026 року:</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Користувачів на місяць</th>
+<th>Ціна за 1000 статей</th>
+<th>Кілька запитів і видань за запуск</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/google-news-scraper</strong></td>
+<td>новий</td>
+<td><strong>$2,50</strong> (платні плани), $3 (безкоштовний)</td>
+<td><strong>так</strong></td>
+</tr>
+<tr>
+<td>data_xplorer/google-news-scraper-fast</td>
+<td>533</td>
+<td>$4</td>
+<td>одне ключове слово, одне видання</td>
+</tr>
+<tr>
+<td>lhotanova/google-news-scraper</td>
+<td>413</td>
+<td>$2 + $1 посилання + $1 сторінка = $4, плюс $5 за 1000 запусків</td>
+<td>один запит, одне видання</td>
+</tr>
+<tr>
+<td>automation-lab/google-news-scraper</td>
+<td>201</td>
+<td>$2,30, плюс $5 за 1000 запусків; тексту статті немає</td>
+<td>кілька запитів, одне видання</td>
+</tr>
+<tr>
+<td>easyapi/google-news-scraper</td>
+<td>104</td>
+<td>$5, плюс $90 за 1000 запусків</td>
+<td>-</td>
+</tr>
+<tr>
+<td>memo23/google-news-scraper</td>
+<td>42</td>
+<td>$2,50 + $0,50 посилання + $0,50 текст = $3,50, плюс $5 за 1000 запусків</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Усе входить у ціну статті: пряме посилання, деталі й текст нічого додатково не коштують.</p>
+<h2 id="_3">Ідеї використання</h2>
+<ul>
+<li><strong>Ранковий дайджест.</strong> Поставте запуск щодня о 7:00 з вашим брендом, конкурентами чи темою, а нові статті
+  надсилайте в канал команди або дайте ШІ написати підсумок з поля <code>text</code>.</li>
+<li><strong>Українські й російські публікації поруч.</strong> Один запит, видання <code>UA:uk</code> і <code>UA:ru</code> - і видно, хто що пише.</li>
+<li><strong>Набір новин для RAG.</strong> Головні новини теми за місяць з повним текстом, один запис на статтю, без повторів.</li>
+<li><strong>ШІ-агенти.</strong> Інструмент є й інструментом MCP для Claude, Cursor та інших агентів - див.
+  <a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>.</li>
+</ul>
+<p>Що б ви відстежували першим - свій бренд, ринок чи тему? Напишіть у коментарях.</p></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
