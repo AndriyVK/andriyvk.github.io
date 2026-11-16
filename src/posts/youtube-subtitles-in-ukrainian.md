@@ -117,7 +117,7 @@ of» instead of «gusts of wind of»). Wind noise is what breaks numbers and sho
 Since this test the tool does it for you: with `"crossCheck": true` it recognises the audio with both models and lists
 the places where they disagree, with times, figures flagged (`"numbers": true`). On this video the list starts with
 «gusts of wind of 17 even 18» against «just a room of 70 even 80», then «with drought in» against «throughout». The
-cross-check doubles the recognition price: $0.02 instead of $0.01 for a video up to three minutes.
+cross-check doubles the recognition price.
 
 The same option is in [Audio & Video Transcriber](https://apify.com/ai_admin/audio-transcriber), for your own files:
 meetings, interviews, calls. There it caught something worse than a misheard number. On a 45-second test recording,
@@ -150,14 +150,15 @@ charged.
 One word is wrong: «зросифіковували» should be «русифікували». The rest reads like a clean transcript. The long
 segments (up to 20 seconds) follow the speaker's sentences; for subtitles on a phone screen you may want to split them.
 
-What the run cost a user on a paid plan: four videos at $0.01 plus two started minutes of translation at $0.007, so
-**$0.054** in total ($0.017 for each English video with translation, $0.01 for each Ukrainian one). Videos up to three
-minutes cost the same flat $0.01 with speech recognition as with captions.
+What the run costs a user on a paid plan today: four videos at $0.006 plus two started minutes of translation at
+$0.007, so **$0.038** in total ($0.013 for each English video with translation, $0.006 for each Ukrainian one). Videos
+up to three minutes cost the same flat $0.006 with speech recognition as with captions.
 
 ## Price
 
-On a paid Apify plan: **$10 per 1,000 videos** with captions, plus **$7 per 1,000 minutes** translated. The video
-above: one video plus one started minute of translation, $0.017. On the free plan: $0.025. A YouTube video without
+On a paid Apify plan: **$6 per 1,000 videos**, plus **$7 per 1,000 minutes** translated. The video above: one video
+plus one started minute of translation, $0.013. On the free plan: $8 per 1,000 videos and $10 per 1,000 minutes
+translated, so $0.018. A YouTube video without
 captions is $10 per 1,000 minutes instead. Failed videos are free.
 
 ## Limits

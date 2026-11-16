@@ -21,7 +21,7 @@ returned when an MCP client called them on 15 November 2026.
 | `convert_office_to_pdf` | Word, Excel, PowerPoint, OpenDocument, RTF, HTML, images to PDF or PDF/A-2b, optional merge | $10 / 1,000 documents |
 | `convert_pdf_or_images` | PDF pages to PNG/JPG/WebP/TIFF, images to PDF, iPhone HEIC to JPG, resize | $2 / 1,000 images |
 | `transcribe_audio` | Audio and video to text, timestamped segments, SRT/VTT (Whisper large-v3) | $5 / 1,000 minutes |
-| `ocr_images` | Images and scanned PDFs to text, lines with confidence and boxes | $1.50 / 1,000 images |
+| `ocr_images` | Images and scanned PDFs to text, lines with confidence and boxes | $4 / 1,000 images |
 | `text_to_speech` | Text or PDF/DOCX/HTML to MP3/WAV/OGG plus SRT subtitles | $10 / 1,000 audio minutes |
 | `screenshot_website` | Full-page screenshots or PDF of web pages or your own HTML | $4 / 1,000 pages |
 | `check_domains` | WHOIS/RDAP (registrar, expiry), DNS records, SSL certificate expiry | $2 / 1,000 domains |

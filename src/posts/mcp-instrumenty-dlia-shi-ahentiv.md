@@ -21,7 +21,7 @@ pair: mcp-document-tools-for-ai-agents
 | `convert_office_to_pdf` | Word, Excel, PowerPoint, OpenDocument, RTF, HTML, зображення у PDF або PDF/A-2b, за бажанням в один файл | $10 за 1000 документів |
 | `convert_pdf_or_images` | сторінки PDF у PNG/JPG/WebP/TIFF, зображення в PDF, HEIC з iPhone у JPG, зміна розміру | $2 за 1000 зображень |
 | `transcribe_audio` | аудіо та відео в текст, фрагменти з часом, SRT/VTT (Whisper large-v3) | $5 за 1000 хвилин |
-| `ocr_images` | зображення та скани в текст, рядки з упевненістю та координатами | $1,50 за 1000 зображень |
+| `ocr_images` | зображення та скани в текст, рядки з упевненістю та координатами | $4 за 1000 зображень |
 | `text_to_speech` | текст або PDF/DOCX/HTML у MP3/WAV/OGG та субтитри SRT, є українські голоси | $10 за 1000 хвилин аудіо |
 | `screenshot_website` | знімки сторінки на всю довжину або PDF сайту чи свого HTML | $4 за 1000 сторінок |
 | `check_domains` | WHOIS/RDAP (реєстратор, термін), записи DNS, термін сертифіката SSL | $2 за 1000 доменів |
