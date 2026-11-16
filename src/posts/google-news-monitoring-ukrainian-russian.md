@@ -70,6 +70,11 @@ One record from that run (text shortened):
   story.
 - **No proxy and no API key needed.**
 
+**By the numbers.** Ukrainian and Russian coverage of one query takes one run here and two runs with the two most
+used Google News Actors (data_xplorer and lhotanova take one edition per run). A query returns up to 5,000 articles
+read day by day, 50 times the 100 that one Google News search shows. And there is nothing to add on top of the
+article price: lhotanova charges $1 extra per 1,000 links and $1 per 1,000 pages, memo23 $0.50 for each.
+
 ## Price compared with the six most used Google News Actors
 
 Prices for one article with the direct link, the page details and the text, as the Actors' Store pages showed them on
