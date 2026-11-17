@@ -1,6 +1,6 @@
 title: Monitor Ukrainian and Russian news with Google News - direct links, full article text and several countries in one run
 description: Get Google News articles in Ukrainian, Russian and English as clean JSON in one run - direct publisher links, images and full article text for AI and RAG. A real run, the output, and how the price and features compare with the six most used Google News Actors.
-date: 2026-11-16
+date: 2026-11-17
 lang: en
 slug: google-news-monitoring-ukrainian-russian
 pair: monitorynh-novyn-google-news
