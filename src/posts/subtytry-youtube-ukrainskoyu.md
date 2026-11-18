@@ -9,6 +9,10 @@ pair: youtube-subtitles-in-ukrainian
 готові до плеєра чи редактора. Тут - один виклик, що повертає оригінальний текст, його український переклад і обидва
 у файлах SRT/VTT. Результат нижче - зі справжнього запуску 7 листопада 2026 року.
 
+> **Оновлення, 18 листопада 2026.** Той самий інструмент тепер перекладає й відео з TikTok, Instagram Reels і Facebook
+> українською та ще 20 мовами, із субтитрами в такт - єдиний із семи найпопулярніших Actors для розшифровки, що це
+> вміє. Див. [Переклад відео з TikTok, Reels, Facebook і YouTube українською](/uk/pereklad-video-ukrainskoyu-subtytry/).
+
 > Розкриття: інструмент, про який ідеться, - [Video Transcript & Translation](https://apify.com/ai_admin/social-video-transcript)
 > на Apify - зробив я. Код відкритий: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
 

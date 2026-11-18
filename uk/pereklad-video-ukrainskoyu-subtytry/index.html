@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Переклад відео з TikTok, Reels, Facebook і YouTube українською та ще 20 мовами - текст і субтитри SRT через API</title>
+<meta name="description" content="Один виклик API перетворює посилання на відео з TikTok, Instagram Reels, Facebook, X чи YouTube на текст і перекладені субтитри SRT/VTT українською або ще 20 мовами - навіть коли у відео немає субтитрів. Справжні запуски, результат і що можуть та не можуть найпопулярніші Actors для розшифровки.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/pereklad-video-ukrainskoyu-subtytry/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/pereklad-video-ukrainskoyu-subtytry/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/translate-videos-ukrainian-subtitles-api/">
+<meta property="og:title" content="Переклад відео з TikTok, Reels, Facebook і YouTube українською та ще 20 мовами - текст і субтитри SRT через API">
+<meta property="og:description" content="Один виклик API перетворює посилання на відео з TikTok, Instagram Reels, Facebook, X чи YouTube на текст і перекладені субтитри SRT/VTT українською або ще 20 мовами - навіть коли у відео немає субтитрів. Справжні запуски, результат і що можуть та не можуть найпопулярніші Actors для розшифровки.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/pereklad-video-ukrainskoyu-subtytry/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Переклад відео з TikTok, Reels, Facebook і YouTube українською та ще 20 мовами - текст і субтитри SRT через API", "description": "Один виклик API перетворює посилання на відео з TikTok, Instagram Reels, Facebook, X чи YouTube на текст і перекладені субтитри SRT/VTT українською або ще 20 мовами - навіть коли у відео немає субтитрів. Справжні запуски, результат і що можуть та не можуть найпопулярніші Actors для розшифровки.", "datePublished": "2026-11-18", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/translate-videos-ukrainian-subtitles-api/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">18.11.2026</p><h1>Переклад відео з TikTok, Reels, Facebook і YouTube українською та ще 20 мовами - текст і субтитри SRT через API</h1><p class="lead">Один виклик API перетворює посилання на відео з TikTok, Instagram Reels, Facebook, X чи YouTube на текст і перекладені субтитри SRT/VTT українською або ще 20 мовами - навіть коли у відео немає субтитрів. Справжні запуски, результат і що можуть та не можуть найпопулярніші Actors для розшифровки.</p><p>Отримати текст відео сьогодні просто. Отримати його <strong>перекладеним, із субтитрами в такт відео</strong>, для TikTok чи
+Reels без субтитрів - ось де більшість інструментів зупиняються. Тут - інструмент, що робить увесь ланцюжок одним
+викликом: завантаження, розпізнавання мовлення, переклад і файли субтитрів. Усі результати нижче - зі справжніх
+запусків 16 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: інструмент зробив я, <a href="https://apify.com/ai_admin/social-video-transcript">Video Transcript &amp; Translation</a>
+на Apify. Код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Один виклик</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/social-video-transcript&quot;).call(run_input={
+    &quot;videoUrls&quot;: [
+        &quot;https://www.tiktok.com/@nasa/video/7698805564884733198&quot;,
+        &quot;https://www.facebook.com/NASA/videos/360-degree-view-from-the-cupola/346691430131/&quot;,
+    ],
+    &quot;translateTo&quot;: &quot;uk&quot;,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;title&quot;], item[&quot;translation&quot;][&quot;srtUrl&quot;])
+</code></pre>
+<h2 id="_2">Що повернулося</h2>
+<table>
+<thead>
+<tr>
+<th>Відео</th>
+<th>Тривалість</th>
+<th>Звідки текст</th>
+<th>Перекладено українською</th>
+<th>Субтитри</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NASA в TikTok: як пересуватися Місяцем</td>
+<td>45 с</td>
+<td>розпізнавання мовлення (субтитрів немає)</td>
+<td>13 із 13 рядків</td>
+<td>SRT і VTT, оригінал і українська</td>
+</tr>
+<tr>
+<td>NASA у Facebook: вид із Купола</td>
+<td>107 с</td>
+<td>розпізнавання мовлення (субтитрів немає)</td>
+<td>19 із 19 рядків</td>
+<td>SRT і VTT, оригінал і українська</td>
+</tr>
+<tr>
+<td>YouTube: «Me at the zoo»</td>
+<td>19 с</td>
+<td>власні субтитри відео</td>
+<td>6 із 6 рядків</td>
+<td>SRT і VTT, оригінал і українська</td>
+</tr>
+</tbody>
+</table>
+<p>Перші рядки TikTok так, як вони йдуть у субтитрах, - кожен перекладений рядок зберігає час оригіналу:</p>
+<pre><code class="language-text">1.0-5.4   Think about hundreds of square miles where we have different assets.
+          Подумайте про сотні квадратних миль, де у нас є різні активи.
+5.4-7.4   Definitely mobility systems.
+          Безумовно, системи мобільності.
+7.4-11.7  There's a lot of people who spend a lot of time making sure every detail is right,
+          Багато людей витрачають багато часу, щоб переконатися, що кожна деталь правильна,
+</code></pre>
+<p>Тож український SRT можна покласти поруч із відео - і він збігається без жодного редагування.</p>
+<h2 id="_3">Чим він кращий</h2>
+<p>Я переглянув найпопулярніші Actors для розшифровки відео в Apify Store, їхні налаштування і ціни на початковому
+платному плані (16 листопада 2026 року):</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Користувачів на місяць</th>
+<th>Платформи</th>
+<th>Переклад</th>
+<th>Працює без субтитрів</th>
+<th>Ціна за відео</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ai_admin/social-video-transcript</strong></td>
+<td>новий</td>
+<td><strong>YouTube, TikTok, Instagram, Facebook, X і багато інших сайтів</strong></td>
+<td><strong>українська + 20 мов, із SRT/VTT</strong></td>
+<td><strong>так, Whisper large-v3</strong></td>
+<td><strong>від $0,006</strong></td>
+</tr>
+<tr>
+<td>johnvc/YoutubeTranscripts</td>
+<td>6974</td>
+<td>YouTube</td>
+<td>машинний переклад субтитрів самим YouTube</td>
+<td>лише субтитри</td>
+<td>$0,0025</td>
+</tr>
+<tr>
+<td>steadyfetch/instagram-reel-transcript-scraper</td>
+<td>3859</td>
+<td>Instagram</td>
+<td>перекладу немає</td>
+<td>так</td>
+<td>$0,014</td>
+</tr>
+<tr>
+<td>afanasenko/instagram-reel-script-extractor</td>
+<td>640</td>
+<td>Instagram</td>
+<td>перекладу немає</td>
+<td>-</td>
+<td>$0,075</td>
+</tr>
+<tr>
+<td>clockworks/tiktok-transcript-extractor</td>
+<td>557</td>
+<td>TikTok</td>
+<td>перекладу немає</td>
+<td>так</td>
+<td>$0,003 + $0,041 за хвилину</td>
+</tr>
+<tr>
+<td>tubetext/instagram-reels-transcript</td>
+<td>486</td>
+<td>Instagram</td>
+<td>перекладу немає</td>
+<td>так</td>
+<td>$0,0095</td>
+</tr>
+<tr>
+<td>sian.agency/best-tiktok-ai-transcript-extractor</td>
+<td>158</td>
+<td>кілька</td>
+<td>лише англійською</td>
+<td>-</td>
+<td>$0,012 + $0,005 за запуск</td>
+</tr>
+</tbody>
+</table>
+<p><strong>У цифрах.</strong> Із семи найпопулярніших Actors для розшифровки лише цей перекладає відео з TikTok, Reels і Facebook
+українською, а загалом - 21 мовою, тоді як інші пропонують лише англійську або лише YouTube. Хвилинне
+відео з розпізнаванням мовлення в нього коштує у 2,3 раза менше, ніж у steadyfetch ($0,006 проти $0,014), в 1,6 раза
+менше, ніж у tubetext, у 7 разів менше, ніж у clockworks ($0,044 за хвилину), і у 12 разів менше, ніж в afanasenko. А
+п'ять платформ він обробляє одним списком посилань, тоді як більшість із них - одну.</p>
+<p>На практиці це означає:</p>
+<ol>
+<li><strong>Переклад для будь-якої платформи - українською та ще 20 мовами.</strong> Інструменти, які взагалі перекладають, або
+   працюють лише з YouTube і лише тоді, коли субтитри вміє перекласти сам YouTube, або перекладають лише англійською.
+   З інструментів для Instagram і TikTok у таблиці перекладає лише один, і лише англійською.</li>
+<li><strong>Перекладені субтитри, а не лише текст.</strong> Українські SRT і VTT із часом оригіналу - готові для відеоредактора чи
+   плеєра.</li>
+<li><strong>Усі платформи в одному інструменті.</strong> Один список посилань може змішувати YouTube, TikTok, Reels, Facebook і X.
+   Більшість альтернатив працюють з однією платформою.</li>
+<li><strong>Працює, коли субтитрів немає.</strong> Мовлення розпізнає Whisper large-v3; інструменти для YouTube, що беруть лише
+   субтитри, для таких відео нічого не повертають.</li>
+<li><strong>Пропущене мовлення перевіряється безкоштовно.</strong> Кожну розшифровку перевіряють на місця, де мовлення пропущено,
+   і ці місця розпізнають ще раз.</li>
+<li><strong>Невдалі відео безкоштовні.</strong> Приватне чи видалене відео отримує помилку і не оплачується.</li>
+<li><strong>Не потрібен власний ключ API.</strong> Без облікового запису OpenAI чи іншого - платите за відео через Apify.</li>
+</ol>
+<p>Для записів із шумом є ще звірка за бажанням: звук розпізнає друга модель, і місця, де дві розшифровки розходяться,
+показуються списком, числа першими (тоді розпізнавання оплачується двічі).</p>
+<h2 id="_4">Ціна</h2>
+<table>
+<thead>
+<tr>
+<th>Що</th>
+<th>Платні плани</th>
+<th>Безкоштовний план</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Одне відео: субтитри будь-якої довжини або до 3 хвилин розпізнаного мовлення</td>
+<td><strong>$0,006</strong></td>
+<td>$0,008</td>
+</tr>
+<tr>
+<td>Переклад, за кожну розпочату хвилину відео</td>
+<td>$0,007</td>
+<td>$0,01</td>
+</tr>
+</tbody>
+</table>
+<p>TikTok на 45 секунд вище з українським перекладом коштує $0,013 на платному плані. Субтитри безкоштовні.</p>
+<h2 id="_5">Ідеї</h2>
+<ul>
+<li><strong>Українські субтитри для іноземних відео</strong> на каналі чи в курсі - без набору жодного рядка.</li>
+<li><strong>Моніторинг того, що кажуть у TikTok і Reels</strong> про бренд чи тему, вашою мовою.</li>
+<li><strong>Матеріали для ШІ</strong>: розшифровки й переклади як текст для пошуку, підсумків чи RAG. Інструмент є й інструментом
+  MCP для Claude, Cursor та інших агентів - див. <a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>.</li>
+</ul>
+<p>Попередня стаття про цей самий інструмент - із субтитрами і шумним звуком:
+<a href="/uk/subtytry-youtube-ukrainskoyu/">Субтитри YouTube українською</a>.</p>
+<p>Які відео ви переклали б першими - TikTok, Reels чи YouTube? Напишіть у коментарях.</p></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

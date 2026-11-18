@@ -9,6 +9,7 @@ TAGS = {
     'ukrainian-documents-to-markdown-5-actors-compared': ['ocr', 'pdf', 'rag', 'python'],
     'ocr-cyrillic-images-5-actors-compared': ['ocr', 'python', 'ai', 'tutorial'],
     'google-news-monitoring-ukrainian-russian': ['news', 'python', 'ai', 'tutorial'],
+    'translate-videos-ukrainian-subtitles-api': ['video', 'ai', 'python', 'tutorial'],
 }
 def load(slug):
     head, body = open(f'/home/user/andriyvk.github.io/src/posts/{slug}.md', encoding='utf-8').read().split('\n---\n', 1)
