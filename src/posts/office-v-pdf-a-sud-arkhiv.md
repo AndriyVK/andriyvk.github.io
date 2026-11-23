@@ -86,3 +86,9 @@ merged.pdf     3 pages  34,927 bytes  documents: 2
 
 Конвертер доступний і як інструмент MCP: `https://mcp.apify.com?tools=ai_admin/office-to-pdf` - Claude, Cursor чи
 інший клієнт MCP може перетворити підготовлені файли на PDF/A.
+
+## Спробувати за дві хвилини
+
+1. Відкрийте [Office to PDF Converter](https://apify.com/ai_admin/office-to-pdf) і натисніть **Try for free**.
+2. Поле вводу вже заповнене робочим прикладом: натисніть **Start** або вставте посилання на власні файли.
+3. Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.

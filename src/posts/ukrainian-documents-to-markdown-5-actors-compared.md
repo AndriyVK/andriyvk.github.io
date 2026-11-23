@@ -144,6 +144,12 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
 Or give it to Claude, Cursor or another AI agent as an MCP tool - see
 [MCP server for document and media tools](/mcp-document-tools-for-ai-agents/).
 
+## Try it in two minutes
+
+1. Open [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own files.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.
+
 ## Related posts
 
 - [Ukrainian scanned PDFs to Markdown for RAG and LLMs](/ukrainian-scans-to-markdown/)

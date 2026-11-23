@@ -84,3 +84,9 @@ voice: uk_UA-tetiana-high   characters: 120   sentences: 3   durationSeconds: 10
 
 `https://mcp.apify.com?tools=ai_admin/text-to-speech` додає голос як інструмент MCP - агент може написати текст і
 віддати готовий звук.
+
+## Спробувати за дві хвилини
+
+1. Відкрийте [Text to Speech](https://apify.com/ai_admin/text-to-speech) і натисніть **Try for free**.
+2. Поле вводу вже заповнене робочим прикладом: натисніть **Start** або вставте власний текст.
+3. Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.

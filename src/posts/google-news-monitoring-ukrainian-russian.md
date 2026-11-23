@@ -102,3 +102,9 @@ several editions and more than 100 articles per query.
   [MCP server for document and media tools](/mcp-document-tools-for-ai-agents/).
 
 What would you monitor first - your brand, a market, or a topic? Tell me in the comments.
+
+## Try it in two minutes
+
+1. Open [Google News Scraper](https://apify.com/ai_admin/google-news-scraper) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in your own search queries.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

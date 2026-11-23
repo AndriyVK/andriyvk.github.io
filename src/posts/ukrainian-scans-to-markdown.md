@@ -120,3 +120,9 @@ above cost a fraction of a cent.
 The same tool is available through the Apify MCP server, so Claude, Cursor or any MCP client can call it:
 `https://mcp.apify.com?tools=ai_admin/document-to-markdown`. A local MCP server with all our tools is in
 [the GitHub repository](https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server).
+
+## Try it in two minutes
+
+1. Open [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own files.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

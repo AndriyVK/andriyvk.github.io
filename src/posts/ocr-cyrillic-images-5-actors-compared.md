@@ -131,3 +131,9 @@ see [5 document-to-Markdown Actors on 7 files](/ukrainian-documents-to-markdown-
 
 Which documents do you need to read from images - receipts, invoices, screenshots? Tell me in the comments, and I
 will test those next.
+
+## Try it in two minutes
+
+1. Open [Image to Text OCR](https://apify.com/ai_admin/image-to-text-ocr) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own files.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

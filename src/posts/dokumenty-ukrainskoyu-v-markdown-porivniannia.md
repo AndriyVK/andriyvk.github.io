@@ -142,6 +142,12 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
 Або дайте його Claude, Cursor чи іншому ШІ-агенту як інструмент MCP - див.
 [MCP-сервер для ШІ-агентів](/uk/mcp-instrumenty-dlia-shi-ahentiv/).
 
+## Спробувати за дві хвилини
+
+1. Відкрийте [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown) і натисніть **Try for free**.
+2. Поле вводу вже заповнене робочим прикладом: натисніть **Start** або вставте посилання на власні файли.
+3. Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.
+
 ## Інші статті
 
 - [Скани українською в Markdown для ШІ](/uk/skany-ukrainskoyu-v-markdown/)

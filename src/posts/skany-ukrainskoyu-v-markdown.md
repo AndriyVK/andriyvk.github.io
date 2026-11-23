@@ -118,3 +118,9 @@ OCR** (оплата Apify за подіями; OCR -
 Інструмент доступний через MCP-сервер Apify - його може викликати Claude, Cursor чи інший клієнт MCP:
 `https://mcp.apify.com?tools=ai_admin/document-to-markdown`. Локальний MCP-сервер з усіма нашими інструментами -
 у [репозиторії на GitHub](https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server).
+
+## Спробувати за дві хвилини
+
+1. Відкрийте [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown) і натисніть **Try for free**.
+2. Поле вводу вже заповнене робочим прикладом: натисніть **Start** або вставте посилання на власні файли.
+3. Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.

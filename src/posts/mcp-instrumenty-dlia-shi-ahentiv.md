@@ -151,6 +151,12 @@ asyncio.run(main())
   [README](https://github.com/AndriyVK/-apify-document-tools/tree/main/mcp-server)). Для цієї статті я її не
   перевіряв; сеанс вище - з локальним сервером.
 
+## Спробувати за дві хвилини
+
+1. Відкрийте [Document to Markdown for AI](https://apify.com/ai_admin/document-to-markdown) і натисніть **Try for free**.
+2. Поле вводу вже заповнене робочим прикладом: натисніть **Start** або вставте посилання на власні файли.
+3. Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.
+
 ## Інші статті
 
 - [Скани українською в Markdown для ШІ](/uk/skany-ukrainskoyu-v-markdown/)

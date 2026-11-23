@@ -178,3 +178,9 @@ captions is $10 per 1,000 minutes instead. Failed videos are free.
 
 `https://mcp.apify.com?tools=ai_admin/social-video-transcript` gives Claude, Cursor or any MCP client one tool that
 reads a video link and answers in text.
+
+## Try it in two minutes
+
+1. Open [Video Transcript & Translation](https://apify.com/ai_admin/social-video-transcript) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own videos.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

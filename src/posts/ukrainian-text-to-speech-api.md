@@ -85,3 +85,9 @@ Subtitles are free.
 
 `https://mcp.apify.com?tools=ai_admin/text-to-speech` adds the voice as an MCP tool, so an agent can write a text and
 hand back the audio.
+
+## Try it in two minutes
+
+1. Open [Text to Speech](https://apify.com/ai_admin/text-to-speech) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in your own text.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

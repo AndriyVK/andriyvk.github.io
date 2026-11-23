@@ -79,3 +79,9 @@ charged. The run above cost two cents.
 
 The converter is also an MCP tool: `https://mcp.apify.com?tools=ai_admin/office-to-pdf`, so Claude, Cursor or any MCP
 client can turn the files it has prepared into PDF/A.
+
+## Try it in two minutes
+
+1. Open [Office to PDF Converter](https://apify.com/ai_admin/office-to-pdf) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own files.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.

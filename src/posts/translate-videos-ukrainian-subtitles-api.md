@@ -110,3 +110,9 @@ Earlier post on the same tool, with captions and noisy audio:
 [YouTube subtitles in Ukrainian](/youtube-subtitles-in-ukrainian/).
 
 Which videos would you translate first - TikTok, Reels or YouTube? Tell me in the comments.
+
+## Try it in two minutes
+
+1. Open [Video Transcript & Translation](https://apify.com/ai_admin/social-video-transcript) and press **Try for free**.
+2. The input is already filled with a working example: press **Start**, or put in links to your own videos.
+3. Apify's free plan includes $5 of usage every month - enough to test it on your own data.
