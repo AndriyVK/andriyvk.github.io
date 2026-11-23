@@ -11,6 +11,10 @@ TAGS = {
     'google-news-monitoring-ukrainian-russian': ['news', 'python', 'ai', 'tutorial'],
     'translate-videos-ukrainian-subtitles-api': ['video', 'ai', 'python', 'tutorial'],
 }
+# dev.to-specific titles (differ from the blog on purpose)
+TITLES = {
+    'office-to-pdf-a-archive': 'Convert DOCX, XLSX and PPTX to PDF/A in bulk with Python (fonts embedded, Cyrillic OK)',
+}
 def load(slug):
     head, body = open(f'/home/user/andriyvk.github.io/src/posts/{slug}.md', encoding='utf-8').read().split('\n---\n', 1)
     meta = dict(l.split(': ', 1) for l in head.splitlines() if ': ' in l)
@@ -28,7 +32,7 @@ def call(method, path, data=None):
 if __name__ == '__main__':
     slug, published = sys.argv[1], sys.argv[2] == 'publish'
     meta, body = load(slug)
-    art = {'title': meta['title'], 'body_markdown': body, 'published': published, 'tags': TAGS[slug],
+    art = {'title': TITLES.get(slug, meta['title']), 'body_markdown': body, 'published': published, 'tags': TAGS[slug],
            'canonical_url': f'{SITE}/{slug}/', 'description': meta['description'] if len(meta['description']) <= 250 else meta['description'][:247].rsplit(' ', 1)[0] + '...'}
     if len(sys.argv) > 3:
         r = call('PUT', f'/articles/{sys.argv[3]}', {'article': art})
