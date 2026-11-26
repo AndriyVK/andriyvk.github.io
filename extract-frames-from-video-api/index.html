@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extract frames from video by API - scene detection, blank-frame skipping and a free contact sheet</title>
+<meta name="description" content="Turn MP4, MOV, WebM, MKV or AVI files into still images in one API call - evenly spaced, every N seconds, at exact timestamps, at scene changes or at keyframes. Real runs, the output with timecodes, and how blank frames and long shots are handled.">
+<link rel="canonical" href="https://andriyvk.github.io/extract-frames-from-video-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/extract-frames-from-video-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/kadry-z-video-api/">
+<meta property="og:title" content="Extract frames from video by API - scene detection, blank-frame skipping and a free contact sheet">
+<meta property="og:description" content="Turn MP4, MOV, WebM, MKV or AVI files into still images in one API call - evenly spaced, every N seconds, at exact timestamps, at scene changes or at keyframes. Real runs, the output with timecodes, and how blank frames and long shots are handled.">
+<meta property="og:url" content="https://andriyvk.github.io/extract-frames-from-video-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Extract frames from video by API - scene detection, blank-frame skipping and a free contact sheet", "description": "Turn MP4, MOV, WebM, MKV or AVI files into still images in one API call - evenly spaced, every N seconds, at exact timestamps, at scene changes or at keyframes. Real runs, the output with timecodes, and how blank frames and long shots are handled.", "datePublished": "2026-11-27", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/kadry-z-video-api/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">27.11.2026</p><h1>Extract frames from video by API - scene detection, blank-frame skipping and a free contact sheet</h1><p class="lead">Turn MP4, MOV, WebM, MKV or AVI files into still images in one API call - evenly spaced, every N seconds, at exact timestamps, at scene changes or at keyframes. Real runs, the output with timecodes, and how blank frames and long shots are handled.</p><p>Thumbnails for a video catalogue, screenshots for a report, stills for an AI vision model, a quick look at what is in
+a 3-hour recording - all of these need the same step: get the right frames out of a video as images. This post
+shows a tool that does it in one call, with five ways to choose the frames. Every output below is from real runs on
+26 November 2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool, <a href="https://apify.com/ai_admin/video-frame-extractor">Video Frame Extractor</a> on Apify.
+The code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="one-call">One call</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/video-frame-extractor&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/sintel-trailer-480p.mp4&quot;}],
+    &quot;mode&quot;: &quot;scenes&quot;,
+    &quot;skipBlankFrames&quot;: True,
+    &quot;contactSheet&quot;: True,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    for frame in item[&quot;frames&quot;]:
+        print(frame[&quot;timecode&quot;], frame[&quot;url&quot;])
+    print(item[&quot;contactSheetUrl&quot;])
+</code></pre>
+<h2 id="what-came-back">What came back</h2>
+<p>The video is the trailer of the open movie Sintel (52 seconds, 854 x 480). In scene mode the tool found 7 scenes and
+returned one frame for each, with its timecode, a link to the image and a contact sheet of all of them:</p>
+<p><img alt="Contact sheet: 7 scene frames of the Sintel trailer with timecodes" src="/assets/img/sintel-scenes-contact-sheet.jpg" /></p>
+<p><em>Sintel, (c) Blender Foundation, durian.blender.org, CC BY 3.0.</em></p>
+<p>Each record also carries the video details: length, size, frame rate and codec. One frame from the output:</p>
+<pre><code class="language-json">{
+  &quot;index&quot;: 2,
+  &quot;time&quot;: 16.5,
+  &quot;timecode&quot;: &quot;00:00:16.500&quot;,
+  &quot;key&quot;: &quot;0001-sintel-trailer-480p-00002.jpg&quot;,
+  &quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/.../records/0001-sintel-trailer-480p-00002.jpg&quot;
+}
+</code></pre>
+<p>The scene changes match the reference: ffmpeg's own scene filter at the same threshold finds the cuts at the same
+moments.</p>
+<h2 id="five-ways-to-choose-frames">Five ways to choose frames</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What you get</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code></td>
+<td>N frames spread evenly over the video</td>
+<td>a preview, a thumbnail grid</td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td>a frame every N seconds</td>
+<td>long recordings, monitoring</td>
+</tr>
+<tr>
+<td><code>timestamps</code></td>
+<td>frames at the exact times you give</td>
+<td>screenshots of known moments</td>
+</tr>
+<tr>
+<td><code>scenes</code></td>
+<td>one frame per scene change</td>
+<td>a storyboard, input for AI vision</td>
+</tr>
+<tr>
+<td><code>keyframes</code></td>
+<td>the video's own keyframes</td>
+<td>fast extraction from long files</td>
+</tr>
+</tbody>
+</table>
+<p>Any mode can be limited to a part of the video with <code>startTime</code> and <code>endTime</code>. In a run on a 3-minute 1080p video,
+<code>interval</code> every 10 seconds between 00:30 and 01:30 returned exactly 7 frames, at 30, 40, ... 90 seconds.</p>
+<h2 id="the-details-that-save-you-time">The details that save you time</h2>
+<ul>
+<li><strong>Blank frames are skipped, and the scene is kept.</strong> Fade-ins, black inserts and flat-colour frames are not useful
+  as thumbnails or for AI. With <code>skipBlankFrames</code> the tool takes a frame a moment later in the same scene instead.
+  On the Sintel trailer that turned three black frames into real pictures (at 2, 19.5 and 28.7 seconds), and a test
+  video that fades in from black gives its first frame at 0.7 seconds instead of losing the scene. The check is free.</li>
+<li><strong>Long shots get a clear hint.</strong> An interview, a lecture or a screen recording has no hard cuts. In scene mode such
+  a video still returns its frame, with a note to lower <code>sceneThreshold</code> or switch to <code>interval</code>.</li>
+<li><strong>Contact sheet for free.</strong> One image with all frames and their timecodes, to check a video at a glance.</li>
+<li><strong>Formats.</strong> MP4, MOV, WebM, MKV and AVI in; JPG, PNG or WebP out, with an optional maximum width.</li>
+<li><strong>Clear errors, no charge.</strong> If a link fails or every frame in a video is blank, you get an error that says why,
+  and that video is not charged.</li>
+</ul>
+<h2 id="price">Price</h2>
+<p>You pay per saved frame: $0.002 on paid plans, $0.0025 on the free plan, plus $0.001 per started minute of video
+analysed in scene mode. The contact sheet and the blank-frame check are free. A fair price, with no hidden extras:
+the 7 scene frames of the Sintel trailer above cost $0.015.</p>
+<h2 id="ideas">Ideas</h2>
+<ul>
+<li><strong>Thumbnails and previews</strong> for a video library, a course or a marketplace.</li>
+<li><strong>Frames for AI vision</strong>: describe a video, find products or text in it, check content - send the scene frames to a
+  vision model instead of the whole file. The tool is also an MCP tool for Claude, Cursor and other agents - see
+  <a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>.</li>
+<li><strong>Storyboards</strong> of ads and trailers, one frame per scene.</li>
+<li><strong>Reports</strong>: screenshots of exact moments of a recording, with timecodes.</li>
+</ul>
+<p>What would you extract frames for first? Tell me in the comments.</p>
+<h2 id="try-it-in-two-minutes">Try it in two minutes</h2>
+<ol>
+<li>Open <a href="https://apify.com/ai_admin/video-frame-extractor">Video Frame Extractor</a> and press <strong>Try for free</strong>.</li>
+<li>The input is already filled with a working example: press <strong>Start</strong>, or put in links to your own videos.</li>
+<li>Apify's free plan includes $5 of usage every month - enough to test it on your own data.</li>
+</ol></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

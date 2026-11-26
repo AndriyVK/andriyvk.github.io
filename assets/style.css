@@ -23,3 +23,4 @@ ul.posts li { padding: 14px 0; border-bottom: 1px solid var(--line); }
 ul.posts p { margin: 4px 0 0; color: var(--muted); }
 blockquote { margin: 16px 0; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
 footer { margin-top: 56px; padding-top: 16px; padding-bottom: 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+img{max-width:100%;height:auto}
