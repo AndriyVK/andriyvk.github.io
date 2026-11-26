@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transcribe audio and podcasts by API - word timestamps, translation into 21 languages and a free summary</title>
+<meta name="description" content="One API call turns MP3, WAV, M4A or video files and podcast RSS feeds into text, timed segments, SRT/VTT subtitles, every word with its time, a translation and a summary with action items. Real runs in Ukrainian and English, and what each option costs.">
+<link rel="canonical" href="https://andriyvk.github.io/transcribe-audio-podcasts-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/transcribe-audio-podcasts-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/rozshyfrovka-audio-podkastiv-api/">
+<meta property="og:title" content="Transcribe audio and podcasts by API - word timestamps, translation into 21 languages and a free summary">
+<meta property="og:description" content="One API call turns MP3, WAV, M4A or video files and podcast RSS feeds into text, timed segments, SRT/VTT subtitles, every word with its time, a translation and a summary with action items. Real runs in Ukrainian and English, and what each option costs.">
+<meta property="og:url" content="https://andriyvk.github.io/transcribe-audio-podcasts-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Transcribe audio and podcasts by API - word timestamps, translation into 21 languages and a free summary", "description": "One API call turns MP3, WAV, M4A or video files and podcast RSS feeds into text, timed segments, SRT/VTT subtitles, every word with its time, a translation and a summary with action items. Real runs in Ukrainian and English, and what each option costs.", "datePublished": "2026-11-28", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/rozshyfrovka-audio-podkastiv-api/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">28.11.2026</p><h1>Transcribe audio and podcasts by API - word timestamps, translation into 21 languages and a free summary</h1><p class="lead">One API call turns MP3, WAV, M4A or video files and podcast RSS feeds into text, timed segments, SRT/VTT subtitles, every word with its time, a translation and a summary with action items. Real runs in Ukrainian and English, and what each option costs.</p><p>A meeting recording, an interview, a podcast episode, a lecture - most of the time you need more than the words.
+You need the words <strong>with their times</strong>, subtitles, a translation for a colleague and a short summary of what was
+decided. This post shows a tool that returns all of that from one call. Every output below is from real runs on
+26 November 2026.</p>
+<blockquote>
+<p>Disclosure: I built the tool, <a href="https://apify.com/ai_admin/audio-transcriber">Audio &amp; Video Transcriber</a> on Apify.
+The code is open: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="one-call">One call</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/audio-transcriber&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/speech-en.mp3&quot;}],
+    &quot;podcastFeeds&quot;: [&quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/test-podcast.xml&quot;],
+    &quot;maxEpisodesPerFeed&quot;: 2,
+    &quot;translateTo&quot;: &quot;uk&quot;,
+    &quot;wordTimestamps&quot;: True,
+    &quot;summarize&quot;: True,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;language&quot;], item[&quot;text&quot;])
+    print(item[&quot;summary&quot;][&quot;actionItems&quot;])
+</code></pre>
+<p>The run had two files and a podcast feed with two episodes, in English and Ukrainian, and took 22 seconds. The
+language of each file was detected automatically.</p>
+<h2 id="what-came-back">What came back</h2>
+<p><strong>The transcript</strong>, as text and as timed segments, plus SRT and VTT subtitle files:</p>
+<pre><code class="language-text">0.0-6.0    The warehouse in Lviv received 1,240 pallets of building materials during the third quarter.
+6.0-10.7   Delivery times improved by 12% after the new routing schedule was introduced.
+</code></pre>
+<p>The Ukrainian file came back word for word: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
+третього кварталу». City names are spelled right even when the language is not set: if a word looks like a
+misheard place name, that part is recognised again with the names as a hint.</p>
+<p><strong>Every word with its time</strong> - for karaoke captions, search inside a recording or cutting a clip:</p>
+<pre><code class="language-json">[{&quot;start&quot;: 0.0, &quot;end&quot;: 0.14, &quot;word&quot;: &quot;The&quot;}, {&quot;start&quot;: 0.14, &quot;end&quot;: 0.56, &quot;word&quot;: &quot;warehouse&quot;},
+ {&quot;start&quot;: 0.56, &quot;end&quot;: 0.76, &quot;word&quot;: &quot;in&quot;}, {&quot;start&quot;: 0.76, &quot;end&quot;: 1.14, &quot;word&quot;: &quot;Lviv&quot;}]
+</code></pre>
+<p><strong>The translation</strong>, with its own SRT and VTT files on the original timing:</p>
+<pre><code class="language-text">Склад у Львові отримав 1240 палет будівельних матеріалів у третьому кварталі.
+</code></pre>
+<p><strong>A summary with key points and action items:</strong></p>
+<pre><code class="language-json">{
+  &quot;summary&quot;: &quot;The Lviv warehouse handled 1,240 pallets of building materials in the third quarter. Delivery times improved by 12% after implementing a new routing schedule...&quot;,
+  &quot;keyPoints&quot;: [&quot;Lviv warehouse received 1,240 pallets in Q3.&quot;, &quot;Delivery times improved by 12% as a result.&quot;, &quot;...&quot;],
+  &quot;actionItems&quot;: [&quot;Arrange the cement and steel rods shipment for early December.&quot;]
+}
+</code></pre>
+<p><strong>Podcast episodes</strong> come with the podcast title, the episode title and the date:</p>
+<pre><code class="language-json">{&quot;podcastTitle&quot;: &quot;Test podcast (synthetic)&quot;, &quot;episodeTitle&quot;: &quot;Episode 1: English sample&quot;,
+ &quot;publishedAt&quot;: &quot;2026-11-23T09:00:00+00:00&quot;, &quot;durationSeconds&quot;: 44.75}
+</code></pre>
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li><strong>Whisper large-v3</strong>, 99 languages including Ukrainian; <code>quality: "fast"</code> switches to large-v3-turbo at the same
+  price.</li>
+<li><strong>Audio and video in:</strong> MP3, WAV, M4A, AAC, OGG, OPUS, FLAC, MP4, MOV, MKV, WebM, AVI. Long files are split
+  automatically.</li>
+<li><strong>Podcasts by RSS:</strong> give the feed, and the newest episodes are transcribed with their titles and dates.</li>
+<li><strong>Free extras:</strong> SRT and VTT subtitles, every word with its time, and the summary with key points and action items.</li>
+<li><strong>Translation into 21 languages</strong>, transcript and subtitles. If the audio is already in that language, nothing is
+  translated and nothing is charged - the output says so in a note.</li>
+<li><strong>Your own terms:</strong> <code>vocabulary</code> takes names and spellings that appear in the recording.</li>
+<li><strong>Cross-check for noisy audio:</strong> the recording is recognised again by the second model and the places where the two
+  disagree are listed with their times.</li>
+<li><strong>Failed files are free.</strong></li>
+</ul>
+<h2 id="price">Price</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Paid plans (Bronze)</th>
+<th>Free plan</th>
+<th>Gold and higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One started minute of audio</td>
+<td>$0.006</td>
+<td>$0.007</td>
+<td>$0.005</td>
+</tr>
+<tr>
+<td>Translation, per minute</td>
+<td>one more audio minute</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Subtitles, word times and the summary are included. A fair price, with no hidden extras: a 45-second file with its
+Ukrainian translation, subtitles, word times and summary is 2 minutes, $0.012 on Bronze.</p>
+<h2 id="ideas">Ideas</h2>
+<ul>
+<li><strong>Meeting notes</strong> with decisions and tasks, straight from the recording.</li>
+<li><strong>Podcast archives</strong> as searchable text, one record per episode, ready for RAG.</li>
+<li><strong>Subtitles and translations</strong> for interviews and lectures.</li>
+<li><strong>AI agents</strong>: the tool is also an MCP tool for Claude, Cursor and others - see
+  <a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>. For TikTok, Reels and YouTube links,
+  see <a href="/translate-videos-ukrainian-subtitles-api/">Translate videos into Ukrainian and 20 more languages</a>.</li>
+</ul>
+<p>What would you transcribe first - meetings, interviews or podcasts? Tell me in the comments.</p>
+<h2 id="try-it-in-two-minutes">Try it in two minutes</h2>
+<ol>
+<li>Open <a href="https://apify.com/ai_admin/audio-transcriber">Audio &amp; Video Transcriber</a> and press <strong>Try for free</strong>.</li>
+<li>The input is already filled with a working example: press <strong>Start</strong>, or put in links to your own files.</li>
+<li>Apify's free plan includes $5 of usage every month - enough to test it on your own data.</li>
+</ol></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

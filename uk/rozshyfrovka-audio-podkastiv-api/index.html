@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Розшифровка аудіо й подкастів через API - час кожного слова, переклад 21 мовою і безкоштовний підсумок</title>
+<meta name="description" content="Один виклик API перетворює MP3, WAV, M4A, відео і RSS-стрічки подкастів на текст, сегменти з часом, субтитри SRT/VTT, кожне слово з його часом, переклад і підсумок із завданнями. Справжні запуски українською та англійською і скільки коштує кожна опція.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/rozshyfrovka-audio-podkastiv-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/rozshyfrovka-audio-podkastiv-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/transcribe-audio-podcasts-api/">
+<meta property="og:title" content="Розшифровка аудіо й подкастів через API - час кожного слова, переклад 21 мовою і безкоштовний підсумок">
+<meta property="og:description" content="Один виклик API перетворює MP3, WAV, M4A, відео і RSS-стрічки подкастів на текст, сегменти з часом, субтитри SRT/VTT, кожне слово з його часом, переклад і підсумок із завданнями. Справжні запуски українською та англійською і скільки коштує кожна опція.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/rozshyfrovka-audio-podkastiv-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Розшифровка аудіо й подкастів через API - час кожного слова, переклад 21 мовою і безкоштовний підсумок", "description": "Один виклик API перетворює MP3, WAV, M4A, відео і RSS-стрічки подкастів на текст, сегменти з часом, субтитри SRT/VTT, кожне слово з його часом, переклад і підсумок із завданнями. Справжні запуски українською та англійською і скільки коштує кожна опція.", "datePublished": "2026-11-28", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/transcribe-audio-podcasts-api/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">28.11.2026</p><h1>Розшифровка аудіо й подкастів через API - час кожного слова, переклад 21 мовою і безкоштовний підсумок</h1><p class="lead">Один виклик API перетворює MP3, WAV, M4A, відео і RSS-стрічки подкастів на текст, сегменти з часом, субтитри SRT/VTT, кожне слово з його часом, переклад і підсумок із завданнями. Справжні запуски українською та англійською і скільки коштує кожна опція.</p><p>Запис наради, інтерв'ю, випуск подкасту, лекція - найчастіше потрібні не лише слова. Потрібні слова <strong>з їхнім часом</strong>,
+субтитри, переклад для колеги і короткий підсумок того, що вирішили. Тут - інструмент, що повертає все це одним
+викликом. Усі результати нижче - зі справжніх запусків 26 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: інструмент зробив я, <a href="https://apify.com/ai_admin/audio-transcriber">Audio &amp; Video Transcriber</a> на Apify.
+Код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Один виклик</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/audio-transcriber&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/speech-en.mp3&quot;}],
+    &quot;podcastFeeds&quot;: [&quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/test-podcast.xml&quot;],
+    &quot;maxEpisodesPerFeed&quot;: 2,
+    &quot;translateTo&quot;: &quot;uk&quot;,
+    &quot;wordTimestamps&quot;: True,
+    &quot;summarize&quot;: True,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;language&quot;], item[&quot;text&quot;])
+    print(item[&quot;summary&quot;][&quot;actionItems&quot;])
+</code></pre>
+<p>У запуску були два файли і стрічка подкасту з двома випусками, англійською та українською, і він тривав 22 секунди.
+Мову кожного файлу визначено автоматично.</p>
+<h2 id="_2">Що повернулося</h2>
+<p><strong>Розшифровка</strong> - текстом і сегментами з часом, плюс файли субтитрів SRT і VTT:</p>
+<pre><code class="language-text">0.0-6.0    The warehouse in Lviv received 1,240 pallets of building materials during the third quarter.
+6.0-10.7   Delivery times improved by 12% after the new routing schedule was introduced.
+</code></pre>
+<p>Український файл повернувся слово в слово: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
+третього кварталу». Назви міст пишуться правильно, навіть коли мову не задано: якщо слово схоже на неправильно
+почуту назву міста, цей фрагмент розпізнається ще раз із підказкою назв.</p>
+<p><strong>Кожне слово з його часом</strong> - для караоке-субтитрів, пошуку всередині запису чи вирізання фрагмента:</p>
+<pre><code class="language-json">[{&quot;start&quot;: 0.0, &quot;end&quot;: 0.14, &quot;word&quot;: &quot;The&quot;}, {&quot;start&quot;: 0.14, &quot;end&quot;: 0.56, &quot;word&quot;: &quot;warehouse&quot;},
+ {&quot;start&quot;: 0.56, &quot;end&quot;: 0.76, &quot;word&quot;: &quot;in&quot;}, {&quot;start&quot;: 0.76, &quot;end&quot;: 1.14, &quot;word&quot;: &quot;Lviv&quot;}]
+</code></pre>
+<p><strong>Переклад</strong> - з власними файлами SRT і VTT на часі оригіналу:</p>
+<pre><code class="language-text">Склад у Львові отримав 1240 палет будівельних матеріалів у третьому кварталі.
+</code></pre>
+<p><strong>Підсумок із головними пунктами і завданнями:</strong></p>
+<pre><code class="language-json">{
+  &quot;summary&quot;: &quot;The Lviv warehouse handled 1,240 pallets of building materials in the third quarter. Delivery times improved by 12% after implementing a new routing schedule...&quot;,
+  &quot;keyPoints&quot;: [&quot;Lviv warehouse received 1,240 pallets in Q3.&quot;, &quot;Delivery times improved by 12% as a result.&quot;, &quot;...&quot;],
+  &quot;actionItems&quot;: [&quot;Arrange the cement and steel rods shipment for early December.&quot;]
+}
+</code></pre>
+<p><strong>Випуски подкасту</strong> приходять із назвою подкасту, назвою випуску і датою:</p>
+<pre><code class="language-json">{&quot;podcastTitle&quot;: &quot;Test podcast (synthetic)&quot;, &quot;episodeTitle&quot;: &quot;Episode 1: English sample&quot;,
+ &quot;publishedAt&quot;: &quot;2026-11-23T09:00:00+00:00&quot;, &quot;durationSeconds&quot;: 44.75}
+</code></pre>
+<h2 id="_3">Що він уміє</h2>
+<ul>
+<li><strong>Whisper large-v3</strong>, 99 мов, зокрема українська; <code>quality: "fast"</code> вмикає large-v3-turbo за тією самою ціною.</li>
+<li><strong>На вході аудіо й відео:</strong> MP3, WAV, M4A, AAC, OGG, OPUS, FLAC, MP4, MOV, MKV, WebM, AVI. Довгі файли діляться
+  автоматично.</li>
+<li><strong>Подкасти через RSS:</strong> дайте стрічку, і найновіші випуски буде розшифровано з назвами й датами.</li>
+<li><strong>Безкоштовно:</strong> субтитри SRT і VTT, кожне слово з його часом і підсумок із головними пунктами та завданнями.</li>
+<li><strong>Переклад 21 мовою</strong> - текст і субтитри. Якщо аудіо вже цією мовою, нічого не перекладається і не оплачується, а
+  у результаті про це є примітка.</li>
+<li><strong>Ваші терміни:</strong> у <code>vocabulary</code> можна вписати імена й написання, що трапляються в записі.</li>
+<li><strong>Звірка для шумних записів:</strong> запис розпізнається ще раз другою моделлю, і місця, де дві розшифровки
+  розходяться, показуються списком із часом.</li>
+<li><strong>Невдалі файли безкоштовні.</strong></li>
+</ul>
+<h2 id="_4">Ціна</h2>
+<table>
+<thead>
+<tr>
+<th>Що</th>
+<th>Платні плани (Bronze)</th>
+<th>Безкоштовний план</th>
+<th>Gold і вище</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Одна розпочата хвилина аудіо</td>
+<td>$0,006</td>
+<td>$0,007</td>
+<td>$0,005</td>
+</tr>
+<tr>
+<td>Переклад, за хвилину</td>
+<td>ще одна хвилина аудіо</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Субтитри, час слів і підсумок входять у ціну. Справедлива ціна, без прихованих доплат: файл на 45 секунд з
+українським перекладом, субтитрами, часом слів і підсумком - це 2 хвилини, $0,012 на Bronze.</p>
+<h2 id="_5">Ідеї</h2>
+<ul>
+<li><strong>Протоколи нарад</strong> з рішеннями й завданнями - прямо із запису.</li>
+<li><strong>Архіви подкастів</strong> як текст для пошуку, один запис на випуск, готово для RAG.</li>
+<li><strong>Субтитри й переклади</strong> для інтерв'ю та лекцій.</li>
+<li><strong>ШІ-агенти:</strong> інструмент є й інструментом MCP для Claude, Cursor та інших - див.
+  <a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>. Для посилань на TikTok, Reels і YouTube - див.
+  <a href="/uk/pereklad-video-ukrainskoyu-subtytry/">Переклад відео українською та ще 20 мовами</a>.</li>
+</ul>
+<p>Що б ви розшифрували першим - наради, інтерв'ю чи подкасти? Напишіть у коментарях.</p>
+<h2 id="_6">Спробувати за дві хвилини</h2>
+<ol>
+<li>Відкрийте <a href="https://apify.com/ai_admin/audio-transcriber">Audio &amp; Video Transcriber</a> і натисніть <strong>Try for free</strong>.</li>
+<li>Поле вводу вже заповнене робочим прикладом: натисніть <strong>Start</strong> або вставте посилання на власні файли.</li>
+<li>Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.</li>
+</ol></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
