@@ -1,6 +1,6 @@
 title: Extract frames from video by API - scene detection, blank-frame skipping and a free contact sheet
 description: Turn MP4, MOV, WebM, MKV or AVI files into still images in one API call - evenly spaced, every N seconds, at exact timestamps, at scene changes or at keyframes. Real runs, the output with timecodes, and how blank frames and long shots are handled.
-date: 2026-11-27
+date: 2026-11-26
 lang: en
 slug: extract-frames-from-video-api
 pair: kadry-z-video-api
