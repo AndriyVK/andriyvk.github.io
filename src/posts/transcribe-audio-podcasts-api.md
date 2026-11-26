@@ -44,7 +44,7 @@ language of each file was detected automatically.
 6.0-10.7   Delivery times improved by 12% after the new routing schedule was introduced.
 ```
 
-The Ukrainian file came back word for word: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
+The Ukrainian file came back with the names and numbers right: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
 третього кварталу». City names are spelled right even when the language is not set: if a word looks like a
 misheard place name, that part is recognised again with the names as a hint.
 
