@@ -1,13 +1,13 @@
 title: 5 Google News scrapers on the same queries - full text, direct links, several countries in one run
-description: Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.
+description: Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. On the same pages: 26 of 27 full texts against 18 of 20.
 date: 2026-11-27
 lang: en
 slug: google-news-scrapers-compared
 pair: google-news-skrapery-porivniannia
 ---
 Getting headlines out of Google News is easy. Getting **the article itself** - the direct publisher link and the full
-text, ready for a summary, a digest or a RAG index - is where Google News tools differ. I ran the five most used
-Google News Actors in the Apify Store on the same two queries and compared what came back. All numbers are from runs
+text, ready for a summary, a digest or a RAG index - is where Google News tools differ. I ran the three most used
+Google News Actors in the Apify Store, plus memo23 and mine, on the same two queries and compared what came back. All numbers are from runs
 on 26 November 2026.
 
 > Disclosure: one of the five is mine, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper). Every
@@ -17,7 +17,7 @@ on 26 November 2026.
 
 - Two queries: "artificial intelligence" in the US edition (`US:en`) and «штучний інтелект» in the Ukrainian one
   (`UA:uk`).
-- 10 articles from the last 7 days per query, in Google's relevance order.
+- 10 articles from the last 7 days per query. Mine with `sortBy: "relevance"`, the others in their default order.
 - Direct publisher links and full article text switched on wherever the Actor offers them.
 
 ## Short answer
@@ -30,19 +30,20 @@ on 26 November 2026.
 | Several editions in one run | **yes** | no | no | no | no |
 | Choice of order (newest or relevance) | **yes** | no | no | no | no |
 | Run time with full text | **6-7 s** | 5-7 s | 72-97 s | 19-94 s | - |
-| Page part charged only when read | **yes** | no | yes | no | - |
+| Page part charged only when read | **yes** | no (one price, also without text) | yes | - | - |
 
 No duplicates in any output. The one US page nobody could read, on war.gov, is closed to robots for every Actor -
 sites that block robots (Reuters is another) are a limit for all Google News tools, mine included.
 
-## Text where the others got none
+## Full text on the same pages
 
 The most useful number is what each tool does with **the same pages**. data_xplorer and memo23 returned 27 different
-pages between them. On those 27 pages my tool extracted the full text from 26; data_xplorer and memo23 got 18 of
-their 20 each.
+pages between them. On those 27 pages my tool extracted the full text from 26 (the same extraction code as in the
+Actor, run on the pages from their output); data_xplorer and memo23 got 18 of their 20 each.
 
-**Two sites, gur.gov.ua and dou.ua, gave their text only to mine.** One of them is the article below - a 2,140-word
-post from DOU, the Ukrainian developer community, from the Ukrainian run:
+**On two of these pages a competitor came back empty and mine got the full text:** gur.gov.ua (data_xplorer: 0 words,
+mine: 250) and dou.ua (memo23: 0 words, mine: 2,140). One of them is the article below - a post from DOU, the
+Ukrainian developer community, that memo23 returned without text. This is how it came from my Ukrainian run:
 
 ```json
 {

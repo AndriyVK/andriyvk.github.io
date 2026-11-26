@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>5 Google News scrapers on the same queries - full text, direct links, several countries in one run</title>
-<meta name="description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.">
+<meta name="description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. On the same pages: 26 of 27 full texts against 18 of 20.">
 <link rel="canonical" href="https://andriyvk.github.io/google-news-scrapers-compared/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/google-news-scrapers-compared/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/google-news-skrapery-porivniannia/">
 <meta property="og:title" content="5 Google News scrapers on the same queries - full text, direct links, several countries in one run">
-<meta property="og:description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.">
+<meta property="og:description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. On the same pages: 26 of 27 full texts against 18 of 20.">
 <meta property="og:url" content="https://andriyvk.github.io/google-news-scrapers-compared/">
 <meta property="og:type" content="article">
 <link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "5 Google News scrapers on the same queries - full text, direct links, several countries in one run", "description": "Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.", "datePublished": "2026-11-27", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "5 Google News scrapers on the same queries - full text, direct links, several countries in one run", "description": "Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. On the same pages: 26 of 27 full texts against 18 of 20.", "datePublished": "2026-11-27", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
 </head>
 <body>
 <header class="top"><a class="brand" href="/">AndriyVK Tools</a>
 <nav><a href="/uk/google-news-skrapery-porivniannia/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
 <main>
-<article><p class="date">27.11.2026</p><h1>5 Google News scrapers on the same queries - full text, direct links, several countries in one run</h1><p class="lead">Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.</p><p>Getting headlines out of Google News is easy. Getting <strong>the article itself</strong> - the direct publisher link and the full
-text, ready for a summary, a digest or a RAG index - is where Google News tools differ. I ran the five most used
-Google News Actors in the Apify Store on the same two queries and compared what came back. All numbers are from runs
+<article><p class="date">27.11.2026</p><h1>5 Google News scrapers on the same queries - full text, direct links, several countries in one run</h1><p class="lead">Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. On the same pages: 26 of 27 full texts against 18 of 20.</p><p>Getting headlines out of Google News is easy. Getting <strong>the article itself</strong> - the direct publisher link and the full
+text, ready for a summary, a digest or a RAG index - is where Google News tools differ. I ran the three most used
+Google News Actors in the Apify Store, plus memo23 and mine, on the same two queries and compared what came back. All numbers are from runs
 on 26 November 2026.</p>
 <blockquote>
 <p>Disclosure: one of the five is mine, <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a>. Every
@@ -30,7 +30,7 @@ number below comes from a real run with the same settings for every Actor.</p>
 <ul>
 <li>Two queries: "artificial intelligence" in the US edition (<code>US:en</code>) and «штучний інтелект» in the Ukrainian one
   (<code>UA:uk</code>).</li>
-<li>10 articles from the last 7 days per query, in Google's relevance order.</li>
+<li>10 articles from the last 7 days per query. Mine with <code>sortBy: "relevance"</code>, the others in their default order.</li>
 <li>Direct publisher links and full article text switched on wherever the Actor offers them.</li>
 </ul>
 <h2 id="short-answer">Short answer</h2>
@@ -97,21 +97,22 @@ number below comes from a real run with the same settings for every Actor.</p>
 <tr>
 <td>Page part charged only when read</td>
 <td><strong>yes</strong></td>
-<td>no</td>
+<td>no (one price, also without text)</td>
 <td>yes</td>
-<td>no</td>
+<td>-</td>
 <td>-</td>
 </tr>
 </tbody>
 </table>
 <p>No duplicates in any output. The one US page nobody could read, on war.gov, is closed to robots for every Actor -
 sites that block robots (Reuters is another) are a limit for all Google News tools, mine included.</p>
-<h2 id="text-where-the-others-got-none">Text where the others got none</h2>
+<h2 id="full-text-on-the-same-pages">Full text on the same pages</h2>
 <p>The most useful number is what each tool does with <strong>the same pages</strong>. data_xplorer and memo23 returned 27 different
-pages between them. On those 27 pages my tool extracted the full text from 26; data_xplorer and memo23 got 18 of
-their 20 each.</p>
-<p><strong>Two sites, gur.gov.ua and dou.ua, gave their text only to mine.</strong> One of them is the article below - a 2,140-word
-post from DOU, the Ukrainian developer community, from the Ukrainian run:</p>
+pages between them. On those 27 pages my tool extracted the full text from 26 (the same extraction code as in the
+Actor, run on the pages from their output); data_xplorer and memo23 got 18 of their 20 each.</p>
+<p><strong>On two of these pages a competitor came back empty and mine got the full text:</strong> gur.gov.ua (data_xplorer: 0 words,
+mine: 250) and dou.ua (memo23: 0 words, mine: 2,140). One of them is the article below - a post from DOU, the
+Ukrainian developer community, that memo23 returned without text. This is how it came from my Ukrainian run:</p>
 <pre><code class="language-json">{
   &quot;query&quot;: &quot;штучний інтелект&quot;,
   &quot;edition&quot;: &quot;UA:uk&quot;,
