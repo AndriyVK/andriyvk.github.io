@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кадри з відео через API - пошук сцен, пропуск порожніх кадрів і безкоштовний аркуш перегляду</title>
+<meta name="description" content="Як одним викликом API перетворити MP4, MOV, WebM, MKV чи AVI на зображення - рівномірно, кожні N секунд, у точні моменти, на зміні сцен або на ключових кадрах. Справжні запуски, результат із таймкодами і як обробляються порожні кадри та довгі плани.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/kadry-z-video-api/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/kadry-z-video-api/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/extract-frames-from-video-api/">
+<meta property="og:title" content="Кадри з відео через API - пошук сцен, пропуск порожніх кадрів і безкоштовний аркуш перегляду">
+<meta property="og:description" content="Як одним викликом API перетворити MP4, MOV, WebM, MKV чи AVI на зображення - рівномірно, кожні N секунд, у точні моменти, на зміні сцен або на ключових кадрах. Справжні запуски, результат із таймкодами і як обробляються порожні кадри та довгі плани.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/kadry-z-video-api/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Кадри з відео через API - пошук сцен, пропуск порожніх кадрів і безкоштовний аркуш перегляду", "description": "Як одним викликом API перетворити MP4, MOV, WebM, MKV чи AVI на зображення - рівномірно, кожні N секунд, у точні моменти, на зміні сцен або на ключових кадрах. Справжні запуски, результат із таймкодами і як обробляються порожні кадри та довгі плани.", "datePublished": "2026-11-26", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/extract-frames-from-video-api/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">26.11.2026</p><h1>Кадри з відео через API - пошук сцен, пропуск порожніх кадрів і безкоштовний аркуш перегляду</h1><p class="lead">Як одним викликом API перетворити MP4, MOV, WebM, MKV чи AVI на зображення - рівномірно, кожні N секунд, у точні моменти, на зміні сцен або на ключових кадрах. Справжні запуски, результат із таймкодами і як обробляються порожні кадри та довгі плани.</p><p>Обкладинки для каталогу відео, знімки екрана для звіту, кадри для ШІ-моделі, що бачить зображення, швидкий погляд на
+те, що є в 3-годинному записі, - усе це потребує одного кроку: дістати з відео потрібні кадри як зображення. Тут -
+інструмент, що робить це одним викликом і має п'ять способів вибрати кадри. Усі результати нижче - зі справжніх
+запусків 26 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: інструмент зробив я, <a href="https://apify.com/ai_admin/video-frame-extractor">Video Frame Extractor</a> на Apify.
+Код відкритий: <a href="https://github.com/AndriyVK/-apify-document-tools">AndriyVK/-apify-document-tools</a>.</p>
+</blockquote>
+<h2 id="_1">Один виклик</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/video-frame-extractor&quot;).call(run_input={
+    &quot;sources&quot;: [{&quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/FloomuI2DrQCJazY8/records/sintel-trailer-480p.mp4&quot;}],
+    &quot;mode&quot;: &quot;scenes&quot;,
+    &quot;skipBlankFrames&quot;: True,
+    &quot;contactSheet&quot;: True,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    for frame in item[&quot;frames&quot;]:
+        print(frame[&quot;timecode&quot;], frame[&quot;url&quot;])
+    print(item[&quot;contactSheetUrl&quot;])
+</code></pre>
+<h2 id="_2">Що повернулося</h2>
+<p>Відео - трейлер відкритого фільму Sintel (52 секунди, 854 x 480). У режимі сцен інструмент знайшов 7 сцен і повернув
+по кадру на кожну, з таймкодом, посиланням на зображення і аркушем перегляду з усіма кадрами:</p>
+<p><img alt="Аркуш перегляду: 7 кадрів сцен трейлера Sintel з таймкодами" src="/assets/img/sintel-scenes-contact-sheet.jpg" /></p>
+<p><em>Sintel, (c) Blender Foundation, durian.blender.org, CC BY 3.0.</em></p>
+<p>Кожен запис містить і дані відео: тривалість, розмір, частоту кадрів і кодек. Один кадр із результату:</p>
+<pre><code class="language-json">{
+  &quot;index&quot;: 2,
+  &quot;time&quot;: 16.5,
+  &quot;timecode&quot;: &quot;00:00:16.500&quot;,
+  &quot;key&quot;: &quot;0001-sintel-trailer-480p-00002.jpg&quot;,
+  &quot;url&quot;: &quot;https://api.apify.com/v2/key-value-stores/.../records/0001-sintel-trailer-480p-00002.jpg&quot;
+}
+</code></pre>
+<p>Зміни сцен збігаються з еталоном: власний фільтр сцен ffmpeg з тим самим порогом знаходить склейки в ті самі моменти.</p>
+<h2 id="_3">П'ять способів вибрати кадри</h2>
+<table>
+<thead>
+<tr>
+<th>Режим</th>
+<th>Що ви отримуєте</th>
+<th>Для чого</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code></td>
+<td>N кадрів, рівномірно по всьому відео</td>
+<td>попередній перегляд, сітка обкладинок</td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td>кадр кожні N секунд</td>
+<td>довгі записи, моніторинг</td>
+</tr>
+<tr>
+<td><code>timestamps</code></td>
+<td>кадри в точні моменти, які ви задаєте</td>
+<td>знімки відомих моментів</td>
+</tr>
+<tr>
+<td><code>scenes</code></td>
+<td>кадр на кожну зміну сцени</td>
+<td>розкадровка, дані для ШІ</td>
+</tr>
+<tr>
+<td><code>keyframes</code></td>
+<td>власні ключові кадри відео</td>
+<td>швидке видобування з довгих файлів</td>
+</tr>
+</tbody>
+</table>
+<p>Будь-який режим можна обмежити частиною відео через <code>startTime</code> і <code>endTime</code>. У запуску на 3-хвилинному відео 1080p
+режим <code>interval</code> кожні 10 секунд між 00:30 і 01:30 повернув рівно 7 кадрів: на 30, 40, ... 90 секунді.</p>
+<h2 id="_4">Деталі, що заощаджують час</h2>
+<ul>
+<li><strong>Порожні кадри пропускаються, а сцена лишається.</strong> Появи із затемнення, чорні вставки й кадри одного кольору не
+  годяться ні як обкладинка, ні для ШІ. З <code>skipBlankFrames</code> інструмент бере кадр трохи пізніше в тій самій сцені.
+  На трейлері Sintel так три чорні кадри стали справжніми зображеннями (на 2, 19,5 і 28,7 секунді), а тестове відео,
+  що з'являється із затемнення, дає перший кадр на 0,7 секунді замість того, щоб втратити сцену. Перевірка
+  безкоштовна.</li>
+<li><strong>Довгі плани отримують зрозумілу підказку.</strong> В інтерв'ю, лекції чи записі екрана немає різких склейок. У режимі
+  сцен таке відео все одно повертає кадр, із приміткою знизити <code>sceneThreshold</code> або перейти на <code>interval</code>.</li>
+<li><strong>Аркуш перегляду безкоштовно.</strong> Одне зображення з усіма кадрами й таймкодами, щоб оцінити відео з першого погляду.</li>
+<li><strong>Формати.</strong> На вході MP4, MOV, WebM, MKV і AVI; на виході JPG, PNG або WebP, за бажанням з обмеженням ширини.</li>
+<li><strong>Зрозумілі помилки без оплати.</strong> Якщо посилання не працює або всі кадри відео порожні, ви отримаєте помилку з
+  поясненням, і це відео не оплачується.</li>
+</ul>
+<h2 id="_5">Ціна</h2>
+<p>Оплата за кожен збережений кадр: $0,002 на платних планах, $0,0025 на безкоштовному, плюс $0,001 за кожну розпочату
+хвилину відео, проаналізовану в режимі сцен. Аркуш перегляду і перевірка порожніх кадрів безкоштовні. Справедлива
+ціна, без прихованих доплат: 7 кадрів сцен трейлера Sintel вище коштували $0,015.</p>
+<h2 id="_6">Ідеї</h2>
+<ul>
+<li><strong>Обкладинки й попередній перегляд</strong> для відеотеки, курсу чи маркетплейсу.</li>
+<li><strong>Кадри для ШІ</strong>: описати відео, знайти в ньому товари чи текст, перевірити вміст - надішліть моделі кадри сцен
+  замість усього файлу. Інструмент є й інструментом MCP для Claude, Cursor та інших агентів - див.
+  <a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>.</li>
+<li><strong>Розкадровки</strong> реклами й трейлерів, по кадру на сцену.</li>
+<li><strong>Звіти</strong>: знімки точних моментів запису з таймкодами.</li>
+</ul>
+<p>Для чого ви видобували б кадри першими? Напишіть у коментарях.</p>
+<h2 id="_7">Спробувати за дві хвилини</h2>
+<ol>
+<li>Відкрийте <a href="https://apify.com/ai_admin/video-frame-extractor">Video Frame Extractor</a> і натисніть <strong>Try for free</strong>.</li>
+<li>Поле вводу вже заповнене робочим прикладом: натисніть <strong>Start</strong> або вставте посилання на власні відео.</li>
+<li>Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.</li>
+</ol></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
