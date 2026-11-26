@@ -49,8 +49,8 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 6.0-10.7   Delivery times improved by 12% after the new routing schedule was introduced.
 </code></pre>
 <p>Український файл повернувся з правильними назвами й числами: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
-третього кварталу». Назви міст пишуться правильно, навіть коли мову не задано: якщо слово схоже на неправильно
-почуту назву міста, цей фрагмент розпізнається ще раз із підказкою назв.</p>
+третього кварталу». Назви українських міст (Київ, Львів, Харків...) пишуться правильно і без заданої мови (для англійської, української
+та російської): якщо слово схоже на неправильно почуту назву міста, цей фрагмент розпізнається ще раз із підказкою назв.</p>
 <p><strong>Кожне слово з його часом</strong> - для караоке-субтитрів, пошуку всередині запису чи вирізання фрагмента:</p>
 <pre><code class="language-json">[{&quot;start&quot;: 0.0, &quot;end&quot;: 0.14, &quot;word&quot;: &quot;The&quot;}, {&quot;start&quot;: 0.14, &quot;end&quot;: 0.56, &quot;word&quot;: &quot;warehouse&quot;},
  {&quot;start&quot;: 0.56, &quot;end&quot;: 0.76, &quot;word&quot;: &quot;in&quot;}, {&quot;start&quot;: 0.76, &quot;end&quot;: 1.14, &quot;word&quot;: &quot;Lviv&quot;}]
@@ -80,7 +80,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
   у результаті про це є примітка.</li>
 <li><strong>Ваші терміни:</strong> у <code>vocabulary</code> можна вписати імена й написання, що трапляються в записі.</li>
 <li><strong>Звірка для шумних записів:</strong> запис розпізнається ще раз другою моделлю, і місця, де дві розшифровки
-  розходяться, показуються списком із часом.</li>
+  розходяться, показуються списком із часом; кожна хвилина оплачується двічі.</li>
 <li><strong>Невдалі файли безкоштовні.</strong></li>
 </ul>
 <h2 id="_4">Ціна</h2>
@@ -102,6 +102,12 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
 </tr>
 <tr>
 <td>Переклад, за хвилину</td>
+<td>ще одна хвилина аудіо</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Перехресна перевірка, за хвилину</td>
 <td>ще одна хвилина аудіо</td>
 <td></td>
 <td></td>

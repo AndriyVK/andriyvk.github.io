@@ -45,8 +45,8 @@ language of each file was detected automatically.
 ```
 
 The Ukrainian file came back with the names and numbers right: «Склад у Львові отримав 1240 палет будівельних матеріалів протягом
-третього кварталу». City names are spelled right even when the language is not set: if a word looks like a
-misheard place name, that part is recognised again with the names as a hint.
+третього кварталу». Ukrainian city names (Kyiv, Lviv, Kharkiv...) are spelled right even when the language is not set (for English,
+Ukrainian and Russian): if a word looks like a misheard city name, that part is recognised again with the names as a hint.
 
 **Every word with its time** - for karaoke captions, search inside a recording or cutting a clip:
 
@@ -90,7 +90,7 @@ misheard place name, that part is recognised again with the names as a hint.
   translated and nothing is charged - the output says so in a note.
 - **Your own terms:** `vocabulary` takes names and spellings that appear in the recording.
 - **Cross-check for noisy audio:** the recording is recognised again by the second model and the places where the two
-  disagree are listed with their times.
+  disagree are listed with their times; each minute is charged twice.
 - **Failed files are free.**
 
 ## Price
@@ -99,6 +99,7 @@ misheard place name, that part is recognised again with the names as a hint.
 |---|---|---|---|
 | One started minute of audio | $0.006 | $0.007 | $0.005 |
 | Translation, per minute | one more audio minute | | |
+| Cross-check, per minute | one more audio minute | | |
 
 Subtitles, word times and the summary are included. A fair price, with no hidden extras: a 45-second file with its
 Ukrainian translation, subtitles, word times and summary is 2 minutes, $0.012 on Bronze.
