@@ -11,7 +11,7 @@ Google News Actors in the Apify Store, plus memo23 and mine, on the same two que
 on 26 November 2026.
 
 > Disclosure: one of the five is mine, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper). Every
-> number below comes from a real run with the same settings for every Actor.
+> number below comes from a real run with the same queries and options for every Actor.
 
 ## The test
 
