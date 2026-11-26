@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 скраперів Google News на однакових запитах - повний текст, прямі посилання, кілька країн за один запуск</title>
+<meta name="description" content="П&#x27;ять Actors для Google News з Apify Store, ті самі два запити англійською й українською, замір 26 листопада 2026 року: прямі посилання на видання, повний текст статей, час роботи і за що ви платите. Два сайти віддали текст лише одному з них.">
+<link rel="canonical" href="https://andriyvk.github.io/uk/google-news-skrapery-porivniannia/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/google-news-skrapery-porivniannia/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/google-news-scrapers-compared/">
+<meta property="og:title" content="5 скраперів Google News на однакових запитах - повний текст, прямі посилання, кілька країн за один запуск">
+<meta property="og:description" content="П&#x27;ять Actors для Google News з Apify Store, ті самі два запити англійською й українською, замір 26 листопада 2026 року: прямі посилання на видання, повний текст статей, час роботи і за що ви платите. Два сайти віддали текст лише одному з них.">
+<meta property="og:url" content="https://andriyvk.github.io/uk/google-news-skrapery-porivniannia/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "5 скраперів Google News на однакових запитах - повний текст, прямі посилання, кілька країн за один запуск", "description": "П'ять Actors для Google News з Apify Store, ті самі два запити англійською й українською, замір 26 листопада 2026 року: прямі посилання на видання, повний текст статей, час роботи і за що ви платите. Два сайти віддали текст лише одному з них.", "datePublished": "2026-11-27", "inLanguage": "uk", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/uk/">AndriyVK Tools</a>
+<nav><a href="/google-news-scrapers-compared/">English</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">27.11.2026</p><h1>5 скраперів Google News на однакових запитах - повний текст, прямі посилання, кілька країн за один запуск</h1><p class="lead">П&#x27;ять Actors для Google News з Apify Store, ті самі два запити англійською й українською, замір 26 листопада 2026 року: прямі посилання на видання, повний текст статей, час роботи і за що ви платите. Два сайти віддали текст лише одному з них.</p><p>Дістати заголовки з Google News просто. Дістати <strong>саму статтю</strong> - пряме посилання на видання і повний текст, готовий
+для підсумку, дайджесту чи RAG, - ось де інструменти для Google News різняться. Я запустив п'ять найпопулярніших
+Actors для Google News з Apify Store на тих самих двох запитах і порівняв, що повернулося. Усі цифри - із запусків
+26 листопада 2026 року.</p>
+<blockquote>
+<p>Розкриття: один із п'яти - мій, <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a>. Кожна цифра
+нижче - зі справжнього запуску з однаковими налаштуваннями для всіх Actors.</p>
+</blockquote>
+<h2 id="_1">Тест</h2>
+<ul>
+<li>Два запити: "artificial intelligence" у виданні США (<code>US:en</code>) і «штучний інтелект» в українському (<code>UA:uk</code>).</li>
+<li>10 статей за останні 7 днів на запит, у порядку релевантності Google.</li>
+<li>Прямі посилання на видання і повний текст статей увімкнено там, де Actor це вміє.</li>
+</ul>
+<h2 id="_2">Коротко</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ai_admin (мій)</th>
+<th>data_xplorer</th>
+<th>memo23</th>
+<th>lhotanova</th>
+<th>automation-lab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Прямі посилання на видання</td>
+<td><strong>10 із 10</strong></td>
+<td>10 із 10</td>
+<td>10 із 10</td>
+<td>10 із 10</td>
+<td>10 із 10</td>
+</tr>
+<tr>
+<td>Повний текст, український запит</td>
+<td><strong>10 із 10</strong></td>
+<td>9 із 10</td>
+<td>9 із 10</td>
+<td>тексту немає</td>
+<td>тексту немає</td>
+</tr>
+<tr>
+<td>Повний текст, запит у США</td>
+<td><strong>9 із 10</strong></td>
+<td>9 із 10</td>
+<td>9 із 10</td>
+<td>тексту немає</td>
+<td>тексту немає</td>
+</tr>
+<tr>
+<td>Кілька видань за один запуск</td>
+<td><strong>так</strong></td>
+<td>ні</td>
+<td>ні</td>
+<td>ні</td>
+<td>ні</td>
+</tr>
+<tr>
+<td>Вибір порядку (найновіші чи релевантні)</td>
+<td><strong>так</strong></td>
+<td>ні</td>
+<td>ні</td>
+<td>ні</td>
+<td>ні</td>
+</tr>
+<tr>
+<td>Час запуску з повним текстом</td>
+<td><strong>6-7 с</strong></td>
+<td>5-7 с</td>
+<td>72-97 с</td>
+<td>19-94 с</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Сторінка оплачується лише після прочитання</td>
+<td><strong>так</strong></td>
+<td>ні</td>
+<td>так</td>
+<td>ні</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Повторів немає ні в кого. Єдину сторінку в запиті США, яку не прочитав ніхто, на war.gov, закрито для роботів для
+всіх Actors: сайти, що блокують роботів (ще один приклад - Reuters), - межа для всіх інструментів Google News,
+зокрема й мого.</p>
+<h2 id="_3">Текст там, де інші не отримали нічого</h2>
+<p>Найкорисніша цифра - що робить кожен інструмент з <strong>тими самими сторінками</strong>. data_xplorer і memo23 разом повернули
+27 різних сторінок. На цих 27 сторінках мій інструмент дістав повний текст із 26; data_xplorer і memo23 - по 18 зі
+своїх 20.</p>
+<p><strong>Два сайти, gur.gov.ua і dou.ua, віддали текст лише моєму.</strong> Один із них - стаття нижче, допис на 2140 слів зі
+спільноти програмістів DOU, з українського запуску:</p>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;штучний інтелект&quot;,
+  &quot;edition&quot;: &quot;UA:uk&quot;,
+  &quot;title&quot;: &quot;Монополія на інтелект, або як зробити штучний інтелект персональним і до чого це може призвести&quot;,
+  &quot;source&quot;: &quot;Спільнота програмістів&quot;,
+  &quot;url&quot;: &quot;https://dou.ua/forums/topic/63499/&quot;,
+  &quot;imageUrl&quot;: &quot;https://s.dou.ua/img/announces/image_3_qziV40t.jpg&quot;,
+  &quot;author&quot;: &quot;Andriy Belyaev&quot;,
+  &quot;publishedAt&quot;: &quot;2026-11-20T12:00:05Z&quot;,
+  &quot;wordCount&quot;: 2140,
+  &quot;text&quot;: &quot;Монополія на інтелект, або як зробити штучний інтелект персональним...&quot;
+}
+</code></pre>
+<p>Увесь український запуск - 10 статей, кожна з прямим посиланням, зображенням і повним текстом - тривав 6,6 секунди.</p>
+<h2 id="_4">Кілька країн за один запуск</h2>
+<p>Усі чотири інші Actors беруть один регіон за запуск. Мій бере список: <code>UA:uk</code>, <code>UA:ru</code>, <code>US:en</code>, <code>DE:de</code>, <code>PL:pl</code> і
+ще 40+, разом із кількома запитами. Порівняти, як одну подію висвітлюють на трьох ринках, - це один запуск, а не три.</p>
+<h2 id="_5">Ваш порядок результатів</h2>
+<p><code>sortBy: "relevance"</code> дає порядок самого Google - найкращий вибір, коли потрібні найповніші тексти.
+<code>sortBy: "newest"</code> ставить першими сьогоднішні статті - найкращий вибір для моніторингу.</p>
+<h2 id="_6">Ви платите за те, що отримали</h2>
+<table>
+<thead>
+<tr>
+<th>Що</th>
+<th>Платні плани (Bronze)</th>
+<th>Безкоштовний план</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Стаття: заголовок і пряме посилання на видання</td>
+<td>$2,50 за 1000</td>
+<td>$3 за 1000</td>
+</tr>
+<tr>
+<td>Прочитана сторінка: деталі й повний текст</td>
+<td>$0,50 за 1000</td>
+<td>$0,50 за 1000</td>
+</tr>
+</tbody>
+</table>
+<p>Частина за сторінку списується лише тоді, коли сторінку справді прочитано. Сайт, закритий для роботів, чи платний
+доступ нічого понад заголовок не коштують. Повністю прочитана стаття - $3 за 1000 на Bronze: справедлива ціна, без
+прихованих доплат.</p>
+<h2 id="_7">Спробуйте з тим самим вводом</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;ВАШ_ТОКЕН_APIFY&gt;&quot;)
+run = client.actor(&quot;ai_admin/google-news-scraper&quot;).call(run_input={
+    &quot;queries&quot;: [&quot;штучний інтелект&quot;],
+    &quot;editions&quot;: [&quot;UA:uk&quot;],
+    &quot;timeframe&quot;: &quot;7d&quot;,
+    &quot;maxArticlesPerQuery&quot;: 10,
+    &quot;fullText&quot;: True,
+    &quot;sortBy&quot;: &quot;relevance&quot;,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;source&quot;], item[&quot;wordCount&quot;], item[&quot;url&quot;])
+</code></pre>
+<p>Більше ідей - ранковий дайджест, українські й російські публікації поруч, набір новин для RAG - у
+<a href="/uk/monitorynh-novyn-google-news/">першій статті про цей інструмент</a>. Інструмент є й інструментом MCP для Claude,
+Cursor та інших агентів - див. <a href="/uk/mcp-instrumenty-dlia-shi-ahentiv/">MCP-сервер для ШІ-агентів</a>.</p>
+<p>Що б ви відстежували - свій бренд, ринок чи тему? Напишіть у коментарях.</p>
+<h2 id="_8">Спробувати за дві хвилини</h2>
+<ol>
+<li>Відкрийте <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a> і натисніть <strong>Try for free</strong>.</li>
+<li>Поле вводу вже заповнене робочим прикладом: натисніть <strong>Start</strong> або впишіть власні пошукові запити.</li>
+<li>Безкоштовний план Apify щомісяця дає $5 на використання - цього досить, щоб перевірити інструмент на своїх даних.</li>
+</ol></article>
+</main>
+<footer><p>Кожну інструкцію перевірено на справжніх файлах. Apify Actors, про які тут ідеться, зробив я; їхній код відкритий на GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

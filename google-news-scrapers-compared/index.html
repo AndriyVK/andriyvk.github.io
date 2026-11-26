@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 Google News scrapers on the same queries - full text, direct links, several countries in one run</title>
+<meta name="description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.">
+<link rel="canonical" href="https://andriyvk.github.io/google-news-scrapers-compared/"><link rel="alternate" hreflang="en" href="https://andriyvk.github.io/google-news-scrapers-compared/"><link rel="alternate" hreflang="uk" href="https://andriyvk.github.io/uk/google-news-skrapery-porivniannia/">
+<meta property="og:title" content="5 Google News scrapers on the same queries - full text, direct links, several countries in one run">
+<meta property="og:description" content="Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.">
+<meta property="og:url" content="https://andriyvk.github.io/google-news-scrapers-compared/">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="AndriyVK Tools" href="https://andriyvk.github.io/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "5 Google News scrapers on the same queries - full text, direct links, several countries in one run", "description": "Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.", "datePublished": "2026-11-27", "inLanguage": "en", "author": {"@type": "Person", "name": "AndriyVK", "url": "https://github.com/AndriyVK"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">AndriyVK Tools</a>
+<nav><a href="/uk/google-news-skrapery-porivniannia/">Українською</a> <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a></nav></header>
+<main>
+<article><p class="date">27.11.2026</p><h1>5 Google News scrapers on the same queries - full text, direct links, several countries in one run</h1><p class="lead">Five Google News Actors from the Apify Store, the same two queries in English and Ukrainian, measured on 26 November 2026: direct publisher links, full article text, run time and what you pay for. Two sites gave their text to only one of them.</p><p>Getting headlines out of Google News is easy. Getting <strong>the article itself</strong> - the direct publisher link and the full
+text, ready for a summary, a digest or a RAG index - is where Google News tools differ. I ran the five most used
+Google News Actors in the Apify Store on the same two queries and compared what came back. All numbers are from runs
+on 26 November 2026.</p>
+<blockquote>
+<p>Disclosure: one of the five is mine, <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a>. Every
+number below comes from a real run with the same settings for every Actor.</p>
+</blockquote>
+<h2 id="the-test">The test</h2>
+<ul>
+<li>Two queries: "artificial intelligence" in the US edition (<code>US:en</code>) and «штучний інтелект» in the Ukrainian one
+  (<code>UA:uk</code>).</li>
+<li>10 articles from the last 7 days per query, in Google's relevance order.</li>
+<li>Direct publisher links and full article text switched on wherever the Actor offers them.</li>
+</ul>
+<h2 id="short-answer">Short answer</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ai_admin (mine)</th>
+<th>data_xplorer</th>
+<th>memo23</th>
+<th>lhotanova</th>
+<th>automation-lab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct publisher links</td>
+<td><strong>10 of 10</strong></td>
+<td>10 of 10</td>
+<td>10 of 10</td>
+<td>10 of 10</td>
+<td>10 of 10</td>
+</tr>
+<tr>
+<td>Full text, Ukrainian query</td>
+<td><strong>10 of 10</strong></td>
+<td>9 of 10</td>
+<td>9 of 10</td>
+<td>no text option</td>
+<td>no text option</td>
+</tr>
+<tr>
+<td>Full text, US query</td>
+<td><strong>9 of 10</strong></td>
+<td>9 of 10</td>
+<td>9 of 10</td>
+<td>no text option</td>
+<td>no text option</td>
+</tr>
+<tr>
+<td>Several editions in one run</td>
+<td><strong>yes</strong></td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Choice of order (newest or relevance)</td>
+<td><strong>yes</strong></td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Run time with full text</td>
+<td><strong>6-7 s</strong></td>
+<td>5-7 s</td>
+<td>72-97 s</td>
+<td>19-94 s</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Page part charged only when read</td>
+<td><strong>yes</strong></td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>No duplicates in any output. The one US page nobody could read, on war.gov, is closed to robots for every Actor -
+sites that block robots (Reuters is another) are a limit for all Google News tools, mine included.</p>
+<h2 id="text-where-the-others-got-none">Text where the others got none</h2>
+<p>The most useful number is what each tool does with <strong>the same pages</strong>. data_xplorer and memo23 returned 27 different
+pages between them. On those 27 pages my tool extracted the full text from 26; data_xplorer and memo23 got 18 of
+their 20 each.</p>
+<p><strong>Two sites, gur.gov.ua and dou.ua, gave their text only to mine.</strong> One of them is the article below - a 2,140-word
+post from DOU, the Ukrainian developer community, from the Ukrainian run:</p>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;штучний інтелект&quot;,
+  &quot;edition&quot;: &quot;UA:uk&quot;,
+  &quot;title&quot;: &quot;Монополія на інтелект, або як зробити штучний інтелект персональним і до чого це може призвести&quot;,
+  &quot;source&quot;: &quot;Спільнота програмістів&quot;,
+  &quot;url&quot;: &quot;https://dou.ua/forums/topic/63499/&quot;,
+  &quot;imageUrl&quot;: &quot;https://s.dou.ua/img/announces/image_3_qziV40t.jpg&quot;,
+  &quot;author&quot;: &quot;Andriy Belyaev&quot;,
+  &quot;publishedAt&quot;: &quot;2026-11-20T12:00:05Z&quot;,
+  &quot;wordCount&quot;: 2140,
+  &quot;text&quot;: &quot;Монополія на інтелект, або як зробити штучний інтелект персональним...&quot;
+}
+</code></pre>
+<p>The whole Ukrainian run - 10 articles, every one with its direct link, image and full text - took 6.6 seconds.</p>
+<h2 id="several-countries-in-one-run">Several countries in one run</h2>
+<p>All four other Actors take one region per run. Mine takes a list: <code>UA:uk</code>, <code>UA:ru</code>, <code>US:en</code>, <code>DE:de</code>, <code>PL:pl</code> and 40+
+more, together with several queries. Comparing how one story is covered in three markets is one run, not three.</p>
+<h2 id="your-order-of-results">Your order of results</h2>
+<p><code>sortBy: "relevance"</code> gives Google's own order - the best choice when you want the most complete texts.
+<code>sortBy: "newest"</code> puts today's articles first - the best choice for monitoring.</p>
+<h2 id="you-pay-for-what-you-get">You pay for what you get</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Paid plans (Bronze)</th>
+<th>Free plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article: headline and direct publisher link</td>
+<td>$2.50 per 1,000</td>
+<td>$3 per 1,000</td>
+</tr>
+<tr>
+<td>Page read: details and full text</td>
+<td>$0.50 per 1,000</td>
+<td>$0.50 per 1,000</td>
+</tr>
+</tbody>
+</table>
+<p>The page part is charged only when the page was actually read. A site that blocks robots or a paywall costs nothing
+beyond the headline. A fully read article costs $3 per 1,000 on Bronze - a fair price, with no hidden extras.</p>
+<h2 id="try-it-with-the-same-input">Try it with the same input</h2>
+<pre><code class="language-python">from apify_client import ApifyClient
+
+client = ApifyClient(&quot;&lt;YOUR_APIFY_TOKEN&gt;&quot;)
+run = client.actor(&quot;ai_admin/google-news-scraper&quot;).call(run_input={
+    &quot;queries&quot;: [&quot;штучний інтелект&quot;],
+    &quot;editions&quot;: [&quot;UA:uk&quot;],
+    &quot;timeframe&quot;: &quot;7d&quot;,
+    &quot;maxArticlesPerQuery&quot;: 10,
+    &quot;fullText&quot;: True,
+    &quot;sortBy&quot;: &quot;relevance&quot;,
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item[&quot;source&quot;], item[&quot;wordCount&quot;], item[&quot;url&quot;])
+</code></pre>
+<p>More ideas - a morning digest, Ukrainian and Russian coverage side by side, a news dataset for RAG - are in
+<a href="/google-news-monitoring-ukrainian-russian/">the first post about this tool</a>. It is also an MCP tool for Claude,
+Cursor and other agents - see <a href="/mcp-document-tools-for-ai-agents/">MCP server for document and media tools</a>.</p>
+<p>Which news would you monitor - your brand, a market or a topic? Tell me in the comments.</p>
+<h2 id="try-it-in-two-minutes">Try it in two minutes</h2>
+<ol>
+<li>Open <a href="https://apify.com/ai_admin/google-news-scraper">Google News Scraper</a> and press <strong>Try for free</strong>.</li>
+<li>The input is already filled with a working example: press <strong>Start</strong>, or put in your own search queries.</li>
+<li>Apify's free plan includes $5 of usage every month - enough to test it on your own data.</li>
+</ol></article>
+</main>
+<footer><p>Every guide is tested on real files. I build the Apify Actors shown here; their source code is open on GitHub.</p>
+<p><a href="https://apify.com/ai_admin">Apify Store</a> · <a href="https://github.com/AndriyVK/-apify-document-tools">GitHub</a> · <a href="/feed.xml">RSS</a></p></footer>
+<script data-goatcounter="https://andriyvk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
