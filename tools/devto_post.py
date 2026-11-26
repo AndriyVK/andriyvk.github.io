@@ -10,6 +10,7 @@ TAGS = {
     'ocr-cyrillic-images-5-actors-compared': ['ocr', 'python', 'ai', 'tutorial'],
     'google-news-monitoring-ukrainian-russian': ['news', 'python', 'ai', 'tutorial'],
     'translate-videos-ukrainian-subtitles-api': ['video', 'ai', 'python', 'tutorial'],
+    'extract-frames-from-video-api': ['video', 'python', 'ai', 'tutorial'],
 }
 # dev.to-specific titles (differ from the blog on purpose)
 TITLES = {
