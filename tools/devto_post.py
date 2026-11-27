@@ -11,6 +11,7 @@ TAGS = {
     'google-news-monitoring-ukrainian-russian': ['news', 'python', 'ai', 'tutorial'],
     'translate-videos-ukrainian-subtitles-api': ['video', 'ai', 'python', 'tutorial'],
     'extract-frames-from-video-api': ['video', 'python', 'ai', 'tutorial'],
+    'google-news-scrapers-compared': ['news', 'python', 'webscraping', 'ai'],
 }
 # dev.to-specific titles (differ from the blog on purpose)
 TITLES = {
