@@ -11,7 +11,7 @@ twist: the same story is covered in both languages, so you want both editions at
 does that, with a real run from 16 November 2026.
 
 **In short: the most complete news data in one run.** Direct publisher links, full article text and several countries
-at once - all in one article price, with no extra fees per link or per page.
+at once - and the page is charged only when it was actually read.
 
 > Disclosure: I built the tool, [Google News Scraper](https://apify.com/ai_admin/google-news-scraper) on Apify. The
 > code is open: [AndriyVK/-apify-document-tools](https://github.com/AndriyVK/-apify-document-tools).
@@ -72,8 +72,8 @@ One record from that run (text shortened):
 
 **By the numbers.** Ukrainian and Russian coverage of one query takes one run here and two runs with the two most
 used Google News Actors (data_xplorer and lhotanova take one edition per run). A query returns up to 5,000 articles
-read day by day, 50 times the 100 that one Google News search shows. And the link, the page details and the text are
-part of the article price: lhotanova charges $1 extra per 1,000 links and $1 per 1,000 pages, memo23 $0.50 for each.
+read day by day, 50 times the 100 that one Google News search shows. And you pay for the page only when it was
+read: a site that blocks robots or a paywall costs nothing beyond the headline and the link.
 
 ## Price compared with the six most used Google News Actors
 
@@ -89,7 +89,8 @@ Prices for one article with the direct link, the page details and the text, as t
 | easyapi/google-news-scraper | 104 | $5 | $5 | $90 per 1,000 runs | - |
 | memo23/google-news-scraper | 42 | $2.50 + $0.50 link + $0.50 text = $3.50 | $3.31 | $5 per 1,000 runs | - |
 
-With this tool the direct link, the details and the full text are part of the article price, and one run reads
+With this tool a fully read article costs the same as before, the page part is charged only when the page was
+read, and one run reads
 several editions and more than 100 articles per query.
 
 ## Ideas for using it

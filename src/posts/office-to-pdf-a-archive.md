@@ -65,7 +65,7 @@ rejects files that fail veraPDF, run it on a sample before you convert the whole
 ## Price
 
 **$10 per 1,000 documents**, whatever the number of pages; merging is free; a file that fails to convert is not
-charged. The run above cost two cents.
+charged; each run adds $0.002. The run above cost 2.2 cents.
 
 ## Limits
 

@@ -69,7 +69,7 @@ of speech.
 ## Price
 
 Per started minute of audio: **$40 per 1,000 minutes with the `high` voices** (4 cents a minute) and $10 per 1,000
-with `medium`/`low` voices. All three Ukrainian voices are `high`. The sample above is one started minute - 4 cents.
+with `medium`/`low` voices. All three Ukrainian voices are `high`. Each run adds $0.006. The sample above is one started minute - 4.6 cents with the run.
 Subtitles are free.
 
 ## Limits
